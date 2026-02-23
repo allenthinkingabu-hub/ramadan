@@ -1,0 +1,77 @@
+# BRD Writer Agent - Definition of Ready (DoR) Checklist
+# Prerequisites that must be satisfied before starting BRD creation.
+# Items marked required: true MUST be available; required: false are recommended.
+# Modify this file to adjust readiness criteria as needed.
+
+dor_name: brd-readiness-criteria
+version: "1.0"
+
+prerequisites:
+
+  - check_id: DOR-001
+    name: "Topic / Business Problem Provided"
+    description: "A clear topic, business problem statement, or initiative description is provided by the user"
+    required: true
+    source: "User input"
+
+  - check_id: DOR-002
+    name: "Project Authorization"
+    description: "A project charter, sponsor mandate, or formal request to initiate exists"
+    required: false
+    source: "Project Manager Agent or User"
+    fallback: "Agent will proceed with user as sponsor if no formal authorization exists"
+
+  - check_id: DOR-003
+    name: "Project Sponsor Identified"
+    description: "A named sponsor with decision-making authority is identified"
+    required: false
+    source: "User input or RACI matrix"
+    fallback: "User is treated as the default sponsor"
+
+  - check_id: DOR-004
+    name: "Stakeholder Information Available"
+    description: "Key stakeholders are identified or can be discussed interactively"
+    required: false
+    source: "User input or organizational context"
+    fallback: "Agent will ask user to identify key stakeholders during elicitation"
+
+  - check_id: DOR-005
+    name: "Business Context Available"
+    description: "Organization mission, vision, strategy, or product context is known or discoverable"
+    required: false
+    source: "User input, existing documents, or web research"
+    fallback: "Agent will research and ask user to confirm business context"
+
+  - check_id: DOR-006
+    name: "Initial Scope Indication"
+    description: "High-level boundaries or scope hints are available"
+    required: false
+    source: "User input"
+    fallback: "Agent will collaboratively define scope during elicitation"
+
+  - check_id: DOR-007
+    name: "Relevant Prior Documents"
+    description: "Any existing documentation (prior BRDs, business cases, strategy docs) is accessible"
+    required: false
+    source: "User-provided files or file system"
+    fallback: "Agent will proceed without prior documents if unavailable"
+
+  - check_id: DOR-008
+    name: "Industry / Domain Context"
+    description: "The industry or domain is identifiable so research can be conducted"
+    required: true
+    source: "Inferred from topic or explicitly provided by user"
+
+  - check_id: DOR-009
+    name: "Output Location Defined"
+    description: "The directory path where BRD output should be stored is known"
+    required: true
+    source: "User input or default to ../brd/"
+    fallback: "Default: store in ../brd/ relative to skill directory"
+
+  - check_id: DOR-010
+    name: "Language Preference"
+    description: "The language for BRD output is specified"
+    required: false
+    source: "User input"
+    fallback: "Default: English"

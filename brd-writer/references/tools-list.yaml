@@ -1,0 +1,100 @@
+# BRD Writer Agent - Tools List Configuration
+# Defines the tools the BRD Writer AI Agent should know and use.
+# Modify this file to add, remove, or adjust tools as needed.
+
+tools_name: brd-writer-tools
+version: "1.0"
+
+tool_categories:
+
+  - category: "Document Authoring & Collaboration"
+    tools:
+      - tool_id: TL-001
+        name: "Markdown Editor"
+        purpose: "Primary authoring format for BRD documents"
+        required: true
+
+      - tool_id: TL-002
+        name: "Confluence (Atlassian)"
+        purpose: "Collaborative BRD authoring with version control and Jira integration"
+        required: false
+
+      - tool_id: TL-003
+        name: "Google Docs / Microsoft Word"
+        purpose: "Traditional document authoring with track changes and commenting"
+        required: false
+
+      - tool_id: TL-004
+        name: "Notion"
+        purpose: "Flexible workspace for drafting and requirements database tracking"
+        required: false
+
+  - category: "Requirements Management"
+    tools:
+      - tool_id: TL-005
+        name: "Jira (Atlassian)"
+        purpose: "Track requirements as epics/stories with traceability"
+        required: false
+
+      - tool_id: TL-006
+        name: "Azure DevOps"
+        purpose: "Requirements management with work items, boards, and traceability"
+        required: false
+
+      - tool_id: TL-007
+        name: "Linear"
+        purpose: "Modern issue tracking for requirements management"
+        required: false
+
+  - category: "Visual Modeling & Diagramming"
+    tools:
+      - tool_id: TL-008
+        name: "Mermaid Diagrams"
+        purpose: "Code-based diagrams embeddable in Markdown (flowcharts, sequence, ERD)"
+        required: true
+
+      - tool_id: TL-009
+        name: "PlantUML"
+        purpose: "Code-based UML diagram generation"
+        required: false
+
+      - tool_id: TL-010
+        name: "Lucidchart / Draw.io"
+        purpose: "Process flows, data flow diagrams, system architecture diagrams"
+        required: false
+
+      - tool_id: TL-011
+        name: "Miro / Mural"
+        purpose: "Collaborative whiteboards for workshops and process mapping"
+        required: false
+
+  - category: "Research & Analysis"
+    tools:
+      - tool_id: TL-012
+        name: "Web Search"
+        purpose: "Research industry best practices, competitive analysis, market data"
+        required: true
+
+      - tool_id: TL-013
+        name: "Context7"
+        purpose: "Retrieve up-to-date documentation and code examples"
+        required: false
+
+  - category: "Communication"
+    tools:
+      - tool_id: TL-014
+        name: "Slack / Microsoft Teams"
+        purpose: "Real-time stakeholder communication during elicitation"
+        required: false
+
+  - category: "File Management"
+    tools:
+      - tool_id: TL-015
+        name: "File System (Read/Write/Edit)"
+        purpose: "Create, read, and edit BRD documents and configuration files"
+        required: true
+
+      - tool_id: TL-016
+        name: "Git"
+        purpose: "Version control for BRD document history"
+        required: false

@@ -1,0 +1,84 @@
+# BRD Writer Agent - Knowledge Base Configuration
+# Defines the knowledge domains the BRD Writer AI Agent should possess.
+# Modify this file to add, remove, or adjust knowledge areas as needed.
+
+knowledge_name: brd-writer-knowledge
+version: "1.0"
+
+knowledge_domains:
+
+  - category: "Core Business Analysis Knowledge (BABOK v3)"
+    domains:
+      - domain_id: KD-001
+        name: "Business Analysis Planning & Monitoring"
+        description: "Planning the BRD creation process, defining approach, managing stakeholder engagement"
+
+      - domain_id: KD-002
+        name: "Elicitation & Collaboration"
+        description: "Gathering requirements through interviews, workshops, surveys, and stakeholder collaboration"
+
+      - domain_id: KD-003
+        name: "Requirements Lifecycle Management"
+        description: "Tracing, maintaining, prioritizing, and managing change to requirements"
+
+      - domain_id: KD-004
+        name: "Strategy Analysis"
+        description: "Understanding business context, defining future state, assessing value"
+
+      - domain_id: KD-005
+        name: "Requirements Analysis & Design Definition"
+        description: "Analyzing and modeling requirements, defining acceptance criteria"
+
+      - domain_id: KD-006
+        name: "Solution Evaluation"
+        description: "Assessing proposed solutions against requirements, validating completeness"
+
+  - category: "Supporting Knowledge Domains"
+    domains:
+      - domain_id: KD-007
+        name: "Industry / Domain Knowledge"
+        description: "Understanding the specific industry (healthcare, finance, retail, tech, etc.)"
+
+      - domain_id: KD-008
+        name: "Organizational Knowledge"
+        description: "Understanding company structure, culture, processes, and strategic goals"
+
+      - domain_id: KD-009
+        name: "Software Development Lifecycle (SDLC)"
+        description: "Agile, Waterfall, SAFe methodologies and how BRDs fit in each"
+
+      - domain_id: KD-010
+        name: "Enterprise Architecture"
+        description: "System integration, technology landscape, and architecture patterns"
+
+      - domain_id: KD-011
+        name: "Data & Information Management"
+        description: "Data governance, data flows, data quality requirements"
+
+      - domain_id: KD-012
+        name: "Regulatory & Compliance"
+        description: "Applicable regulations (GDPR, HIPAA, SOX, PCI-DSS, etc.)"
+
+      - domain_id: KD-013
+        name: "UX / Usability Principles"
+        description: "User-centered design, usability heuristics for requirement definition"
+
+      - domain_id: KD-014
+        name: "Financial Analysis"
+        description: "Cost-benefit analysis, ROI calculation, budgeting for cost justification"
+
+      - domain_id: KD-015
+        name: "Risk Management"
+        description: "Risk identification, assessment, mitigation frameworks"
+
+      - domain_id: KD-016
+        name: "Change Management"
+        description: "Organizational change management principles for adoption planning"
+
+      - domain_id: KD-017
+        name: "Quality Management"
+        description: "ISO/IEC/IEEE 29148 standards, quality frameworks for requirements"
+
+      - domain_id: KD-018
+        name: "Project Management (PMBOK)"
+        description: "Project lifecycle, scope management, stakeholder management"

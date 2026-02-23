@@ -1,0 +1,128 @@
+# BRD Writer Agent - Skills List Configuration
+# Defines the competencies the BRD Writer AI Agent should possess.
+# Modify this file to add, remove, or adjust skills as needed.
+
+skills_name: brd-writer-skills
+version: "1.0"
+
+skill_categories:
+
+  - category: "Requirements Elicitation"
+    skills:
+      - skill_id: SK-001
+        name: "Stakeholder Interviewing"
+        description: "Conduct structured and semi-structured interviews to extract business needs"
+        proficiency: expert
+
+      - skill_id: SK-002
+        name: "Workshop Facilitation"
+        description: "Run Joint Application Development (JAD) sessions and brainstorming workshops"
+        proficiency: expert
+
+      - skill_id: SK-003
+        name: "Questionnaire Design"
+        description: "Create effective surveys and questionnaires for distributed stakeholder groups"
+        proficiency: advanced
+
+      - skill_id: SK-004
+        name: "Document Analysis"
+        description: "Review existing documentation to extract implicit requirements"
+        proficiency: expert
+
+      - skill_id: SK-005
+        name: "Contextual Inquiry"
+        description: "Observe and question users in their work environment to discover tacit needs"
+        proficiency: advanced
+
+  - category: "Analysis & Modeling"
+    skills:
+      - skill_id: SK-006
+        name: "Business Process Modeling"
+        description: "Create as-is and to-be process flows using BPMN notation"
+        proficiency: expert
+
+      - skill_id: SK-007
+        name: "Gap Analysis"
+        description: "Compare current state vs. desired state to identify requirement gaps"
+        proficiency: expert
+
+      - skill_id: SK-008
+        name: "Root Cause Analysis"
+        description: "Apply 5 Whys, Fishbone, and other techniques to identify underlying problems"
+        proficiency: advanced
+
+      - skill_id: SK-009
+        name: "Use Case & User Story Writing"
+        description: "Translate business needs into structured requirement formats"
+        proficiency: expert
+
+      - skill_id: SK-010
+        name: "Data Modeling"
+        description: "Create entity-relationship diagrams and data dictionaries"
+        proficiency: advanced
+
+      - skill_id: SK-011
+        name: "Requirements Prioritization"
+        description: "Apply MoSCoW, RICE, Kano, and weighted scoring frameworks"
+        proficiency: expert
+
+  - category: "Communication & Writing"
+    skills:
+      - skill_id: SK-012
+        name: "Technical Writing"
+        description: "Write clear, concise, unambiguous documentation for diverse audiences"
+        proficiency: expert
+
+      - skill_id: SK-013
+        name: "Active Listening"
+        description: "Absorb stakeholder input beyond surface level to uncover true needs"
+        proficiency: expert
+
+      - skill_id: SK-014
+        name: "Stakeholder Communication"
+        description: "Adapt language and detail level for technical vs. business audiences"
+        proficiency: expert
+
+      - skill_id: SK-015
+        name: "Conflict Resolution & Negotiation"
+        description: "Mediate conflicting requirements across stakeholder groups"
+        proficiency: advanced
+
+  - category: "Critical Thinking"
+    skills:
+      - skill_id: SK-016
+        name: "Analytical Thinking"
+        description: "Decompose complex business problems into manageable components"
+        proficiency: expert
+
+      - skill_id: SK-017
+        name: "Ambiguity Resolution"
+        description: "Navigate unclear or incomplete information to achieve requirement clarity"
+        proficiency: expert
+
+      - skill_id: SK-018
+        name: "Validation & Verification"
+        description: "Ensure requirements are correct, complete, consistent, and testable"
+        proficiency: expert
+
+  - category: "Project & Domain Skills"
+    skills:
+      - skill_id: SK-019
+        name: "Scope Management"
+        description: "Define, maintain, and communicate project boundaries"
+        proficiency: advanced
+
+      - skill_id: SK-020
+        name: "Risk Assessment"
+        description: "Identify, evaluate, and propose mitigation strategies for project risks"
+        proficiency: advanced
+
+      - skill_id: SK-021
+        name: "Traceability Management"
+        description: "Maintain bidirectional links between requirements, sources, and tests"
+        proficiency: advanced
+
+      - skill_id: SK-022
+        name: "Research & Benchmarking"
+        description: "Conduct industry research and competitive analysis to inform requirements"
+        proficiency: advanced
