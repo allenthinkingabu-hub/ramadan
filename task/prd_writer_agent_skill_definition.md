@@ -104,6 +104,8 @@
        - 最终检查报告
 - 第十五、这个 Ai Agent 调用完成后，告诉 Project Manager AI Agent 完成任务，并把 BRD 文档存放位置及文件名称发给 Project Manager AI Agent， Project Manager AI Agent 根据 这个任务RACI矩阵去调用对应的Ai Agent 去完成 RACI 矩阵的任务。 
 
+- 第十六，记录每次你的问题清单，方便以后回顾
+- 第十七，你在调用工具去调研时候，你的调研过程、调用结果存存在本地，方便后续使用
 
 # 功能要求：我期望一个交互性强的Ai Agent, 首先 AI Agent 拿到客户的需求，我们称之为 Topic.
 

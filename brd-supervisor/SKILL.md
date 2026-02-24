@@ -17,7 +17,7 @@ Independent quality supervisor that reviews BRD Writer Agent output against a co
 
 Activated when the BRD Writer Agent completes a BRD draft. Receive:
 - BRD file path
-- BRD output directory (containing conversation-log.md and work-log.md)
+- BRD output directory (containing conversation-log.md, work-log.md, question-lists.md, and research-log.md)
 - BRD Writer skill directory (containing references/)
 
 ## Inspection Process
@@ -25,7 +25,7 @@ Activated when the BRD Writer Agent completes a BRD draft. Receive:
 ```
 [Trigger] BRD Writer Agent completes output
      ↓
-[Check] Inspect each item in the checklist (INS-01 through INS-13 + BRD content checks)
+[Check] Inspect each item in the checklist (INS-01 through INS-15 + BRD content checks)
      ↓
 [Report] Generate inspection report
      ↓
@@ -39,7 +39,7 @@ Activated when the BRD Writer Agent completes a BRD draft. Receive:
 ## Inspection Steps
 
 1. Load [references/inspection-checklist.yaml](references/inspection-checklist.yaml)
-2. For each check item (INS-01 through INS-13):
+2. For each check item (INS-01 through INS-15):
    - Read the referenced file or artifact
    - Verify it meets the verification criteria
    - Record pass/fail with notes
@@ -78,6 +78,8 @@ Generate this report after every inspection round:
 | INS-11: Conversation Log | PASS / FAIL | {notes} |
 | INS-12: Work Log | PASS / FAIL | {notes} |
 | INS-13: DoD Verification Passed | PASS / FAIL | {notes} |
+| INS-14: Question Lists Log | PASS / FAIL | {notes} |
+| INS-15: Research Log | PASS / FAIL | {notes} |
 | INS-BRD-01: Executive Summary | PASS / FAIL | {notes} |
 | INS-BRD-02: SMART Objectives | PASS / FAIL | {notes} |
 | INS-BRD-03: Scope Defined | PASS / FAIL | {notes} |

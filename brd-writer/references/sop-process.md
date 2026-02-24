@@ -45,17 +45,20 @@ This SOP defines the step-by-step process the BRD Writer AI Agent follows from r
 | Step | Action | Output |
 |------|--------|--------|
 | 3.1 | Research the topic on the internet and authoritative knowledge bases | Research findings |
-| 3.2 | Analyze how this is done in the industry (best practices, benchmarks) | Industry analysis |
-| 3.3 | Generate a structured question list based on research and topic | Question list |
-| 3.4 | Present industry findings and question list to user | Presented findings |
-| 3.5 | Conduct interactive Q&A with user (one question at a time or grouped) | Q&A responses |
-| 3.6 | Iterate on questions until all critical information is gathered | Complete Q&A |
-| 3.7 | Consolidate answers into a validated requirements list | Requirements list |
-| 3.8 | Present requirements list to user for confirmation | User confirmation |
-| 3.9 | If user has changes → revise and re-confirm | Revised requirements |
-| 3.10 | If user agrees → proceed to Phase 4 | Confirmed requirements list |
+| 3.2 | **Save research process and results to `research-log.md`** (tool, query, findings, sources) | Research log entry |
+| 3.3 | Analyze how this is done in the industry (best practices, benchmarks) | Industry analysis |
+| 3.4 | Generate a structured question list based on research and topic | Question list |
+| 3.5 | **Save the question list to `question-lists.md`** for future review | Question list logged |
+| 3.6 | Present industry findings and question list to user | Presented findings |
+| 3.7 | Conduct interactive Q&A with user (one question at a time or grouped) | Q&A responses |
+| 3.8 | Iterate on questions until all critical information is gathered | Complete Q&A |
+| 3.9 | **Save each round's question list and answered summaries to `question-lists.md`** | Updated question lists log |
+| 3.10 | Consolidate answers into a validated requirements list | Requirements list |
+| 3.11 | Present requirements list to user for confirmation | User confirmation |
+| 3.12 | If user has changes → revise and re-confirm | Revised requirements |
+| 3.13 | If user agrees → proceed to Phase 4 | Confirmed requirements list |
 
-**Log**: Record all Q&A exchanges in conversation log.
+**Log**: Record all Q&A exchanges in conversation log. Record all research in research log. Record all question lists in question lists log.
 
 ---
 
@@ -67,7 +70,7 @@ This SOP defines the step-by-step process the BRD Writer AI Agent follows from r
 |------|--------|--------|
 | 4.1 | Read the BRD output template (`references/brd-output-template.md`) | Template loaded |
 | 4.2 | Read the DoD checklist (`references/dod-checklist.yaml`) | DoD loaded |
-| 4.3 | Research additional details as needed for specific sections | Supplemental research |
+| 4.3 | Research additional details as needed for specific sections — **log all research to `research-log.md`** | Supplemental research |
 | 4.4 | Draft all BRD sections following the template structure | BRD draft v0.1 |
 | 4.5 | Write Executive Summary last (summarizes entire document) | Executive Summary |
 | 4.6 | Self-review against DoD checklist | Self-review notes |
@@ -125,3 +128,15 @@ This SOP defines the step-by-step process the BRD Writer AI Agent follows from r
 - Record every agent action on a timeline
 - Format: `[{timestamp}] {action_description} — Status: {completed/in-progress/failed}`
 - Store in the output directory as `work-log.md`
+
+### Question Lists Log
+- Record every question list generated during each phase for future review
+- Format: `## Phase {N}: {phase_name} — {timestamp}` followed by numbered questions and answered summaries
+- Store in the output directory as `question-lists.md`
+- Capture question lists from all phases (Task Understanding, Topic Understanding, Research & Elicitation)
+
+### Research Log
+- Record every research action: tool invoked, search query/URL, purpose, key findings, and source
+- Format: `## Research #{seq} — {timestamp}` with structured fields (Tool, Query/URL, Purpose, Key Findings, Source)
+- Store in the output directory as `research-log.md`
+- Log every web search, Context7 query, web fetch, and other research tool invocations

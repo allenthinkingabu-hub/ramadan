@@ -98,6 +98,20 @@ inspection_items:
     verification_method: "Check that DoD verification was performed and all critical/high severity items show as passed"
     severity: critical
 
+  - check_id: INS-14
+    name: "Question Lists Log"
+    description: "Verify that question-lists.md exists in the output directory and contains all question lists generated during each phase, with numbered questions and answered summaries"
+    source_requirement: "Requirement #16"
+    verification_method: "Check file exists in output directory, contains phase-labeled sections, numbered question entries, and answered summaries for each round of Q&A"
+    severity: critical
+
+  - check_id: INS-15
+    name: "Research Log"
+    description: "Verify that research-log.md exists in the output directory and records every research tool invocation with tool name, query/URL, purpose, key findings, and source"
+    source_requirement: "Requirement #17"
+    verification_method: "Check file exists in output directory, contains sequentially numbered research entries, each with structured fields (Tool, Query/URL, Purpose, Key Findings, Source)"
+    severity: critical
+
 # BRD content quality checks (applied to the actual BRD output)
 brd_content_checks:
 

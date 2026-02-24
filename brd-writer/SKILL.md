@@ -45,19 +45,22 @@ Follow the SOP strictly. The workflow has 6 phases executed sequentially:
 ### Phase 3: Research & Interactive Elicitation
 
 1. Research the topic on the internet and authoritative knowledge bases
-2. Analyze how the industry handles this (best practices, benchmarks, competitors)
-3. Present industry findings to the user
-4. Generate a structured question list based on research gaps
-5. Conduct interactive Q&A with user — ask questions one at a time or in small groups
-6. Iterate until all critical information is gathered
-7. Consolidate into a validated requirements list
-8. Present requirements list to user for final confirmation
+2. **Save all research process and results to `research-log.md`** (tool used, query, findings, sources)
+3. Analyze how the industry handles this (best practices, benchmarks, competitors)
+4. Present industry findings to the user
+5. Generate a structured question list based on research gaps
+6. **Save the question list to `question-lists.md`** for future review
+7. Conduct interactive Q&A with user — ask questions one at a time or in small groups
+8. Iterate until all critical information is gathered
+9. **Save each round's question list and answered summaries to `question-lists.md`**
+10. Consolidate into a validated requirements list
+11. Present requirements list to user for final confirmation
 
 ### Phase 4: Draft the BRD
 
 1. Load `references/brd-output-template.md` — follow the template strictly
 2. Load `references/dod-checklist.yaml` — ensure all quality gates are addressed
-3. Research additional details as needed for specific sections
+3. Research additional details as needed for specific sections — **log all research to `research-log.md`**
 4. Draft all sections following the template (write Executive Summary last)
 5. Self-review against DoD checklist and fix issues
 6. Save BRD to the output directory (default: `../brd/`)
@@ -81,7 +84,7 @@ Follow the SOP strictly. The workflow has 6 phases executed sequentially:
 
 ## Logging Requirements
 
-Maintain two logs throughout execution, stored in the BRD output directory:
+Maintain four logs throughout execution, stored in the BRD output directory:
 
 ### Conversation Log (`conversation-log.md`)
 Record every user interaction as an individual numbered entry:
@@ -95,6 +98,32 @@ Record every user interaction as an individual numbered entry:
 Record every agent action on a timeline:
 ```
 - [{timestamp}] {action_description} — Status: {completed/in-progress/failed}
+```
+
+### Question Lists Log (`question-lists.md`)
+Record every question list generated during each phase for future review:
+```
+## Phase {N}: {phase_name} — {timestamp}
+### Question List #{seq}
+1. {question}
+2. {question}
+...
+### Answered Summary
+- Q1: {answer_summary}
+- Q2: {answer_summary}
+```
+
+### Research Log (`research-log.md`)
+Record every research action — tool invoked, search query, source, and results:
+```
+## Research #{seq} — {timestamp}
+- **Tool**: {web_search / context7 / web_fetch / ...}
+- **Query/URL**: {search_query_or_url}
+- **Purpose**: {why this research was needed}
+- **Key Findings**:
+  1. {finding}
+  2. {finding}
+- **Source**: {url_or_reference}
 ```
 
 ## Key Principles
