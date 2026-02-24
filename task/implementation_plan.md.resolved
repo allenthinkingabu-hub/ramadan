@@ -1,0 +1,46 @@
+# IT Project Manager AI Agent Skill Definition
+
+Project Manager（PM）是整个 AI Agent 体系的**核心编排者**，负责统筹调度 BRD Writer、Feasibility Assessment、PRD Writer 等所有专业 Agent，监控项目全生命周期进度，确保最终交付质量。
+
+本次目标是创建一份**企业级、专业的 PM AI Agent Skill 定义文档**，与现有 BRD Writer 和 Feasibility Assessment Agent Skill 规范体系保持一致，并体现 PM 作为"指挥官"的全局视野和编排能力。
+
+---
+
+## Proposed Changes
+
+### Task 文件夹
+
+#### [NEW] [it_pm_agent_skill_definition.md](file:///Users/allenwang/build/ai/workspace/ramadan/task/it_pm_agent_skill_definition.md)
+
+完整的 PM AI Agent Skill 定义文档，结构如下（共 15 节 + 功能要求）：
+
+| 章节 | 内容 |
+|---|---|
+| 第一 | **触发机制**：列举所有能触发 PM Agent 启动的事件（项目立项、Agent 完成通知、异常上报等）|
+| 第二 | **RACI 矩阵**：以表格形式列出 PM 统筹的所有下游任务及干系人（BRD Writer Agent、Feasibility Agent、PRD Writer Agent、Dev Team、QA Team、Stakeholders 等），定义 R/A/C/I 四种角色 |
+| 第三 | **技能清单**：PM 必须具备的核心能力（需求分析、优先级管理、风险识别、跨团队沟通、敏捷/Scrum 等）|
+| 第四 | **知识体系**：支撑 PM 工作的知识框架（PMBOK、敏捷方法论、Scrum、RICE/MoSCoW、OKR、DACI 等）|
+| 第五 | **工具清单**：PM 调用的软件工具（Jira、Confluence、Miro、Figma、Slack、GitHub 等）|
+| 第六 | **MCP 工具清单**：PM Agent 可调用的 MCP 工具（文件读写、下游 Agent 调用、状态查询等）|
+| 第七 | **输出内容模板**：PM 产出标准文档（项目章程、Sprint 计划、风险登记册、状态报告、Release 报告等）|
+| 第八 | **SOP 流程清单**：覆盖 5 个阶段的标准操作程序（从 Inception 到 Release & Growth）|
+| 第九 | **DoD 质量门槛**：PM 判断项目各阶段完成的标准|
+| 第十 | **DoR 清单**：PM Agent 启动前必须满足的前置条件（项目立项批准、Sponsor 确认、预算批准等）|
+| 第十一 | **对话记录规范**：逐条记录与用户/干系人的对话 |
+| 第十二 | **工作记录规范**：以时间轴记录 PM Agent 的所有操作动作 |
+| 第十三 | **DoD 自动检查闭环**：自动检查并要求修复不达标项 |
+| 第十四 | **PM Supervisor Agent 规范**：独立于 PM Agent 之外的监督者，审查 PM 执行结果 |
+| 第十五 | **完成通知与下游调度**：通知 Sponsor 并触发各阶段后续 Agent |
+| 功能要求 | **四步交互式工作流**：理解目标→理解项目→调研最佳实践→按模板输出 |
+
+---
+
+## Verification Plan
+
+### 内容完整性检查
+- 对照 [it_pm_main_tasks.md](file:///Users/allenwang/build/ai/workspace/ramadan/task/it_pm_main_tasks.md) 的 5 个阶段，确认每个阶段的任务在 SOP 和 RACI 中均有覆盖
+- 对照 [prd_writer_agent_skill_definition.md](file:///Users/allenwang/build/ai/workspace/ramadan/task/prd_writer_agent_skill_definition.md) 和 [feasibility_assessment_agent_skill_definition.md](file:///Users/allenwang/build/ai/workspace/ramadan/task/feasibility_assessment_agent_skill_definition.md) 确认结构规范一致性
+- 确认监督 Agent 规范（14.1-14.5）格式与现有文件一致
+
+### 无自动化测试
+本任务产出为 Markdown 文档，通过人工阅读审查验证。

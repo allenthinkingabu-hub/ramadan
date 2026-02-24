@@ -1,0 +1,76 @@
+# PRD Writer Agent - MCP Tools Configuration
+# Defines the MCP (Model Context Protocol) tools this AI agent should invoke.
+# Editable: modify MCP tools as available services evolve.
+
+version: "1.0"
+last_updated: "2026-02-24"
+
+mcp_tools:
+  - id: MCP-001
+    name: context7
+    functions:
+      - resolve-library-id
+      - query-docs
+    when_to_use: Look up technical documentation, API specs, framework details, or technology references relevant to product requirements.
+    required: false
+
+  - id: MCP-002
+    name: web-search
+    functions:
+      - search
+    when_to_use: Research competitor products, industry best practices, market trends, technology standards, UX patterns, regulatory requirements.
+    required: true
+
+  - id: MCP-003
+    name: web-fetch
+    functions:
+      - fetch
+    when_to_use: Retrieve content from specific URLs (competitor product pages, API documentation, regulatory standards, design pattern references).
+    required: false
+
+  - id: MCP-004
+    name: filesystem
+    functions:
+      - read_file
+      - write_file
+      - edit_file
+      - list_directory
+    when_to_use: Read the input BRD, create PRD output files, manage conversation and work logs, read configuration files.
+    required: true
+
+  - id: MCP-005
+    name: git
+    functions:
+      - status
+      - add
+      - commit
+      - log
+      - diff
+    when_to_use: Track PRD document versions and changes across iterations.
+    required: false
+
+  - id: MCP-006
+    name: github
+    functions:
+      - create_issue
+      - create_pull_request
+      - list_issues
+    when_to_use: Create product backlog items directly from PRD requirements; create PRs for PRD reviews.
+    required: false
+
+  - id: MCP-007
+    name: jira
+    functions:
+      - create_issue
+      - search_issues
+      - update_issue
+    when_to_use: Create Jira epics/stories directly from PRD user stories for traceability.
+    required: false
+
+  - id: MCP-008
+    name: slack
+    functions:
+      - send_message
+      - read_channel
+    when_to_use: Send PRD review notifications, collect stakeholder feedback asynchronously.
+    required: false

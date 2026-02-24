@@ -1,0 +1,221 @@
+# PRD Writer Agent - SOP Process Configuration
+# Defines the Standard Operating Procedure for writing a PRD from a BRD.
+# Editable: modify process steps as workflow evolves.
+
+version: "1.0"
+last_updated: "2026-02-24"
+
+sop:
+  - phase: 1
+    name: BRD Comprehension & Confirmation
+    description: Read and deeply understand the approved BRD document.
+    steps:
+      - id: SOP-1.1
+        action: Receive the approved BRD file path from user or upstream agent.
+        output: BRD file path recorded.
+
+      - id: SOP-1.2
+        action: Read and analyze the BRD document comprehensively.
+        output: BRD analysis notes.
+
+      - id: SOP-1.3
+        action: Summarize understanding of the business objectives, scope, stakeholders, and key requirements from the BRD.
+        output: BRD comprehension summary.
+
+      - id: SOP-1.4
+        action: Present understanding to user and ask for confirmation.
+        output: User confirmation.
+
+      - id: SOP-1.5
+        action: If user disagrees, re-analyze specific sections and present again.
+        output: Revised understanding.
+        loop_condition: Repeat until user agrees.
+
+      - id: SOP-1.6
+        action: If user agrees, proceed to Phase 2.
+        output: Confirmed BRD understanding.
+
+    logging: Record all exchanges in conversation log (question-by-question).
+
+  - phase: 2
+    name: Product Feature Decomposition & Confirmation
+    description: Decompose BRD business requirements into product features and user scenarios.
+    steps:
+      - id: SOP-2.1
+        action: Decompose BRD business requirements into product feature modules and user scenarios.
+        output: Feature decomposition.
+
+      - id: SOP-2.2
+        action: Map each BRD requirement to one or more product features (traceability).
+        output: BRD-to-Feature mapping.
+
+      - id: SOP-2.3
+        action: Identify user personas based on BRD stakeholder analysis.
+        output: User personas draft.
+
+      - id: SOP-2.4
+        action: Present feature decomposition, user personas, and traceability mapping to user.
+        output: Feature summary.
+
+      - id: SOP-2.5
+        action: Ask user for confirmation.
+        output: User confirmation.
+
+      - id: SOP-2.6
+        action: If user disagrees, refine decomposition and present again.
+        output: Revised features.
+        loop_condition: Repeat until user agrees.
+
+      - id: SOP-2.7
+        action: If user agrees, proceed to Phase 3.
+        output: Confirmed feature decomposition.
+
+    logging: Record all exchanges in conversation log.
+
+  - phase: 3
+    name: Research & Interactive Requirements Elicitation
+    description: Research industry practices and elicit detailed requirements through interactive dialogue.
+    steps:
+      - id: SOP-3.1
+        action: Research the product domain on the internet and authoritative knowledge bases.
+        output: Research findings.
+
+      - id: SOP-3.2
+        action: Save all research process and results to research-log.md (tool, query, findings, sources).
+        output: Research log entry.
+
+      - id: SOP-3.3
+        action: Analyze how similar products handle these features (competitors, best practices, UX patterns).
+        output: Competitive analysis.
+
+      - id: SOP-3.4
+        action: Present industry findings and competitive insights to user.
+        output: Presented findings.
+
+      - id: SOP-3.5
+        action: Generate a structured question list for each feature module (functional details, edge cases, business rules, UX expectations, non-functional needs).
+        output: Question list.
+
+      - id: SOP-3.6
+        action: Save the question list to question-lists.md for future review.
+        output: Question list logged.
+
+      - id: SOP-3.7
+        action: Conduct interactive Q&A with user — ask questions one at a time or in small groups per feature module.
+        output: Q&A responses.
+
+      - id: SOP-3.8
+        action: Iterate on questions until all critical information is gathered for each feature.
+        output: Complete Q&A.
+        loop_condition: Continue until all features have sufficient detail.
+
+      - id: SOP-3.9
+        action: Consolidate into a validated product requirements list with user stories, acceptance criteria, and priority levels.
+        output: Product requirements list.
+
+      - id: SOP-3.10
+        action: Present requirements list to user for confirmation.
+        output: User confirmation.
+
+      - id: SOP-3.11
+        action: If user has changes, revise and re-confirm.
+        output: Revised requirements.
+        loop_condition: Repeat until user agrees.
+
+      - id: SOP-3.12
+        action: If user agrees, proceed to Phase 4.
+        output: Confirmed product requirements.
+
+    logging: Record all Q&A in conversation log. Record all research in research log. Record all question lists.
+
+  - phase: 4
+    name: PRD Drafting & Output
+    description: Draft the complete PRD document following the template.
+    steps:
+      - id: SOP-4.1
+        action: Read the PRD output template (references/prd-output-template.md).
+        output: Template loaded.
+
+      - id: SOP-4.2
+        action: Read the DoD checklist (references/dod-checklist.yaml).
+        output: DoD loaded.
+
+      - id: SOP-4.3
+        action: Research additional details as needed for specific sections — log all research to research-log.md.
+        output: Supplemental research.
+
+      - id: SOP-4.4
+        action: Draft all PRD sections following the template structure, ensuring BRD-to-PRD traceability.
+        output: PRD draft v0.1.
+
+      - id: SOP-4.5
+        action: Generate Mermaid diagrams for user flows, system architecture, and data flows.
+        output: Diagrams embedded.
+
+      - id: SOP-4.6
+        action: Write Executive Summary last (summarizes entire document).
+        output: Executive Summary.
+
+      - id: SOP-4.7
+        action: Self-review against DoD checklist.
+        output: Self-review notes.
+
+      - id: SOP-4.8
+        action: Fix any issues found in self-review.
+        output: PRD draft v1.0.
+
+      - id: SOP-4.9
+        action: Save PRD to the designated output location (../prd/ directory).
+        output: Saved PRD file.
+
+    logging: Record all actions in work log with timestamps.
+
+  - phase: 5
+    name: Quality Verification (DoD Check)
+    description: Systematically verify PRD against DoD quality gates.
+    steps:
+      - id: SOP-5.1
+        action: Load DoD checklist.
+        output: DoD criteria loaded.
+
+      - id: SOP-5.2
+        action: Check each criterion category (completeness, requirement quality, document quality, traceability, process quality).
+        output: Verification results.
+
+      - id: SOP-5.3
+        action: Generate DoD verification report.
+        output: DoD report.
+
+      - id: SOP-5.4
+        action: If any critical/high items fail, return to Phase 4 to fix.
+        output: Fixes applied.
+        loop_condition: Repeat until all checks pass.
+
+    logging: Record verification results in work log.
+
+  - phase: 6
+    name: Handoff & Completion
+    description: Deliver PRD and notify downstream agents.
+    steps:
+      - id: SOP-6.1
+        action: Save final PRD document to output directory.
+        output: Final PRD file.
+
+      - id: SOP-6.2
+        action: Generate completion summary for user.
+        output: Completion summary.
+
+      - id: SOP-6.3
+        action: Signal PRD Supervisor Agent for independent review.
+        output: Signal sent.
+
+      - id: SOP-6.4
+        action: If supervisor returns issues, fix and re-submit.
+        output: Fixes applied.
+        loop_condition: Repeat until supervisor approves.
+
+      - id: SOP-6.5
+        action: Notify Project Manager Agent with PRD file path, RACI matrix, and final report.
+        output: PM notification sent.
+
+    logging: Record handoff actions in work log.

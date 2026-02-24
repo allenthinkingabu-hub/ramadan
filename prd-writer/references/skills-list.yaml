@@ -1,0 +1,127 @@
+# PRD Writer Agent - Skills List Configuration
+# Defines the capabilities this AI agent should possess.
+# Editable: modify skills as requirements evolve.
+
+version: "1.0"
+last_updated: "2026-02-24"
+
+skills:
+  brd_to_prd_translation:
+    - id: SKL-001
+      name: BRD Comprehension & Interpretation
+      level: Expert
+      description: Read and deeply understand approved BRD documents, extracting business objectives, scope, constraints, and stakeholder expectations.
+
+    - id: SKL-002
+      name: Business-to-Product Decomposition
+      level: Expert
+      description: Translate high-level business requirements into granular product features, modules, and user-facing capabilities.
+
+    - id: SKL-003
+      name: Requirements Traceability
+      level: Expert
+      description: Maintain bidirectional traceability from BRD business requirements to PRD product requirements, user stories, and acceptance criteria.
+
+    - id: SKL-004
+      name: Gap Analysis
+      level: Expert
+      description: Identify gaps between BRD business needs and initial product feature set; flag missing or ambiguous areas.
+
+  product_specification:
+    - id: SKL-005
+      name: User Story Writing
+      level: Expert
+      description: Write user stories in "As a [role], I want [capability], so that [benefit]" format with clear, testable outcomes.
+
+    - id: SKL-006
+      name: Acceptance Criteria Definition
+      level: Expert
+      description: Define precise, measurable, testable acceptance criteria using Given/When/Then or checklist format.
+
+    - id: SKL-007
+      name: Functional Requirements Specification
+      level: Expert
+      description: Document detailed functional behaviors, system responses, business rules, and data validation logic.
+
+    - id: SKL-008
+      name: Non-Functional Requirements Specification
+      level: Advanced
+      description: Specify performance, scalability, security, availability, accessibility, and compliance requirements with measurable thresholds.
+
+    - id: SKL-009
+      name: UX Flow Description
+      level: Advanced
+      description: Describe user interaction flows, navigation paths, screen transitions, and error handling.
+
+    - id: SKL-010
+      name: Data Requirements Specification
+      level: Advanced
+      description: Define data entities, attributes, relationships, data flows, and data validation rules.
+
+    - id: SKL-011
+      name: API & Integration Specification
+      level: Advanced
+      description: Describe integration points, API contracts, data exchange formats, and system interface requirements.
+
+  analysis_and_research:
+    - id: SKL-012
+      name: Competitive Product Analysis
+      level: Advanced
+      description: Research competitor products to benchmark features, identify differentiators, and validate product direction.
+
+    - id: SKL-013
+      name: User Persona Development
+      level: Advanced
+      description: Create detailed user personas with demographics, goals, pain points, and behavioral patterns.
+
+    - id: SKL-014
+      name: Use Case Modeling
+      level: Expert
+      description: Develop comprehensive use case scenarios including primary, alternate, and exception flows.
+
+    - id: SKL-015
+      name: Requirements Prioritization
+      level: Expert
+      description: Apply MoSCoW, RICE, Kano, and weighted scoring frameworks to prioritize requirements.
+
+    - id: SKL-016
+      name: Technical Feasibility Assessment
+      level: Advanced
+      description: Evaluate whether proposed features are technically achievable within system constraints and timelines.
+
+  communication_and_writing:
+    - id: SKL-017
+      name: Technical Writing
+      level: Expert
+      description: Write clear, concise, unambiguous documentation accessible to both technical and business audiences.
+
+    - id: SKL-018
+      name: Stakeholder Communication
+      level: Expert
+      description: Adapt language and detail level for different audiences (engineering, design, business, QA).
+
+    - id: SKL-019
+      name: Interactive Elicitation
+      level: Expert
+      description: Conduct structured dialogue to extract detailed product requirements from stakeholders.
+
+    - id: SKL-020
+      name: Conflict Resolution
+      level: Advanced
+      description: Mediate conflicting requirements across stakeholder groups and propose balanced solutions.
+
+  quality_and_process:
+    - id: SKL-021
+      name: Self-Review & Verification
+      level: Expert
+      description: Systematically validate PRD against DoD quality gates and requirement quality standards.
+
+    - id: SKL-022
+      name: Scope Management
+      level: Advanced
+      description: Define, maintain, and defend clear in-scope/out-of-scope boundaries.
+
+    - id: SKL-023
+      name: Risk Assessment
+      level: Advanced
+      description: Identify product-level risks, dependencies, and mitigation strategies.

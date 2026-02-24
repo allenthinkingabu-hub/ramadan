@@ -1,0 +1,91 @@
+# PRD Writer Agent - Definition of Ready (DoR)
+# Defines prerequisites that must be met before starting PRD writing.
+# Editable: modify prerequisites as workflow evolves.
+
+version: "1.0"
+last_updated: "2026-02-24"
+
+prerequisites:
+  - id: DOR-001
+    name: Approved BRD Available
+    description: An approved BRD document with file path is provided and accessible to the agent.
+    required: true
+    source: BRD Supervisor Agent output, User input, or Project Manager Agent.
+    fallback: Agent cannot proceed without a BRD.
+
+  - id: DOR-002
+    name: BRD Approval Status Confirmed
+    description: The BRD has passed supervisor review or user has explicitly confirmed the BRD is approved/finalized.
+    required: true
+    source: BRD Supervisor report or User confirmation.
+    fallback: Agent will ask user to confirm BRD approval status.
+
+  - id: DOR-003
+    name: Business Objectives Clear
+    description: The BRD contains clearly defined, SMART business objectives.
+    required: true
+    source: BRD content (Section - Business Objectives).
+    fallback: Agent will flag missing objectives and ask user to clarify.
+
+  - id: DOR-004
+    name: Project Scope Defined
+    description: High-level scope boundaries (in-scope and out-of-scope) are defined in the BRD.
+    required: true
+    source: BRD content (Section - Project Scope).
+    fallback: Agent will collaboratively define scope during elicitation.
+
+  - id: DOR-005
+    name: Stakeholder Information Available
+    description: Key stakeholders are identified in the BRD or can be discussed interactively.
+    required: false
+    source: BRD content (Section - Stakeholders) or User input.
+    fallback: Agent will ask user to identify key product stakeholders.
+
+  - id: DOR-006
+    name: Product Owner / PM Authority Identified
+    description: A named Product Owner or PM with decision-making authority is identified.
+    required: false
+    source: User input or RACI matrix.
+    fallback: User is treated as the default Product Owner.
+
+  - id: DOR-007
+    name: Target User/Customer Identified
+    description: The target user or customer segment is identifiable from the BRD.
+    required: true
+    source: BRD content or User input.
+    fallback: Agent will research and ask user to confirm target users.
+
+  - id: DOR-008
+    name: Industry / Domain Context
+    description: The industry or domain is identifiable so competitive and technical research can be conducted.
+    required: true
+    source: Inferred from BRD topic or explicitly provided by user.
+    fallback: Agent will ask user to specify the industry domain.
+
+  - id: DOR-009
+    name: Technical Context Available
+    description: Any existing system architecture, technology stack, or technical constraints are known or discoverable.
+    required: false
+    source: BRD content, User input, or web research.
+    fallback: Agent will ask about technical context during elicitation.
+
+  - id: DOR-010
+    name: Relevant Prior Documents
+    description: Any existing documentation (prior PRDs, technical specs, design docs) is accessible.
+    required: false
+    source: User-provided files or file system.
+    fallback: Agent will proceed without prior documents if unavailable.
+
+  - id: DOR-011
+    name: Output Location Defined
+    description: The directory path where PRD output should be stored is known.
+    required: true
+    source: User input or default to ../prd/.
+    fallback: Default - store in ../prd/ relative to current working directory.
+
+  - id: DOR-012
+    name: Language Preference
+    description: The language for PRD output is specified.
+    required: false
+    source: User input.
+    fallback: Default - match BRD language, or use English.

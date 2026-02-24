@@ -1,0 +1,129 @@
+# PRD Writer Agent - Knowledge System Configuration
+# Defines the knowledge domains this AI agent should possess.
+# Editable: modify knowledge areas as requirements evolve.
+
+version: "1.0"
+last_updated: "2026-02-24"
+
+knowledge_domains:
+  core_product_management:
+    - id: KNW-001
+      name: Product Management Lifecycle
+      description: End-to-end product lifecycle from ideation through launch, iteration, and retirement.
+
+    - id: KNW-002
+      name: Product Discovery & Definition
+      description: Techniques for validating problems, defining solutions, and specifying product capabilities.
+
+    - id: KNW-003
+      name: Product Strategy & Vision
+      description: How product features align with business strategy, market positioning, and competitive differentiation.
+
+    - id: KNW-004
+      name: Product Roadmapping
+      description: How PRD features map to roadmap items, releases, and strategic themes.
+
+    - id: KNW-005
+      name: Feature Prioritization Frameworks
+      description: MoSCoW, RICE, Kano Model, Weighted Scoring, Cost of Delay, ICE scoring.
+
+  agile_and_methodologies:
+    - id: KNW-006
+      name: Agile/Scrum Framework
+      description: Sprints, backlogs, ceremonies, user stories, epics, themes, and how PRDs feed into sprint planning.
+
+    - id: KNW-007
+      name: SAFe (Scaled Agile)
+      description: How PRDs function in large-scale Agile environments with program increments and Agile Release Trains.
+
+    - id: KNW-008
+      name: Kanban & Lean
+      description: Continuous flow delivery models and how requirements feed into pull-based systems.
+
+    - id: KNW-009
+      name: Waterfall/V-Model
+      description: Traditional sequential development where PRDs serve as comprehensive upfront specifications.
+
+    - id: KNW-010
+      name: Software Development Lifecycle (SDLC)
+      description: How PRDs fit within each SDLC phase and downstream artifacts they generate.
+
+  user_centered_design:
+    - id: KNW-011
+      name: User Research Methods
+      description: Interviews, surveys, usability testing, A/B testing, analytics-driven insights.
+
+    - id: KNW-012
+      name: User Persona Development
+      description: Constructing evidence-based user archetypes to guide product decisions.
+
+    - id: KNW-013
+      name: User Journey Mapping
+      description: Mapping end-to-end user experiences across touchpoints.
+
+    - id: KNW-014
+      name: Interaction Design Principles
+      description: Heuristics for usability, accessibility (WCAG), and human-computer interaction.
+
+    - id: KNW-015
+      name: Information Architecture
+      description: Organizing and structuring product content and navigation for optimal usability.
+
+  technical_knowledge:
+    - id: KNW-016
+      name: System Architecture Patterns
+      description: Microservices, monolith, event-driven, serverless, and their implications for requirements.
+
+    - id: KNW-017
+      name: API Design & Integration
+      description: REST, GraphQL, webhooks, and inter-system communication patterns.
+
+    - id: KNW-018
+      name: Data Modeling & Management
+      description: Entity-relationship modeling, data flows, data governance, and data quality requirements.
+
+    - id: KNW-019
+      name: Security & Compliance Standards
+      description: OWASP, GDPR, HIPAA, SOC 2, PCI-DSS, and their impact on product requirements.
+
+    - id: KNW-020
+      name: Cloud & Infrastructure
+      description: Cloud platforms (AWS, GCP, Azure), scalability patterns, and deployment requirements.
+
+    - id: KNW-021
+      name: Performance Engineering
+      description: Load testing, response time targets, throughput, and scalability benchmarks.
+
+  business_analysis:
+    - id: KNW-022
+      name: BABOK v3
+      description: Business Analysis Body of Knowledge - core BA techniques applicable to product specification.
+
+    - id: KNW-023
+      name: Requirements Engineering (ISO/IEC/IEEE 29148)
+      description: International standards for requirements quality and documentation.
+
+    - id: KNW-024
+      name: Business Process Modeling
+      description: BPMN notation for documenting as-is and to-be product workflows.
+
+    - id: KNW-025
+      name: Cost-Benefit Analysis
+      description: ROI calculation, TCO estimation, and value assessment for feature trade-offs.
+
+  domain_and_industry:
+    - id: KNW-026
+      name: Industry Verticals
+      description: Healthcare, fintech, e-commerce, SaaS, education, manufacturing, etc. (dynamically acquired per project).
+
+    - id: KNW-027
+      name: Regulatory Landscape
+      description: Industry-specific regulations affecting product requirements.
+
+    - id: KNW-028
+      name: Competitive Landscape
+      description: Competitor product features, market positioning, and differentiation opportunities.
+
+    - id: KNW-029
+      name: Market Trends
+      description: Emerging technologies, user behavior shifts, and market opportunities.
