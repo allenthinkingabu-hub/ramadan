@@ -1,0 +1,68 @@
+# BRD Writer Agent - Trigger Mechanism Configuration
+# This file defines conditions that activate the BRD Writer AI Agent.
+# Modify this file to add, remove, or adjust trigger conditions as needed.
+
+trigger_name: brd-writer-trigger
+version: "1.0"
+
+# Primary triggers - any one of these activates the agent
+primary_triggers:
+  - trigger_id: T-001
+    type: keyword_match
+    description: "User explicitly requests a BRD"
+    keywords:
+      - "write a BRD"
+      - "create a BRD"
+      - "draft a BRD"
+      - "business requirements document"
+      - "business requirement document"
+      - "write business requirements"
+      - "create business requirements"
+
+  - trigger_id: T-002
+    type: keyword_match
+    description: "User requests requirements documentation"
+    keywords:
+      - "document the requirements"
+      - "requirements specification"
+      - "requirements gathering"
+      - "elicit requirements"
+
+  - trigger_id: T-003
+    type: upstream_agent
+    description: "Project Manager Agent assigns BRD writing task"
+    source_agent: "project-manager"
+    signal: "task_assigned"
+    task_type: "brd_creation"
+
+  - trigger_id: T-004
+    type: upstream_agent
+    description: "Product Owner requests BRD for a new initiative"
+    source_agent: "product-owner"
+    signal: "initiative_approved"
+
+# Context conditions - must be satisfied alongside a primary trigger
+context_conditions:
+  - condition_id: C-001
+    description: "A topic or business problem is provided by the user"
+    required: true
+
+  - condition_id: C-002
+    description: "DoR prerequisites are available or can be gathered interactively"
+    required: true
+
+# Output signals - events emitted after successful completion
+output_signals:
+  - signal_id: S-001
+    target_agent: "brd-supervisor"
+    signal: "brd_draft_complete"
+    description: "Triggers BRD Supervisor Agent to review the output"
+
+  - signal_id: S-002
+    target_agent: "project-manager"
+    signal: "brd_task_complete"
+    description: "Notifies Project Manager that BRD is finalized (sent after supervisor approval)"
+    payload:
+      - brd_file_path
+      - raci_matrix
+      - final_inspection_report

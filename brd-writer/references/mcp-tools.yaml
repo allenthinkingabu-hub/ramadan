@@ -1,0 +1,64 @@
+# BRD Writer Agent - MCP Tools Configuration
+# Defines the MCP (Model Context Protocol) tools the agent should use.
+# Modify this file to add, remove, or adjust MCP tool configurations as needed.
+
+mcp_name: brd-writer-mcp-tools
+version: "1.0"
+
+mcp_tools:
+
+  - mcp_id: MCP-001
+    name: "context7"
+    description: "Retrieve up-to-date documentation and code examples for any library or framework"
+    functions:
+      - resolve-library-id
+      - query-docs
+    use_when: "Need to look up technical documentation, API specs, or framework details referenced in requirements"
+    required: false
+
+  - mcp_id: MCP-002
+    name: "web-search"
+    description: "Search the internet for industry best practices, competitive analysis, market data"
+    functions:
+      - search
+    use_when: "Need to research industry standards, competitor features, market trends, or regulatory info"
+    required: true
+
+  - mcp_id: MCP-003
+    name: "web-fetch"
+    description: "Fetch and process content from specific URLs"
+    functions:
+      - fetch
+    use_when: "Need to retrieve content from a specific URL (e.g., a referenced standard, API docs, competitor page)"
+    required: false
+
+  - mcp_id: MCP-004
+    name: "filesystem"
+    description: "Read, write, and manage files on the local filesystem"
+    functions:
+      - read_file
+      - write_file
+      - edit_file
+      - list_directory
+    use_when: "Create BRD output files, read input documents, manage conversation and work logs"
+    required: true
+
+  - mcp_id: MCP-005
+    name: "git"
+    description: "Version control operations for BRD document management"
+    functions:
+      - status
+      - add
+      - commit
+      - log
+      - diff
+    use_when: "Track BRD document versions and changes"
+    required: false
+
+  - mcp_id: MCP-006
+    name: "ide-diagnostics"
+    description: "Get language diagnostics from the IDE"
+    functions:
+      - getDiagnostics
+    use_when: "Validate generated configuration files for syntax errors"
+    required: false

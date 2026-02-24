@@ -1,0 +1,247 @@
+# BRD Writer Agent - RACI Matrix Configuration
+# Defines stakeholder roles and responsibilities for each BRD creation task.
+# R = Responsible, A = Accountable, C = Consulted, I = Informed
+# Modify this file to adjust roles and assignments as needed.
+
+raci_name: brd-creation-raci
+version: "1.0"
+
+# Role definitions
+roles:
+  - role_id: BA
+    name: "Business Analyst (BRD Writer Agent)"
+    description: "Primary author of the BRD; elicits, analyzes, and documents requirements"
+
+  - role_id: PM
+    name: "Project Manager"
+    description: "Oversees the process, ensures timeline adherence, coordinates stakeholders"
+
+  - role_id: SPONSOR
+    name: "Project Sponsor"
+    description: "Provides strategic direction, funding authority, final approval"
+
+  - role_id: SME
+    name: "Subject Matter Expert"
+    description: "Provides domain-specific knowledge and validates requirements"
+
+  - role_id: END_USER
+    name: "End User / Business Stakeholder"
+    description: "Provides actual needs, validates requirements from user perspective"
+
+  - role_id: ARCHITECT
+    name: "Solution Architect / Tech Lead"
+    description: "Validates technical feasibility, consults on non-functional requirements"
+
+  - role_id: QA
+    name: "QA Lead"
+    description: "Consults on testability of requirements and acceptance criteria"
+
+  - role_id: LEGAL
+    name: "Legal / Compliance"
+    description: "Consults on regulatory requirements and constraints"
+
+# Task-level RACI assignments
+tasks:
+  - task_id: RACI-01
+    name: "Identify Stakeholders"
+    assignments:
+      BA: R
+      PM: A
+      SPONSOR: C
+      SME: I
+      END_USER: I
+      ARCHITECT: I
+      QA: I
+      LEGAL: I
+
+  - task_id: RACI-02
+    name: "Plan Requirements Elicitation"
+    assignments:
+      BA: R
+      PM: A
+      SPONSOR: I
+      SME: C
+      END_USER: I
+      ARCHITECT: I
+      QA: I
+      LEGAL: I
+
+  - task_id: RACI-03
+    name: "Conduct Interviews & Workshops"
+    assignments:
+      BA: R
+      PM: I
+      SPONSOR: I
+      SME: C
+      END_USER: C
+      ARCHITECT: C
+      QA: I
+      LEGAL: I
+
+  - task_id: RACI-04
+    name: "Analyze Current State (As-Is)"
+    assignments:
+      BA: R
+      PM: I
+      SPONSOR: I
+      SME: C
+      END_USER: C
+      ARCHITECT: C
+      QA: I
+      LEGAL: I
+
+  - task_id: RACI-05
+    name: "Define Future State (To-Be)"
+    assignments:
+      BA: R
+      PM: I
+      SPONSOR: C
+      SME: C
+      END_USER: C
+      ARCHITECT: C
+      QA: I
+      LEGAL: I
+
+  - task_id: RACI-06
+    name: "Document Business Requirements"
+    assignments:
+      BA: R
+      PM: I
+      SPONSOR: I
+      SME: C
+      END_USER: C
+      ARCHITECT: I
+      QA: I
+      LEGAL: I
+
+  - task_id: RACI-07
+    name: "Document Functional Requirements"
+    assignments:
+      BA: R
+      PM: I
+      SPONSOR: I
+      SME: C
+      END_USER: C
+      ARCHITECT: C
+      QA: C
+      LEGAL: I
+
+  - task_id: RACI-08
+    name: "Document Non-Functional Requirements"
+    assignments:
+      BA: R
+      PM: I
+      SPONSOR: I
+      SME: C
+      END_USER: I
+      ARCHITECT: C
+      QA: C
+      LEGAL: C
+
+  - task_id: RACI-09
+    name: "Define Acceptance Criteria"
+    assignments:
+      BA: R
+      PM: I
+      SPONSOR: I
+      SME: C
+      END_USER: C
+      ARCHITECT: C
+      QA: C
+      LEGAL: I
+
+  - task_id: RACI-10
+    name: "Prioritize Requirements"
+    assignments:
+      BA: R
+      PM: C
+      SPONSOR: C
+      SME: C
+      END_USER: C
+      ARCHITECT: C
+      QA: I
+      LEGAL: I
+
+  - task_id: RACI-11
+    name: "Conduct Risk Assessment"
+    assignments:
+      BA: R
+      PM: C
+      SPONSOR: I
+      SME: C
+      END_USER: I
+      ARCHITECT: C
+      QA: I
+      LEGAL: C
+
+  - task_id: RACI-12
+    name: "Draft BRD Document"
+    assignments:
+      BA: R
+      PM: I
+      SPONSOR: I
+      SME: I
+      END_USER: I
+      ARCHITECT: I
+      QA: I
+      LEGAL: I
+
+  - task_id: RACI-13
+    name: "Peer Review BRD"
+    assignments:
+      BA: C
+      PM: R
+      SPONSOR: I
+      SME: C
+      END_USER: I
+      ARCHITECT: C
+      QA: C
+      LEGAL: I
+
+  - task_id: RACI-14
+    name: "Stakeholder Review & Validation"
+    assignments:
+      BA: C
+      PM: C
+      SPONSOR: C
+      SME: C
+      END_USER: C
+      ARCHITECT: C
+      QA: C
+      LEGAL: C
+
+  - task_id: RACI-15
+    name: "Approve / Sign-off BRD"
+    assignments:
+      BA: I
+      PM: I
+      SPONSOR: A
+      SME: I
+      END_USER: I
+      ARCHITECT: I
+      QA: I
+      LEGAL: I
+
+  - task_id: RACI-16
+    name: "Baseline & Distribute BRD"
+    assignments:
+      BA: R
+      PM: A
+      SPONSOR: I
+      SME: I
+      END_USER: I
+      ARCHITECT: I
+      QA: I
+      LEGAL: I
+
+  - task_id: RACI-17
+    name: "Maintain & Update BRD"
+    assignments:
+      BA: R
+      PM: A
+      SPONSOR: I
+      SME: C
+      END_USER: C
+      ARCHITECT: C
+      QA: I
+      LEGAL: I

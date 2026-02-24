@@ -1,0 +1,156 @@
+# BRD Supervisor Agent - Inspection Checklist Configuration
+# Defines every item the supervisor must check against the BRD Writer Agent's output.
+# Modify this file to add, remove, or adjust inspection items as needed.
+
+inspection_name: brd-supervisor-checklist
+version: "1.0"
+
+inspection_items:
+
+  - check_id: INS-01
+    name: "Trigger Mechanism Configuration"
+    description: "Verify that references/triggers.yaml exists and is properly structured"
+    source_requirement: "Requirement #1"
+    verification_method: "Check file exists and contains valid YAML with trigger definitions"
+    severity: critical
+
+  - check_id: INS-02
+    name: "RACI Matrix Configuration"
+    description: "Verify that references/raci-matrix.yaml exists with role names AND corresponding task names"
+    source_requirement: "Requirement #2"
+    verification_method: "Check file exists, contains roles with names, and tasks with RACI assignments"
+    severity: critical
+
+  - check_id: INS-03
+    name: "Skills List Configuration"
+    description: "Verify that references/skills-list.yaml exists and contains categorized skills"
+    source_requirement: "Requirement #3"
+    verification_method: "Check file exists and contains skill categories with individual skill entries"
+    severity: critical
+
+  - check_id: INS-04
+    name: "Knowledge Base Configuration"
+    description: "Verify that references/knowledge-base.yaml exists and contains knowledge domains"
+    source_requirement: "Requirement #4"
+    verification_method: "Check file exists and contains categorized knowledge domains"
+    severity: critical
+
+  - check_id: INS-05
+    name: "Tools List Configuration"
+    description: "Verify that references/tools-list.yaml exists and contains categorized tools"
+    source_requirement: "Requirement #5"
+    verification_method: "Check file exists and contains tool categories with individual tool entries"
+    severity: critical
+
+  - check_id: INS-06
+    name: "MCP Tools Configuration"
+    description: "Verify that references/mcp-tools.yaml exists and contains MCP tool definitions"
+    source_requirement: "Requirement #6"
+    verification_method: "Check file exists and contains MCP tool entries with functions and use_when"
+    severity: critical
+
+  - check_id: INS-07
+    name: "Output Template"
+    description: "Verify that references/brd-output-template.md exists and contains all standard BRD sections"
+    source_requirement: "Requirement #7"
+    verification_method: "Check file exists and contains all 19 standard BRD sections"
+    severity: critical
+
+  - check_id: INS-08
+    name: "SOP Process"
+    description: "Verify that references/sop-process.md exists and defines the complete 6-phase workflow"
+    source_requirement: "Requirement #8"
+    verification_method: "Check file exists and contains all 6 phases with step-by-step actions"
+    severity: critical
+
+  - check_id: INS-09
+    name: "DoD Checklist"
+    description: "Verify that references/dod-checklist.yaml exists and contains quality gate definitions"
+    source_requirement: "Requirement #9"
+    verification_method: "Check file exists and contains completeness, requirement quality, document quality, and process quality checks"
+    severity: critical
+
+  - check_id: INS-10
+    name: "DoR Checklist"
+    description: "Verify that references/dor-checklist.yaml exists and contains prerequisite definitions"
+    source_requirement: "Requirement #10"
+    verification_method: "Check file exists and contains prerequisite entries with required flags"
+    severity: critical
+
+  - check_id: INS-11
+    name: "Conversation Log"
+    description: "Verify that conversation-log.md exists and records user interactions question-by-question"
+    source_requirement: "Requirement #11"
+    verification_method: "Check file exists in output directory, entries are numbered, each has timestamp and agent/user labels"
+    severity: critical
+
+  - check_id: INS-12
+    name: "Work Log"
+    description: "Verify that work-log.md exists and records agent activities on a timeline"
+    source_requirement: "Requirement #12"
+    verification_method: "Check file exists in output directory, entries have timestamps and status indicators"
+    severity: critical
+
+  - check_id: INS-13
+    name: "DoD Verification Passed"
+    description: "Verify that the BRD Writer Agent ran DoD checks and all critical/high items passed"
+    source_requirement: "Requirement #13"
+    verification_method: "Check that DoD verification was performed and all critical/high severity items show as passed"
+    severity: critical
+
+  - check_id: INS-14
+    name: "Question Lists Log"
+    description: "Verify that question-lists.md exists in the output directory and contains all question lists generated during each phase, with numbered questions and answered summaries"
+    source_requirement: "Requirement #16"
+    verification_method: "Check file exists in output directory, contains phase-labeled sections, numbered question entries, and answered summaries for each round of Q&A"
+    severity: critical
+
+  - check_id: INS-15
+    name: "Research Log"
+    description: "Verify that research-log.md exists in the output directory and records every research tool invocation with tool name, query/URL, purpose, key findings, and source"
+    source_requirement: "Requirement #17"
+    verification_method: "Check file exists in output directory, contains sequentially numbered research entries, each with structured fields (Tool, Query/URL, Purpose, Key Findings, Source)"
+    severity: critical
+
+# BRD content quality checks (applied to the actual BRD output)
+brd_content_checks:
+
+  - check_id: INS-BRD-01
+    name: "Executive Summary present and complete"
+    description: "Executive Summary exists and provides meaningful project overview"
+    severity: critical
+
+  - check_id: INS-BRD-02
+    name: "Business Objectives in SMART format"
+    description: "All business objectives follow SMART criteria"
+    severity: high
+
+  - check_id: INS-BRD-03
+    name: "Scope clearly defined"
+    description: "In-scope and out-of-scope items are explicitly listed"
+    severity: critical
+
+  - check_id: INS-BRD-04
+    name: "Requirements have acceptance criteria"
+    description: "Every BR, FR, and NFR has testable acceptance criteria"
+    severity: critical
+
+  - check_id: INS-BRD-05
+    name: "Requirements are prioritized"
+    description: "All requirements have MoSCoW priority assigned"
+    severity: high
+
+  - check_id: INS-BRD-06
+    name: "No unresolved TBDs"
+    description: "No TBD, TODO, or placeholder text remains in the final document"
+    severity: critical
+
+  - check_id: INS-BRD-07
+    name: "Risks documented with mitigation"
+    description: "Risk register exists with probability, impact, and mitigation strategy for each risk"
+    severity: high
+
+  - check_id: INS-BRD-08
+    name: "Traceability maintained"
+    description: "Requirements Traceability Matrix links each requirement to source and test case"
+    severity: high

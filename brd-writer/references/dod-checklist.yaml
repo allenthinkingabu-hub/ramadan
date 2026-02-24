@@ -1,0 +1,164 @@
+# BRD Writer Agent - Definition of Done (DoD) Checklist
+# Quality gates that must ALL pass for a BRD to be considered complete.
+# Modify this file to add, remove, or adjust quality criteria as needed.
+
+dod_name: brd-quality-gates
+version: "1.0"
+
+# Completeness checks
+completeness:
+  - check_id: DOD-C01
+    name: "All standard BRD sections present"
+    description: "Every section in the BRD output template is populated with meaningful content"
+    severity: critical
+
+  - check_id: DOD-C02
+    name: "Business objectives traceable"
+    description: "Every business objective has at least one traceable requirement"
+    severity: critical
+
+  - check_id: DOD-C03
+    name: "Acceptance criteria defined"
+    description: "Every requirement has defined, testable acceptance criteria"
+    severity: critical
+
+  - check_id: DOD-C04
+    name: "Scope boundaries explicit"
+    description: "In-scope and out-of-scope items are explicitly listed"
+    severity: critical
+
+  - check_id: DOD-C05
+    name: "Stakeholders documented"
+    description: "All identified stakeholders are documented with roles and responsibilities"
+    severity: high
+
+  - check_id: DOD-C06
+    name: "Assumptions documented"
+    description: "All assumptions are explicitly stated"
+    severity: high
+
+  - check_id: DOD-C07
+    name: "Constraints documented"
+    description: "Budget, time, technology, and regulatory constraints are listed"
+    severity: high
+
+  - check_id: DOD-C08
+    name: "Dependencies documented"
+    description: "External systems, teams, and deliverable dependencies are identified"
+    severity: high
+
+  - check_id: DOD-C09
+    name: "Risks assessed"
+    description: "Risk register is populated with probability, impact, and mitigation strategies"
+    severity: high
+
+  - check_id: DOD-C10
+    name: "Success metrics defined"
+    description: "KPIs are defined, measurable, and tied to business objectives"
+    severity: critical
+
+# Requirement quality (per ISO/IEC/IEEE 29148)
+requirement_quality:
+  - check_id: DOD-R01
+    name: "Necessary"
+    description: "Each requirement is traceable to a business need; removing it would leave a gap"
+    severity: critical
+
+  - check_id: DOD-R02
+    name: "Unambiguous"
+    description: "Each requirement has only one interpretation; no vague language (should, may, etc.)"
+    severity: critical
+
+  - check_id: DOD-R03
+    name: "Singular"
+    description: "Each requirement describes one thing (no compound requirements with and/or)"
+    severity: high
+
+  - check_id: DOD-R04
+    name: "Feasible"
+    description: "Each requirement is technically and economically achievable within constraints"
+    severity: high
+
+  - check_id: DOD-R05
+    name: "Verifiable"
+    description: "Each requirement can be tested or measured to confirm it has been met"
+    severity: critical
+
+  - check_id: DOD-R06
+    name: "Traceable"
+    description: "Each requirement is linked to its source and forward to design/test"
+    severity: high
+
+  - check_id: DOD-R07
+    name: "Consistent"
+    description: "No requirement conflicts with any other requirement in the document"
+    severity: critical
+
+  - check_id: DOD-R08
+    name: "Prioritized"
+    description: "Each requirement has an assigned priority level (MoSCoW)"
+    severity: high
+
+# Document quality
+document_quality:
+  - check_id: DOD-D01
+    name: "Clear language"
+    description: "Language is clear, concise, and accessible to non-technical stakeholders"
+    severity: high
+
+  - check_id: DOD-D02
+    name: "SMART objectives"
+    description: "Business objectives follow SMART format (Specific, Measurable, Achievable, Relevant, Time-bound)"
+    severity: high
+
+  - check_id: DOD-D03
+    name: "No errors"
+    description: "No spelling, grammar, or formatting errors"
+    severity: medium
+
+  - check_id: DOD-D04
+    name: "Version control metadata"
+    description: "Version number, date, author, and change log are complete"
+    severity: high
+
+  - check_id: DOD-D05
+    name: "No unresolved TBDs"
+    description: "Zero TBD/TODO placeholders remain in the final version"
+    severity: critical
+
+# Process quality
+process_quality:
+  - check_id: DOD-P01
+    name: "User confirmation obtained"
+    description: "User has confirmed understanding of task purpose and topic"
+    severity: critical
+
+  - check_id: DOD-P02
+    name: "Research conducted"
+    description: "Industry research and best practices have been gathered and applied"
+    severity: high
+
+  - check_id: DOD-P03
+    name: "Interactive Q&A completed"
+    description: "Question list generated and all questions addressed through user dialog"
+    severity: high
+
+  - check_id: DOD-P04
+    name: "Conversation log recorded"
+    description: "All user interactions are recorded in the conversation log"
+    severity: high
+
+  - check_id: DOD-P05
+    name: "Work log recorded"
+    description: "All agent activities are recorded in the work log with timestamps"
+    severity: high
+
+  - check_id: DOD-P06
+    name: "Question lists recorded"
+    description: "All question lists generated during each phase are recorded in question-lists.md with phase context, numbered questions, and answered summaries"
+    severity: high
+
+  - check_id: DOD-P07
+    name: "Research log recorded"
+    description: "All research actions are recorded in research-log.md with tool used, query/URL, purpose, key findings, and source for every research tool invocation"
+    severity: high
