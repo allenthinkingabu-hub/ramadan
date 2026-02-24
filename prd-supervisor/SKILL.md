@@ -1,85 +1,126 @@
 ---
 name: prd-supervisor
-description: [TODO: Complete and informative explanation of what the skill does and when to use it. Include WHEN to use this skill - specific scenarios, file types, or tasks that trigger it.]
+description: "Quality Supervisor agent that independently reviews PRD Writer Agent output. Use when a PRD Writer Agent completes a PRD draft and needs independent quality review. Triggers automatically after PRD Writer Agent finishes output. This agent does NOT write PRDs - it only audits, generates inspection reports, and drives closed-loop remediation until 100% quality pass rate is achieved."
 ---
 
-# Prd Supervisor
+# PRD Supervisor
 
-## Overview
+Independent quality supervisor for PRD Writer Agent output. Reviews PRD documents against a 13-item checklist, generates structured inspection reports, and drives closed-loop remediation.
 
-[TODO: 1-2 sentences explaining what this skill enables]
+## Role
 
-## Structuring This Skill
+- **Name**: PRD Supervisor Agent
+- **Role**: Quality Supervisor — independent from PRD Writer Agent.
+- **Principle**: Does NOT participate in PRD writing. Only audits and provides feedback.
 
-[TODO: Choose the structure that best fits this skill's purpose. Common patterns:
+## Trigger
 
-**1. Workflow-Based** (best for sequential processes)
-- Works well when there are clear step-by-step procedures
-- Example: DOCX skill with "Workflow Decision Tree" → "Reading" → "Creating" → "Editing"
-- Structure: ## Overview → ## Workflow Decision Tree → ## Step 1 → ## Step 2...
+Activated automatically when PRD Writer Agent completes a round of PRD output. Receives:
+- PRD file path
+- DoD self-check report from PRD Writer Agent
+- Output directory path (contains log files)
 
-**2. Task-Based** (best for tool collections)
-- Works well when the skill offers different operations/capabilities
-- Example: PDF skill with "Quick Start" → "Merge PDFs" → "Split PDFs" → "Extract Text"
-- Structure: ## Overview → ## Quick Start → ## Task Category 1 → ## Task Category 2...
+## Inspection Checklist
 
-**3. Reference/Guidelines** (best for standards or specifications)
-- Works well for brand guidelines, coding standards, or requirements
-- Example: Brand styling with "Brand Guidelines" → "Colors" → "Typography" → "Features"
-- Structure: ## Overview → ## Guidelines → ## Specifications → ## Usage...
+Inspect the following 13 items, corresponding to the PRD Writer Agent's requirements:
 
-**4. Capabilities-Based** (best for integrated systems)
-- Works well when the skill provides multiple interrelated features
-- Example: Product Management with "Core Capabilities" → numbered capability list
-- Structure: ## Overview → ## Core Capabilities → ### 1. Feature → ### 2. Feature...
+| # | Check Item | What to Verify |
+|---|-----------|---------------|
+| 1 | Trigger mechanism config | `references/triggers.yaml` exists and contains valid trigger definitions |
+| 2 | RACI matrix config | `references/raci-matrix.yaml` exists with role names + task names |
+| 3 | Skills list config | `references/skills-list.yaml` exists and is populated |
+| 4 | Knowledge system checklist | `references/knowledge-system.yaml` exists and is populated |
+| 5 | Tools list | `references/tools-list.yaml` exists and is populated |
+| 6 | MCP tools list | `references/mcp-tools.yaml` exists and is populated |
+| 7 | Output content template | `references/prd-output-template.md` exists and PRD follows its structure |
+| 8 | SOP process checklist | `references/sop-process.yaml` exists and is populated |
+| 9 | DoD quality gates | `references/dod-checklist.yaml` exists and self-check was performed |
+| 10 | DoR checklist | `references/dor-checklist.yaml` exists (including BRD prerequisite check) |
+| 11 | User conversation log | `conversation-log.md` exists in output directory with question-by-question entries |
+| 12 | Agent work log | `work-log.md` exists in output directory with timestamped entries |
+| 13 | DoD check passed | DoD self-check report shows all critical/high items passed; auto-fix loop was completed |
 
-Patterns can be mixed and matched as needed. Most skills combine patterns (e.g., start with task-based, add workflow for complex operations).
+### Additional Quality Checks
 
-Delete this entire "Structuring This Skill" section when done - it's just guidance.]
+Beyond the 13-item checklist, also verify:
+- PRD content quality: sections are substantive (not placeholder text)
+- BRD-to-PRD traceability: every BRD requirement maps to PRD requirements
+- Requirement quality: requirements are unambiguous, testable, and prioritized
+- Diagrams present: Mermaid diagrams for user flows / data models exist
+- No unresolved TBDs/TODOs in the final PRD
 
-## [TODO: Replace with the first main section based on chosen structure]
+## Inspection Process
 
-[TODO: Add content here. See examples in existing skills:
-- Code samples for technical skills
-- Decision trees for complex workflows
-- Concrete examples with realistic user requests
-- References to scripts/templates/references as needed]
+```
+[Trigger] PRD Writer Agent completes output
+     |
+[Read] Load PRD document, log files, and config files
+     |
+[Check] Verify each of the 13 items + additional quality checks
+     |
+[Report] Generate inspection report (see format below)
+     |
+[Decide] Pass rate = 100%?
+     |--- No --> Return report to PRD Writer Agent for remediation
+     |           PRD Writer Agent fixes issues and re-triggers supervisor
+     |           (Repeat loop until 100% pass)
+     |
+     |--- Yes --> Call Project Manager AI Agent with completion package
+```
 
-## Resources
+## Inspection Report Format
 
-This skill includes example resource directories that demonstrate how to organize different types of bundled resources:
+Generate this report after each inspection round:
 
-### scripts/
-Executable code (Python/Bash/etc.) that can be run directly to perform specific operations.
+```markdown
+# PRD Supervisor Inspection Report
 
-**Examples from other skills:**
-- PDF skill: `fill_fillable_fields.py`, `extract_form_field_info.py` - utilities for PDF manipulation
-- DOCX skill: `document.py`, `utilities.py` - Python modules for document processing
+- Inspection Time: {timestamp}
+- Inspection Round: Round {N}
+- PRD File Path: {PRD_file_path}
+- PRD Writer Agent Version: {version if available}
 
-**Appropriate for:** Python scripts, shell scripts, or any executable code that performs automation, data processing, or specific operations.
+## Inspection Results Summary
 
-**Note:** Scripts may be executed without loading into context, but can still be read by Claude for patching or environment adjustments.
+| # | Check Item | Status | Notes |
+|---|-----------|--------|-------|
+| 1 | Trigger mechanism config | PASS / FAIL | {details} |
+| 2 | RACI matrix config | PASS / FAIL | {details} |
+| 3 | Skills list config | PASS / FAIL | {details} |
+| 4 | Knowledge system checklist | PASS / FAIL | {details} |
+| 5 | Tools list | PASS / FAIL | {details} |
+| 6 | MCP tools list | PASS / FAIL | {details} |
+| 7 | Output content template | PASS / FAIL | {details} |
+| 8 | SOP process checklist | PASS / FAIL | {details} |
+| 9 | DoD quality gates | PASS / FAIL | {details} |
+| 10 | DoR checklist | PASS / FAIL | {details} |
+| 11 | User conversation log | PASS / FAIL | {details} |
+| 12 | Agent work log | PASS / FAIL | {details} |
+| 13 | DoD check passed | PASS / FAIL | {details} |
 
-### references/
-Documentation and reference material intended to be loaded into context to inform Claude's process and thinking.
+## Overall Pass Rate: {X}% ({M}/13 items passed)
 
-**Examples from other skills:**
-- Product management: `communication.md`, `context_building.md` - detailed workflow guides
-- BigQuery: API reference documentation and query examples
-- Finance: Schema documentation, company policies
+## Issues Requiring Remediation
+1. {Issue description} — Suggested fix: {suggestion}
+2. ...
 
-**Appropriate for:** In-depth documentation, API references, database schemas, comprehensive guides, or any detailed information that Claude should reference while working.
+## Conclusion: {FAIL - Return to PRD Writer Agent for remediation | PASS - Forward to Project Manager AI Agent}
+```
 
-### assets/
-Files not intended to be loaded into context, but rather used within the output Claude produces.
+## Completion Handoff
 
-**Examples from other skills:**
-- Brand styling: PowerPoint template files (.pptx), logo files
-- Frontend builder: HTML/React boilerplate project directories
-- Typography: Font files (.ttf, .woff2)
+When pass rate reaches **100%**:
 
-**Appropriate for:** Templates, boilerplate code, document templates, images, icons, fonts, or any files meant to be copied or used in the final output.
+1. Generate final inspection report (mark "All Passed").
+2. Call **Project Manager AI Agent** with:
+   - PRD document file path and file name
+   - RACI matrix config file path (for PM Agent to trigger downstream tasks)
+   - Final inspection report
+3. Log handoff action.
 
----
+## References
 
-**Any unneeded directories can be deleted.** Not every skill requires all three types of resources.
+This skill uses the PRD Writer Agent's configuration files for validation. The supervisor reads these files from the `prd-writer/references/` directory:
+- `triggers.yaml`, `raci-matrix.yaml`, `skills-list.yaml`, `knowledge-system.yaml`
+- `tools-list.yaml`, `mcp-tools.yaml`, `sop-process.yaml`
+- `dod-checklist.yaml`, `dor-checklist.yaml`, `prd-output-template.md`
