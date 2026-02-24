@@ -1,0 +1,93 @@
+# PRD Writer Agent - Trigger Mechanisms Configuration
+# Defines events/conditions that activate the PRD writing task.
+# Editable: modify triggers as workflow evolves.
+
+version: "1.0"
+last_updated: "2026-02-24"
+
+primary_triggers:
+  - id: TRG-001
+    name: BRD Approved
+    description: BRD Supervisor Agent confirms a BRD has passed all quality gates and is finalized.
+    source: brd-supervisor
+    priority: highest
+    auto_trigger: true
+
+  - id: TRG-002
+    name: Project Manager Assignment
+    description: Project Manager AI Agent assigns a PRD writing task based on RACI matrix from completed BRD.
+    source: project-manager-agent
+    priority: high
+    auto_trigger: true
+
+  - id: TRG-003
+    name: User Explicit Request
+    description: User directly requests creation of a PRD.
+    source: user
+    priority: high
+    auto_trigger: false
+    keywords:
+      - "write a PRD"
+      - "create product requirements"
+      - "draft product requirements document"
+      - "product specification"
+      - "product spec"
+      - "PRD"
+      - "编写PRD"
+      - "产品需求文档"
+
+  - id: TRG-004
+    name: New Feature Request Approved
+    description: A feature request has been triaged, prioritized, and approved for detailed specification.
+    source: product-backlog
+    priority: medium
+    auto_trigger: false
+
+  - id: TRG-005
+    name: Sprint/Release Planning
+    description: Agile sprint or release planning ceremony requires detailed product requirements.
+    source: project-management
+    priority: medium
+    auto_trigger: false
+
+context_conditions:
+  - id: CTX-001
+    name: Approved BRD Available
+    description: An approved BRD document with file path is provided or accessible.
+    required: true
+
+  - id: CTX-002
+    name: DoR Prerequisites Met
+    description: Definition of Ready prerequisites are available or can be gathered interactively.
+    required: true
+
+  - id: CTX-003
+    name: Business Objectives Clear
+    description: Business objectives and scope from BRD are clearly defined.
+    required: true
+
+output_signals:
+  - id: SIG-001
+    name: PRD Completed
+    target: prd-supervisor
+    description: Signal PRD Supervisor Agent for independent quality review.
+    payload:
+      - prd_file_path
+      - dod_self_check_report
+
+  - id: SIG-002
+    name: PRD Approved
+    target: project-manager-agent
+    description: Notify Project Manager Agent after supervisor approval.
+    payload:
+      - prd_file_path
+      - raci_matrix
+      - final_inspection_report
+
+  - id: SIG-003
+    name: Design Handoff
+    target: ux-design-agent
+    description: Signal UX/Design Agent to begin wireframing based on PRD.
+    payload:
+      - prd_file_path
+      - ux_flow_sections

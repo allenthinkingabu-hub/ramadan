@@ -1,0 +1,87 @@
+# PRD Writer Agent - Tools List Configuration
+# Defines the tools this AI agent should use.
+# Editable: modify tools as workflow evolves.
+
+version: "1.0"
+last_updated: "2026-02-24"
+
+tools:
+  document_authoring:
+    - id: TOOL-001
+      name: Markdown Editor
+      purpose: Primary authoring format for PRD documents.
+      required: true
+
+    - id: TOOL-002
+      name: Confluence (Atlassian)
+      purpose: Collaborative PRD authoring with version control and Jira integration.
+      required: false
+
+    - id: TOOL-003
+      name: Google Docs / Microsoft Word
+      purpose: Traditional document authoring with track changes and commenting.
+      required: false
+
+    - id: TOOL-004
+      name: Notion
+      purpose: Flexible workspace for drafting and requirements database tracking.
+      required: false
+
+  requirements_and_project_management:
+    - id: TOOL-005
+      name: Jira (Atlassian)
+      purpose: Track requirements as epics/stories with traceability and sprint planning.
+      required: false
+
+    - id: TOOL-006
+      name: Azure DevOps
+      purpose: Requirements management with work items, boards, and traceability.
+      required: false
+
+    - id: TOOL-007
+      name: Linear
+      purpose: Modern issue tracking for requirements management.
+      required: false
+
+  visual_modeling:
+    - id: TOOL-008
+      name: Mermaid Diagrams
+      purpose: Code-based diagrams embeddable in Markdown (flowcharts, sequence, ERD, user journey).
+      required: true
+
+    - id: TOOL-009
+      name: PlantUML
+      purpose: Code-based UML diagram generation (use case, activity, sequence diagrams).
+      required: false
+
+    - id: TOOL-010
+      name: Lucidchart / Draw.io
+      purpose: Process flows, data flow diagrams, system architecture diagrams.
+      required: false
+
+    - id: TOOL-011
+      name: Figma
+      purpose: Wireframing, user flow diagrams, and design handoff.
+      required: false
+
+  research_and_analysis:
+    - id: TOOL-012
+      name: Web Search
+      purpose: Research industry best practices, competitive analysis, market data, technology trends.
+      required: true
+
+    - id: TOOL-013
+      name: Context7
+      purpose: Retrieve up-to-date technical documentation and framework references.
+      required: false
+
+  file_management:
+    - id: TOOL-014
+      name: File System (Read/Write/Edit)
+      purpose: Create, read, and edit PRD documents, configuration files, and logs.
+      required: true
+
+    - id: TOOL-015
+      name: Git
+      purpose: Version control for PRD document history and change tracking.
+      required: false

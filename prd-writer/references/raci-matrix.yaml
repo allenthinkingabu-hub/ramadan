@@ -1,0 +1,144 @@
+# PRD Writer Agent - RACI Matrix Configuration
+# Defines roles and task-level RACI assignments for PRD writing.
+# R=Responsible, A=Accountable, C=Consulted, I=Informed
+# Editable: modify roles and assignments as team structure evolves.
+
+version: "1.0"
+last_updated: "2026-02-24"
+
+roles:
+  - id: PM_WRITER
+    name: Product Manager (PRD Writer Agent)
+    description: Primary author of the PRD; translates BRD business requirements into detailed product specifications.
+
+  - id: PM_LEAD
+    name: Product Lead / CPO
+    description: Provides product vision, strategic direction, and final approval authority.
+
+  - id: BA
+    name: Business Analyst
+    description: Source of BRD content; consults on business requirements traceability.
+
+  - id: UX
+    name: UX Designer / UX Researcher
+    description: Provides user research insights, validates user flows, consults on interaction design.
+
+  - id: TECH_LEAD
+    name: Tech Lead / Solution Architect
+    description: Validates technical feasibility, consults on system constraints and non-functional requirements.
+
+  - id: PROJ_MGR
+    name: Project Manager
+    description: Oversees process, ensures timeline adherence, coordinates cross-functional stakeholders.
+
+  - id: QA_LEAD
+    name: QA Lead
+    description: Consults on testability of requirements and acceptance criteria quality.
+
+  - id: DEV_LEAD
+    name: Development Lead
+    description: Consults on implementation feasibility, effort estimation, and technical constraints.
+
+  - id: STAKEHOLDER
+    name: Business Stakeholder / End User Rep
+    description: Provides domain knowledge, validates user scenarios and acceptance criteria.
+
+  - id: LEGAL
+    name: Legal / Compliance
+    description: Consults on regulatory requirements, data privacy, and compliance constraints.
+
+  - id: DATA
+    name: Data Analyst / Data Engineer
+    description: Consults on data requirements, analytics, and data flow specifications.
+
+  - id: MARKETING
+    name: Product Marketing
+    description: Informed of product positioning, feature messaging, and go-to-market alignment.
+
+tasks:
+  - id: RACI-01
+    name: Review & Understand Approved BRD
+    assignments: { PM_WRITER: R, PM_LEAD: I, BA: C, UX: I, TECH_LEAD: I, PROJ_MGR: I, QA_LEAD: I, DEV_LEAD: I, STAKEHOLDER: I, LEGAL: I, DATA: I, MARKETING: I }
+
+  - id: RACI-02
+    name: Identify Product Stakeholders
+    assignments: { PM_WRITER: R, PM_LEAD: C, BA: C, UX: I, TECH_LEAD: I, PROJ_MGR: A, QA_LEAD: I, DEV_LEAD: I, STAKEHOLDER: I, LEGAL: I, DATA: I, MARKETING: I }
+
+  - id: RACI-03
+    name: Conduct User & Market Research
+    assignments: { PM_WRITER: R, PM_LEAD: I, BA: C, UX: C, TECH_LEAD: I, PROJ_MGR: I, QA_LEAD: I, DEV_LEAD: I, STAKEHOLDER: C, LEGAL: I, DATA: I, MARKETING: C }
+
+  - id: RACI-04
+    name: Define User Personas & Scenarios
+    assignments: { PM_WRITER: R, PM_LEAD: C, BA: C, UX: C, TECH_LEAD: I, PROJ_MGR: I, QA_LEAD: I, DEV_LEAD: I, STAKEHOLDER: C, LEGAL: I, DATA: I, MARKETING: I }
+
+  - id: RACI-05
+    name: Decompose BRD into Product Features
+    assignments: { PM_WRITER: R, PM_LEAD: C, BA: C, UX: C, TECH_LEAD: C, PROJ_MGR: I, QA_LEAD: I, DEV_LEAD: I, STAKEHOLDER: C, LEGAL: I, DATA: I, MARKETING: I }
+
+  - id: RACI-06
+    name: Write User Stories & Use Cases
+    assignments: { PM_WRITER: R, PM_LEAD: I, BA: C, UX: C, TECH_LEAD: C, PROJ_MGR: I, QA_LEAD: C, DEV_LEAD: C, STAKEHOLDER: C, LEGAL: I, DATA: I, MARKETING: I }
+
+  - id: RACI-07
+    name: Define Acceptance Criteria
+    assignments: { PM_WRITER: R, PM_LEAD: I, BA: C, UX: C, TECH_LEAD: C, PROJ_MGR: I, QA_LEAD: C, DEV_LEAD: C, STAKEHOLDER: C, LEGAL: I, DATA: I, MARKETING: I }
+
+  - id: RACI-08
+    name: Specify Functional Requirements
+    assignments: { PM_WRITER: R, PM_LEAD: I, BA: C, UX: C, TECH_LEAD: C, PROJ_MGR: I, QA_LEAD: C, DEV_LEAD: C, STAKEHOLDER: I, LEGAL: I, DATA: I, MARKETING: I }
+
+  - id: RACI-09
+    name: Specify Non-Functional Requirements
+    assignments: { PM_WRITER: R, PM_LEAD: I, BA: I, UX: C, TECH_LEAD: C, PROJ_MGR: I, QA_LEAD: C, DEV_LEAD: C, STAKEHOLDER: I, LEGAL: C, DATA: C, MARKETING: I }
+
+  - id: RACI-10
+    name: Define UX Flow & Interaction Logic
+    assignments: { PM_WRITER: R, PM_LEAD: I, BA: I, UX: C, TECH_LEAD: I, PROJ_MGR: I, QA_LEAD: I, DEV_LEAD: I, STAKEHOLDER: C, LEGAL: I, DATA: I, MARKETING: I }
+
+  - id: RACI-11
+    name: Specify Data Requirements & Flows
+    assignments: { PM_WRITER: R, PM_LEAD: I, BA: C, UX: I, TECH_LEAD: C, PROJ_MGR: I, QA_LEAD: I, DEV_LEAD: C, STAKEHOLDER: I, LEGAL: I, DATA: C, MARKETING: I }
+
+  - id: RACI-12
+    name: Define System & Environment Requirements
+    assignments: { PM_WRITER: R, PM_LEAD: I, BA: I, UX: I, TECH_LEAD: C, PROJ_MGR: I, QA_LEAD: C, DEV_LEAD: C, STAKEHOLDER: I, LEGAL: I, DATA: I, MARKETING: I }
+
+  - id: RACI-13
+    name: Define Release Criteria & Success Metrics
+    assignments: { PM_WRITER: R, PM_LEAD: C, BA: C, UX: C, TECH_LEAD: C, PROJ_MGR: C, QA_LEAD: C, DEV_LEAD: I, STAKEHOLDER: C, LEGAL: I, DATA: C, MARKETING: C }
+
+  - id: RACI-14
+    name: Prioritize Requirements (MoSCoW/RICE)
+    assignments: { PM_WRITER: R, PM_LEAD: A, BA: C, UX: C, TECH_LEAD: C, PROJ_MGR: C, QA_LEAD: I, DEV_LEAD: C, STAKEHOLDER: C, LEGAL: I, DATA: I, MARKETING: I }
+
+  - id: RACI-15
+    name: Conduct Risk & Dependency Assessment
+    assignments: { PM_WRITER: R, PM_LEAD: I, BA: C, UX: I, TECH_LEAD: C, PROJ_MGR: C, QA_LEAD: I, DEV_LEAD: C, STAKEHOLDER: I, LEGAL: C, DATA: I, MARKETING: I }
+
+  - id: RACI-16
+    name: Document Assumptions & Constraints
+    assignments: { PM_WRITER: R, PM_LEAD: I, BA: C, UX: I, TECH_LEAD: C, PROJ_MGR: I, QA_LEAD: I, DEV_LEAD: C, STAKEHOLDER: C, LEGAL: C, DATA: I, MARKETING: I }
+
+  - id: RACI-17
+    name: Draft PRD Document
+    assignments: { PM_WRITER: R, PM_LEAD: I, BA: I, UX: I, TECH_LEAD: I, PROJ_MGR: I, QA_LEAD: I, DEV_LEAD: I, STAKEHOLDER: I, LEGAL: I, DATA: I, MARKETING: I }
+
+  - id: RACI-18
+    name: Peer Review PRD
+    assignments: { PM_WRITER: C, PM_LEAD: I, BA: C, UX: C, TECH_LEAD: C, PROJ_MGR: R, QA_LEAD: C, DEV_LEAD: C, STAKEHOLDER: I, LEGAL: I, DATA: I, MARKETING: I }
+
+  - id: RACI-19
+    name: Stakeholder Review & Validation
+    assignments: { PM_WRITER: C, PM_LEAD: C, BA: C, UX: C, TECH_LEAD: C, PROJ_MGR: C, QA_LEAD: C, DEV_LEAD: C, STAKEHOLDER: C, LEGAL: C, DATA: C, MARKETING: I }
+
+  - id: RACI-20
+    name: Approve / Sign-off PRD
+    assignments: { PM_WRITER: I, PM_LEAD: A, BA: I, UX: I, TECH_LEAD: C, PROJ_MGR: I, QA_LEAD: I, DEV_LEAD: I, STAKEHOLDER: I, LEGAL: I, DATA: I, MARKETING: I }
+
+  - id: RACI-21
+    name: Baseline & Distribute PRD
+    assignments: { PM_WRITER: R, PM_LEAD: I, BA: I, UX: I, TECH_LEAD: I, PROJ_MGR: A, QA_LEAD: I, DEV_LEAD: I, STAKEHOLDER: I, LEGAL: I, DATA: I, MARKETING: I }
+
+# Project Manager Agent uses this RACI matrix to trigger downstream tasks
+# after PRD is approved (e.g., UX design, technical design, development planning).

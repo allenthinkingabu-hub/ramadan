@@ -1,0 +1,226 @@
+# PRD Writer Agent - Definition of Done (DoD) Quality Gates
+# Defines the quality criteria that a PRD must satisfy.
+# Editable: modify quality gates as standards evolve.
+
+version: "1.0"
+last_updated: "2026-02-24"
+
+completeness_checks:
+  - id: DOD-C01
+    check: All standard PRD sections present
+    description: Every section in the PRD output template is populated with meaningful content.
+    severity: critical
+
+  - id: DOD-C02
+    check: BRD-to-PRD traceability complete
+    description: Every BRD business requirement maps to at least one PRD product requirement.
+    severity: critical
+
+  - id: DOD-C03
+    check: User stories with acceptance criteria
+    description: Every feature has user stories with defined, testable acceptance criteria (3-5 per story).
+    severity: critical
+
+  - id: DOD-C04
+    check: Functional requirements complete
+    description: All functional behaviors, business rules, and system responses are documented.
+    severity: critical
+
+  - id: DOD-C05
+    check: Non-functional requirements specified
+    description: Performance, security, scalability, availability, accessibility, and compliance requirements have measurable thresholds.
+    severity: high
+
+  - id: DOD-C06
+    check: Scope boundaries explicit
+    description: In-scope and out-of-scope items are explicitly listed.
+    severity: critical
+
+  - id: DOD-C07
+    check: User personas defined
+    description: At least one user persona is documented with goals, pain points, and behavioral context.
+    severity: high
+
+  - id: DOD-C08
+    check: UX flows described
+    description: Key user interaction flows are described with navigation paths and error handling.
+    severity: high
+
+  - id: DOD-C09
+    check: Data requirements documented
+    description: Data entities, attributes, relationships, and data flows are specified.
+    severity: high
+
+  - id: DOD-C10
+    check: Success metrics defined
+    description: KPIs are measurable, tied to BRD business objectives, and include release criteria.
+    severity: critical
+
+  - id: DOD-C11
+    check: Stakeholders documented
+    description: All identified stakeholders documented with roles and RACI assignments.
+    severity: high
+
+  - id: DOD-C12
+    check: Assumptions documented
+    description: All assumptions are explicitly stated with impact if invalid.
+    severity: high
+
+  - id: DOD-C13
+    check: Constraints documented
+    description: Budget, time, technology, and regulatory constraints are listed.
+    severity: high
+
+  - id: DOD-C14
+    check: Dependencies documented
+    description: External systems, teams, and deliverable dependencies are identified.
+    severity: high
+
+  - id: DOD-C15
+    check: Risks assessed
+    description: Risk register populated with probability, impact, and mitigation strategies.
+    severity: high
+
+  - id: DOD-C16
+    check: Release criteria defined
+    description: Specific, measurable criteria for product release readiness.
+    severity: high
+
+requirement_quality_checks:
+  - id: DOD-R01
+    check: Necessary
+    description: Each requirement is traceable to a BRD business need; removing it would leave a gap.
+    severity: critical
+
+  - id: DOD-R02
+    check: Unambiguous
+    description: Each requirement has only one interpretation; no vague language (should, may, etc.).
+    severity: critical
+
+  - id: DOD-R03
+    check: Singular
+    description: Each requirement describes one thing (no compound requirements with and/or).
+    severity: high
+
+  - id: DOD-R04
+    check: Feasible
+    description: Each requirement is technically and economically achievable within constraints.
+    severity: high
+
+  - id: DOD-R05
+    check: Verifiable
+    description: Each requirement can be tested or measured to confirm it has been met.
+    severity: critical
+
+  - id: DOD-R06
+    check: Traceable
+    description: Each requirement links back to BRD source and forward to acceptance criteria/test cases.
+    severity: high
+
+  - id: DOD-R07
+    check: Consistent
+    description: No requirement conflicts with any other requirement in the document.
+    severity: critical
+
+  - id: DOD-R08
+    check: Prioritized
+    description: Each requirement has an assigned priority level (MoSCoW or P0/P1/P2).
+    severity: high
+
+  - id: DOD-R09
+    check: Complete
+    description: The set of requirements covers all BRD business needs without gaps.
+    severity: critical
+
+document_quality_checks:
+  - id: DOD-D01
+    check: Clear language
+    description: Language is clear, concise, and accessible to both technical and business audiences.
+    severity: high
+
+  - id: DOD-D02
+    check: Outcome-focused
+    description: Requirements describe what, not how; implementation-agnostic where possible.
+    severity: high
+
+  - id: DOD-D03
+    check: No errors
+    description: No spelling, grammar, or formatting errors.
+    severity: medium
+
+  - id: DOD-D04
+    check: Version control metadata
+    description: Version number, date, author, and change log are complete.
+    severity: high
+
+  - id: DOD-D05
+    check: No unresolved TBDs
+    description: Zero TBD/TODO placeholders remain in the final version.
+    severity: critical
+
+  - id: DOD-D06
+    check: Diagrams included
+    description: User flow diagrams, data flow diagrams, or system context diagrams are present.
+    severity: high
+
+  - id: DOD-D07
+    check: Glossary complete
+    description: All domain-specific terms are defined in the glossary.
+    severity: medium
+
+traceability_checks:
+  - id: DOD-T01
+    check: BRD-to-PRD forward trace
+    description: Every BRD requirement ID maps to at least one PRD requirement.
+    severity: critical
+
+  - id: DOD-T02
+    check: PRD-to-BRD backward trace
+    description: Every PRD requirement references its BRD source requirement.
+    severity: critical
+
+  - id: DOD-T03
+    check: Feature-to-Story mapping
+    description: Every product feature has at least one user story.
+    severity: high
+
+  - id: DOD-T04
+    check: Story-to-Criteria mapping
+    description: Every user story has acceptance criteria.
+    severity: critical
+
+process_quality_checks:
+  - id: DOD-P01
+    check: User confirmation obtained
+    description: User confirmed understanding of BRD content and feature decomposition.
+    severity: critical
+
+  - id: DOD-P02
+    check: Research conducted
+    description: Industry research, competitive analysis, and best practices gathered and applied.
+    severity: high
+
+  - id: DOD-P03
+    check: Interactive Q&A completed
+    description: Question list generated and all questions addressed through user dialogue.
+    severity: high
+
+  - id: DOD-P04
+    check: Conversation log recorded
+    description: All user interactions recorded in the conversation log.
+    severity: high
+
+  - id: DOD-P05
+    check: Work log recorded
+    description: All agent activities recorded in the work log with timestamps.
+    severity: high
+
+  - id: DOD-P06
+    check: Question lists recorded
+    description: All question lists recorded with phase context and answered summaries.
+    severity: high
+
+  - id: DOD-P07
+    check: Research log recorded
+    description: All research actions recorded with tool, query/URL, purpose, findings, and source.
+    severity: high
