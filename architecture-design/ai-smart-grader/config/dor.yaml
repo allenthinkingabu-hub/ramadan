@@ -1,0 +1,99 @@
+# DoR Checklist Config — sa-architecture-design Agent
+# Task: IA-REQ-001 Architecture Design
+# Generated: 2026-03-01
+# Modifiable: Yes
+
+metadata:
+  task_id: "IA-REQ-001"
+  task_name: "Architecture Design"
+  role: "IT Architect (IA)"
+  generated_at: "2026-03-01T00:00:00+08:00"
+
+items:
+  - id: "DoR-01"
+    name: "PRD document available"
+    type: "required"
+    verification: "PRD markdown file exists and is readable"
+    status: "PASS"
+    notes: "PRD-AI-Smart-Grader-v1.0.md (1965 lines)"
+
+  - id: "DoR-02"
+    name: "BRD document available"
+    type: "required"
+    verification: "BRD markdown file exists and is readable"
+    status: "PASS"
+    notes: "BRD-AI-Smart-Grader-v1.0.md (545 lines)"
+
+  - id: "DoR-03"
+    name: "Skill definition accessible"
+    type: "required"
+    verification: "SKILL.md and references/ directory readable"
+    status: "PASS"
+    notes: "sa-architecture-design/SKILL.md + 8 reference files"
+
+  - id: "DoR-04"
+    name: "Output directory writable"
+    type: "required"
+    verification: "Can create files in output directory"
+    status: "PASS"
+    notes: "architecture-design/ai-smart-grader/"
+
+  - id: "DoR-05"
+    name: "User available for interactive Q&A"
+    type: "required"
+    verification: "User responds to questions within session"
+    status: "PASS"
+
+  - id: "DoR-06"
+    name: "SA-REQ deliverables (SAD, Integration Architecture)"
+    type: "recommended"
+    verification: "Wave 9 SA deliverables available"
+    status: "N/A"
+    notes: "Not available — PRD/BRD used as primary inputs"
+
+  - id: "DoR-07"
+    name: "NFR Mapping document"
+    type: "recommended"
+    verification: "NFR mapping from Solutions Architect"
+    status: "N/A"
+    notes: "NFRs extracted directly from PRD/BRD"
+
+  - id: "DoR-08"
+    name: "Technology Blueprint"
+    type: "recommended"
+    verification: "Technology selection document from SA"
+    status: "N/A"
+    notes: "Technology stack derived through Phase 2 analysis"
+
+  - id: "DoR-09"
+    name: "ARB feedback"
+    type: "recommended"
+    verification: "Architecture Review Board feedback available"
+    status: "N/A"
+    notes: "No ARB review conducted yet"
+
+  - id: "DoR-10"
+    name: "Enterprise patterns/guardrails"
+    type: "recommended"
+    verification: "Enterprise architecture standards accessible"
+    status: "N/A"
+
+  - id: "DoR-11"
+    name: "Security review input"
+    type: "recommended"
+    verification: "Security architect has provided initial input"
+    status: "N/A"
+    notes: "Security decisions made during Phase 3"
+
+  - id: "DoR-12"
+    name: "Performance baseline data"
+    type: "recommended"
+    verification: "Performance benchmarks or baselines available"
+    status: "N/A"
+    notes: "NFR targets from PRD used as baselines"
+
+  - id: "DoR-13"
+    name: "Web search capability"
+    type: "recommended"
+    verification: "WebSearch and WebFetch tools available for research"
+    status: "PASS"

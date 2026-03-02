@@ -1,0 +1,30 @@
+# Trigger Mechanism Config — sa-architecture-design Agent
+# Task: IA-REQ-001 Architecture Design
+# Generated: 2026-03-01
+# Modifiable: Yes
+
+metadata:
+  task_id: "IA-REQ-001"
+  task_name: "Architecture Design"
+  role: "IT Architect (IA)"
+  generated_at: "2026-03-01T00:00:00+08:00"
+
+items:
+  - id: "TRG-001"
+    name: "SA deliverables completion"
+    description: "Triggered when Solutions Architect completes Wave 9 deliverables (SAD, Integration Architecture, NFR Mapping, Technology Blueprint, ARB feedback). In this execution, PRD/BRD were used as primary inputs since SA deliverables were not available."
+    type: "upstream_completion"
+    source_role: "Solutions Architect"
+    source_wave: 9
+
+  - id: "TRG-002"
+    name: "Manual trigger by PM"
+    description: "PM Agent or user can manually trigger architecture design when prerequisites are met."
+    type: "manual"
+    source_role: "PM Agent / User"
+
+  - id: "TRG-003"
+    name: "Architecture revision request"
+    description: "Triggered when ARB or stakeholder feedback requires architecture revision."
+    type: "feedback_loop"
+    source_role: "ARB / Stakeholders"

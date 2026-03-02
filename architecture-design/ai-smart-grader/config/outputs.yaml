@@ -1,0 +1,130 @@
+# Output Content List Config — sa-architecture-design Agent
+# Task: IA-REQ-001 Architecture Design
+# Generated: 2026-03-01
+# Modifiable: Yes
+
+metadata:
+  task_id: "IA-REQ-001"
+  task_name: "Architecture Design"
+  role: "IT Architect (IA)"
+  generated_at: "2026-03-01T00:00:00+08:00"
+
+items:
+  - id: "OUT-01"
+    name: "Trigger Mechanism Config"
+    file_path: "config/triggers.yaml"
+    format: "YAML"
+    status: "completed"
+
+  - id: "OUT-02"
+    name: "RACI Matrix Config"
+    file_path: "config/raci.yaml"
+    format: "YAML"
+    status: "completed"
+
+  - id: "OUT-03"
+    name: "Skills List Config"
+    file_path: "config/skills.yaml"
+    format: "YAML"
+    status: "completed"
+
+  - id: "OUT-04"
+    name: "Knowledge Domains Config"
+    file_path: "config/knowledge-domains.yaml"
+    format: "YAML"
+    status: "completed"
+
+  - id: "OUT-05"
+    name: "Tools List Config"
+    file_path: "config/tools.yaml"
+    format: "YAML"
+    status: "completed"
+
+  - id: "OUT-06"
+    name: "MCP Tools Config"
+    file_path: "config/mcp-tools.yaml"
+    format: "YAML"
+    status: "completed"
+
+  - id: "OUT-07"
+    name: "Output Content List Config"
+    file_path: "config/outputs.yaml"
+    format: "YAML"
+    status: "completed"
+
+  - id: "OUT-08"
+    name: "SOP Process Config"
+    file_path: "config/sop.yaml"
+    format: "YAML"
+    status: "completed"
+
+  - id: "OUT-09"
+    name: "DoD Checklist Config"
+    file_path: "config/dod.yaml"
+    format: "YAML"
+    status: "completed"
+
+  - id: "OUT-10"
+    name: "DoR Checklist Config"
+    file_path: "config/dor.yaml"
+    format: "YAML"
+    status: "completed"
+
+  - id: "OUT-11"
+    name: "Conversation Log"
+    file_path: "conversation-log.md"
+    format: "Markdown"
+    status: "completed"
+
+  - id: "OUT-12"
+    name: "Work Log"
+    file_path: "work-log.md"
+    format: "Markdown"
+    status: "completed"
+
+  - id: "OUT-13"
+    name: "Architecture Design Report"
+    file_path: "architecture-design-report.md"
+    format: "Markdown"
+    status: "completed"
+
+  - id: "OUT-14"
+    name: "Phase Question Lists"
+    file_path: "phase{N}-questions.md"
+    format: "Markdown"
+    status: "completed"
+
+  - id: "OUT-15"
+    name: "Research Artifacts"
+    file_path: "research/"
+    format: "Mixed"
+    status: "completed"
+
+  - id: "OUT-16"
+    name: "Architecture Diagrams"
+    file_path: "diagrams/"
+    format: "Mermaid/Markdown"
+    status: "completed"
+    files:
+      - "diagrams/c4-context.md"
+      - "diagrams/c4-container.md"
+      - "diagrams/c4-component-grading-engine.md"
+      - "diagrams/c4-component-error-notebook.md"
+      - "diagrams/uml-sequence-grading.md"
+      - "diagrams/uml-sequence-review.md"
+      - "diagrams/uml-sequence-guest.md"
+      - "diagrams/deployment.md"
+      - "diagrams/data-flow-grading.md"
+      - "diagrams/data-flow-analytics.md"
+
+  - id: "OUT-17"
+    name: "Interface/Integration View"
+    file_path: "diagrams/integration-view.md"
+    format: "Markdown + Mermaid"
+    status: "completed"
+
+  - id: "OUT-18"
+    name: "NFR Alignment Note"
+    file_path: "nfr-alignment.md"
+    format: "Markdown"
+    status: "completed"

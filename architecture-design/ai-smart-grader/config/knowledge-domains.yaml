@@ -1,0 +1,51 @@
+# Knowledge Domains Config — sa-architecture-design Agent
+# Task: IA-REQ-001 Architecture Design
+# Generated: 2026-03-01
+# Modifiable: Yes
+
+metadata:
+  task_id: "IA-REQ-001"
+  task_name: "Architecture Design"
+  role: "IT Architect (IA)"
+  generated_at: "2026-03-01T00:00:00+08:00"
+
+items:
+  - id: "KD-001"
+    name: "Cloud-Native Architecture"
+    description: "Kubernetes orchestration, containerization, microservices decomposition, service mesh, 12-factor app principles."
+
+  - id: "KD-002"
+    name: "Spring Cloud Ecosystem"
+    description: "Spring Boot 3.x, Spring Cloud Gateway, Spring AI, Spring Security, Spring Data JPA, Spring AMQP, Nacos integration."
+
+  - id: "KD-003"
+    name: "AI/ML Integration"
+    description: "Multimodal LLM APIs (OpenAI, Claude, ZhiPu/Qwen), streaming protocols (SSE, WebSocket), prompt engineering, OCR (PaddleOCR), content moderation."
+
+  - id: "KD-004"
+    name: "Data Architecture"
+    description: "PostgreSQL 16 (RLS, ltree, materialized views), Redis 7.x (caching, sessions, rate limiting), Elasticsearch (search, logging), MinIO (S3-compatible object storage)."
+
+  - id: "KD-005"
+    name: "Event-Driven Architecture"
+    description: "RabbitMQ (topic/fanout exchanges, DLQ, publisher confirms), CQRS, eventual consistency, saga pattern, event sourcing concepts."
+
+  - id: "KD-006"
+    name: "Security Architecture"
+    description: "OAuth 2.0/OIDC, JWT, RBAC, multi-tenant data isolation (RLS), GDPR/PIPL compliance, content moderation, DevSecOps, WAF, runtime security."
+
+  - id: "KD-007"
+    name: "Frontend Architecture"
+    description: "Flutter (Dart, Drift SQLite, offline-first), Angular 18 (TypeScript, NG-ZORRO), WeChat Mini Program (WXML/WXSS, WebSocket), OpenAPI code generation."
+
+  - id: "KD-008"
+    name: "Observability"
+    description: "Distributed tracing (SkyWalking), metrics (Prometheus, Grafana), centralized logging (ELK/Fluentd), alerting (Alertmanager), health checks (Spring Actuator)."
+
+  - id: "KD-009"
+    name: "CI/CD & GitOps"
+    description: "GitLab CI pipelines, Argo CD GitOps, Argo Rollouts (canary/blue-green), Helm charts, Terraform IaC, Harbor container registry."
+
+  - id: "KD-010"
+    name: "EdTech Domain"
+    description: "AI-powered grading, spaced repetition algorithms (fixed intervals, SM-2, FSRS), knowledge taxonomy, error notebook pedagogy, multi-role educational platform design."
