@@ -1,0 +1,61 @@
+# Skills List Config — sa-architecture-design Agent
+# Task: IA-REQ-001 Architecture Design
+# Generated: 2026-03-01
+# Modifiable: Yes
+
+metadata:
+  task_id: "IA-REQ-001"
+  task_name: "Architecture Design"
+  role: "IT Architect (IA)"
+  generated_at: "2026-03-01T00:00:00+08:00"
+
+items:
+  - id: "SKL-001"
+    name: "C4 Model Architecture Design"
+    description: "Ability to create C4 diagrams (Context, Container, Component) using Mermaid syntax. Covers system boundaries, containers, components, and their relationships."
+    proficiency: "Expert"
+
+  - id: "SKL-002"
+    name: "UML Sequence Diagram Design"
+    description: "Ability to create UML sequence diagrams showing interaction flows between actors, services, and data stores using Mermaid syntax."
+    proficiency: "Expert"
+
+  - id: "SKL-003"
+    name: "Deployment Architecture Design"
+    description: "Ability to design Kubernetes-based deployment topologies including namespace organization, scaling strategies, and multi-region deployment patterns."
+    proficiency: "Expert"
+
+  - id: "SKL-004"
+    name: "Integration Architecture Design"
+    description: "Ability to design interface contracts, communication protocols, error handling patterns, and resilience strategies for microservice integrations."
+    proficiency: "Expert"
+
+  - id: "SKL-005"
+    name: "NFR-to-Architecture Mapping"
+    description: "Ability to trace non-functional requirements to specific architecture decisions and explain how each NFR is addressed."
+    proficiency: "Expert"
+
+  - id: "SKL-006"
+    name: "Architecture Decision Documentation"
+    description: "Ability to document architecture decisions with rationale, trade-offs, and alternatives considered."
+    proficiency: "Expert"
+
+  - id: "SKL-007"
+    name: "Spring Cloud Microservices Patterns"
+    description: "Knowledge of Spring Cloud Gateway, Spring AI, Nacos, RabbitMQ, Resilience4j patterns for cloud-native Java microservices."
+    proficiency: "Expert"
+
+  - id: "SKL-008"
+    name: "Multi-Tenant SaaS Architecture"
+    description: "Knowledge of multi-tenancy patterns including shared DB with RLS, schema-per-tenant, and database-per-tenant approaches."
+    proficiency: "Advanced"
+
+  - id: "SKL-009"
+    name: "AI/LLM Integration Patterns"
+    description: "Knowledge of multimodal LLM integration, cascade routing, streaming response parsing, semantic caching, and cost optimization strategies."
+    proficiency: "Advanced"
+
+  - id: "SKL-010"
+    name: "DevSecOps Pipeline Design"
+    description: "Knowledge of shift-left security, SAST/DAST/SCA tooling, container scanning, secret detection, and CI/CD integration."
+    proficiency: "Advanced"

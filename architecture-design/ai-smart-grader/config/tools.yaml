@@ -1,0 +1,61 @@
+# Tools List Config — sa-architecture-design Agent
+# Task: IA-REQ-001 Architecture Design
+# Generated: 2026-03-01
+# Modifiable: Yes
+
+metadata:
+  task_id: "IA-REQ-001"
+  task_name: "Architecture Design"
+  role: "IT Architect (IA)"
+  generated_at: "2026-03-01T00:00:00+08:00"
+
+items:
+  - id: "TOOL-001"
+    name: "Read"
+    description: "Read files from the local filesystem to analyze PRD, BRD, and reference documents."
+    usage: "Reading input documents, skill definitions, templates"
+
+  - id: "TOOL-002"
+    name: "Write"
+    description: "Write new files to the local filesystem for deliverable creation."
+    usage: "Creating diagrams, config files, reports"
+
+  - id: "TOOL-003"
+    name: "Edit"
+    description: "Edit existing files with precise string replacements."
+    usage: "Updating conversation logs, work logs, fixing deliverables"
+
+  - id: "TOOL-004"
+    name: "Glob"
+    description: "Search for files by pattern matching."
+    usage: "Finding existing deliverables, checking directory structure"
+
+  - id: "TOOL-005"
+    name: "Grep"
+    description: "Search file contents using regex patterns."
+    usage: "Finding specific requirements in PRD/BRD, cross-referencing decisions"
+
+  - id: "TOOL-006"
+    name: "WebSearch"
+    description: "Search the web for current information and best practices."
+    usage: "Researching architecture patterns, technology comparisons, industry standards"
+
+  - id: "TOOL-007"
+    name: "WebFetch"
+    description: "Fetch and analyze web page content."
+    usage: "Reading documentation pages, API references, architecture guides"
+
+  - id: "TOOL-008"
+    name: "Agent"
+    description: "Launch sub-agents for parallel research and exploration tasks."
+    usage: "Parallel research on architecture patterns, technology evaluation"
+
+  - id: "TOOL-009"
+    name: "AskUserQuestion"
+    description: "Interactive dialogue with user for requirement clarification and design decisions."
+    usage: "Phase 1-3 question/answer sessions, architectural decision validation"
+
+  - id: "TOOL-010"
+    name: "Bash"
+    description: "Execute shell commands for file operations and script execution."
+    usage: "Creating directories, running DoD verification script"

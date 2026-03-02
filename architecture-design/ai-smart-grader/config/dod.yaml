@@ -1,0 +1,106 @@
+# DoD Checklist Config — sa-architecture-design Agent
+# Task: IA-REQ-001 Architecture Design
+# Generated: 2026-03-01
+# Modifiable: Yes
+
+metadata:
+  task_id: "IA-REQ-001"
+  task_name: "Architecture Design"
+  role: "IT Architect (IA)"
+  generated_at: "2026-03-01T00:00:00+08:00"
+
+items:
+  - id: "DoD-01"
+    name: "Trigger mechanism config"
+    verification: "config/triggers.yaml exists with valid trigger definitions"
+    status: "PASS"
+
+  - id: "DoD-02"
+    name: "RACI matrix config"
+    verification: "config/raci.yaml exists with role names + task names"
+    status: "PASS"
+
+  - id: "DoD-03"
+    name: "Skills list config"
+    verification: "config/skills.yaml exists with agent competencies"
+    status: "PASS"
+
+  - id: "DoD-04"
+    name: "Knowledge base checklist"
+    verification: "config/knowledge-domains.yaml exists with required knowledge"
+    status: "PASS"
+
+  - id: "DoD-05"
+    name: "Tools list"
+    verification: "config/tools.yaml exists with available tools"
+    status: "PASS"
+
+  - id: "DoD-06"
+    name: "MCP tools list"
+    verification: "config/mcp-tools.yaml exists with MCP integrations"
+    status: "PASS"
+
+  - id: "DoD-07"
+    name: "Output content list + templates"
+    verification: "config/outputs.yaml exists AND templates directory exists"
+    status: "PASS"
+
+  - id: "DoD-08"
+    name: "SOP process checklist"
+    verification: "config/sop.yaml exists with operating procedure"
+    status: "PASS"
+
+  - id: "DoD-09"
+    name: "DoD checklist"
+    verification: "config/dod.yaml exists with quality thresholds"
+    status: "PASS"
+
+  - id: "DoD-10"
+    name: "DoR checklist"
+    verification: "config/dor.yaml exists with readiness prerequisites"
+    status: "PASS"
+
+  - id: "DoD-11"
+    name: "Conversation log"
+    verification: "conversation-log.md exists, logged question by question"
+    status: "PASS"
+
+  - id: "DoD-12"
+    name: "Work log"
+    verification: "work-log.md exists, logged entry by entry on timeline"
+    status: "PASS"
+
+  - id: "DoD-13"
+    name: "DoD self-verification"
+    verification: "All items DoD-01 through DoD-12 verified, auto-remediation completed"
+    status: "PASS"
+
+  - id: "DoD-14"
+    name: "Architecture Design report"
+    verification: "architecture-design-report.md exists with complete design"
+    status: "PASS"
+
+  - id: "DoD-15"
+    name: "Phase question lists"
+    verification: "Question list files exist for each phase"
+    status: "PASS"
+
+  - id: "DoD-16"
+    name: "Research artifacts"
+    verification: "research/ contains saved research process and results"
+    status: "PASS"
+
+  - id: "DoD-17"
+    name: "Architecture diagrams"
+    verification: "diagrams/ contains at least C4 context + container diagrams"
+    status: "PASS"
+
+  - id: "DoD-18"
+    name: "Interface/Integration view"
+    verification: "diagrams/integration-view.md exists with protocols, contracts, error handling"
+    status: "PASS"
+
+  - id: "DoD-19"
+    name: "NFR alignment note"
+    verification: "nfr-alignment.md exists with NFR-to-architecture mapping, constraints, assumptions"
+    status: "PASS"

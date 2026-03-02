@@ -1,0 +1,59 @@
+# SOP Process Config — sa-architecture-design Agent
+# Task: IA-REQ-001 Architecture Design
+# Generated: 2026-03-01
+# Modifiable: Yes
+
+metadata:
+  task_id: "IA-REQ-001"
+  task_name: "Architecture Design"
+  role: "IT Architect (IA)"
+  generated_at: "2026-03-01T00:00:00+08:00"
+
+items:
+  - id: "SOP-001"
+    name: "Phase 0 — Initialization"
+    description: "DoR pre-flight check (13 items), create output directory structure, initialize conversation log and work log."
+    sequence: 1
+    inputs: ["PRD", "BRD", "SA deliverables (optional)"]
+    outputs: ["Directory structure", "conversation-log.md", "work-log.md"]
+    gate: "All required DoR items PASS"
+
+  - id: "SOP-002"
+    name: "Phase 1 — Understand Task Purpose"
+    description: "Present understanding of architecture design purpose, scope, diagram types, and key design challenges. Get user confirmation."
+    sequence: 2
+    inputs: ["Skill definition", "Task context"]
+    outputs: ["phase1-questions.md", "Conversation log entry"]
+    gate: "User confirms understanding"
+
+  - id: "SOP-003"
+    name: "Phase 2 — Understand the Topic"
+    description: "Deep analysis of PRD/BRD to extract microservices, technology stack, architectural decisions, NFR mapping, integrations, data architecture. Iterative refinement with user."
+    sequence: 3
+    inputs: ["PRD", "BRD", "Phase 1 confirmation"]
+    outputs: ["phase2-questions.md", "Conversation log entries"]
+    gate: "User confirms full topic understanding"
+
+  - id: "SOP-004"
+    name: "Phase 3 — Research & Question Generation"
+    description: "Generate architecture questions across all categories. Validate with user one-by-one or via agent recommendations. Save research artifacts and validated requirements."
+    sequence: 4
+    inputs: ["Phase 2 confirmed understanding", "Industry research"]
+    outputs: ["phase3-questions.md", "validated-requirements.md", "research/ artifacts"]
+    gate: "All questions answered and validated"
+
+  - id: "SOP-005"
+    name: "Phase 4 — Execute & Produce Deliverables"
+    description: "Produce all architecture deliverables: C4 diagrams, UML sequences, deployment diagram, data flows, integration view, NFR alignment, config files, and architecture design report."
+    sequence: 5
+    inputs: ["Validated requirements", "Research artifacts", "Confirmed tech stack"]
+    outputs: ["All OUT-01 through OUT-18 deliverables"]
+    gate: "All DoD items pass self-verification"
+
+  - id: "SOP-006"
+    name: "Phase 5 — Completion & Handoff"
+    description: "Run DoD self-verification, trigger supervisor inspection, remediate findings, notify PM Agent of completion."
+    sequence: 6
+    inputs: ["All Phase 4 deliverables"]
+    outputs: ["DoD verification results", "Supervisor inspection report", "Handoff notification"]
+    gate: "All DoD items PASS, supervisor approval"

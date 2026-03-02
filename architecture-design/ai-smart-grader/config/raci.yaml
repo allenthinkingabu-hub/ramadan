@@ -1,0 +1,46 @@
+# RACI Matrix Config — sa-architecture-design Agent
+# Task: IA-REQ-001 Architecture Design
+# Generated: 2026-03-01
+# Modifiable: Yes
+
+metadata:
+  task_id: "IA-REQ-001"
+  task_name: "Architecture Design"
+  role: "IT Architect (IA)"
+  generated_at: "2026-03-01T00:00:00+08:00"
+
+items:
+  - id: "RACI-001"
+    task: "Produce architecture design (C4 + sequence + deployment diagrams)"
+    responsible: "IT Architect"
+    accountable: "IT Architect"
+    consulted: "Solutions Architect, Technical Lead, Security Architect"
+    informed: "PM Agent, Dev Leads"
+
+  - id: "RACI-002"
+    task: "Produce interface/integration view"
+    responsible: "IT Architect"
+    accountable: "IT Architect"
+    consulted: "Solutions Architect, Backend Lead"
+    informed: "Frontend Lead, QA Lead"
+
+  - id: "RACI-003"
+    task: "Produce NFR alignment note"
+    responsible: "IT Architect"
+    accountable: "IT Architect"
+    consulted: "Solutions Architect, Performance Engineer, Security Architect"
+    informed: "PM Agent, Dev Leads"
+
+  - id: "RACI-004"
+    task: "Architecture review and approval"
+    responsible: "Solutions Architect"
+    accountable: "Solutions Architect"
+    consulted: "IT Architect, Dev Leads"
+    informed: "PM Agent, Stakeholders"
+
+  - id: "RACI-005"
+    task: "Architecture decision records (ADRs)"
+    responsible: "IT Architect"
+    accountable: "IT Architect"
+    consulted: "Solutions Architect, Technical Lead"
+    informed: "All Dev Team"

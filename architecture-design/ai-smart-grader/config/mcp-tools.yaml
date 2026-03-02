@@ -1,0 +1,31 @@
+# MCP Tools Config — sa-architecture-design Agent
+# Task: IA-REQ-001 Architecture Design
+# Generated: 2026-03-01
+# Modifiable: Yes
+
+metadata:
+  task_id: "IA-REQ-001"
+  task_name: "Architecture Design"
+  role: "IT Architect (IA)"
+  generated_at: "2026-03-01T00:00:00+08:00"
+
+items:
+  - id: "MCP-001"
+    name: "context7:resolve-library-id"
+    description: "Resolve a package/product name to a Context7-compatible library ID for documentation queries."
+    usage: "Finding library IDs for Spring Boot, Flutter, Angular, RabbitMQ documentation"
+
+  - id: "MCP-002"
+    name: "context7:query-docs"
+    description: "Query up-to-date documentation and code examples from Context7 for any programming library or framework."
+    usage: "Retrieving current API references, configuration examples, best practices for technology stack components"
+
+  - id: "MCP-003"
+    name: "ide:getDiagnostics"
+    description: "Get language diagnostics from VS Code for code validation."
+    usage: "Validating generated configuration files or code snippets"
+
+  - id: "MCP-004"
+    name: "ide:executeCode"
+    description: "Execute code in Jupyter kernel for quick validation or computation."
+    usage: "Running verification scripts, data analysis during research phase"
