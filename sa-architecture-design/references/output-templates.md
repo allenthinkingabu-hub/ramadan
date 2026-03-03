@@ -128,6 +128,9 @@ See: `diagrams/data-flow-*.md`
 
 ## 5. Deployment Architecture
 {Infrastructure and deployment topology}
+- Capture RPO/RTO targets per tier
+- Describe backup/restore strategy (scope, frequency, retention, validation)
+- Note chaos/DR test cadence and last/next planned drill
 See: `diagrams/deployment.md`
 
 ## 6. Interface/Integration View
@@ -135,10 +138,13 @@ See: `diagrams/deployment.md`
 {REST, gRPC, GraphQL, messaging patterns used between components}
 
 ### 6.2 Interface Contracts
-{API specifications, message schemas, data formats, versioning strategy}
+{API specifications, message schemas, data formats, **versioning/deprecation policy**}
 
 ### 6.3 Error Handling & Resilience
-{Retry policies, circuit breaker patterns, fallback strategies, timeout configurations}
+{Retry policies, circuit breaker patterns, **rate limits/backpressure**, fallback strategies, timeout configurations}
+
+### 6.4 Data Minimization & External Calls
+{What data leaves the boundary, minimization/anonymization rules for LLMs/3rd parties}
 
 See: `diagrams/integration-view.md`
 
@@ -156,7 +162,7 @@ See: `diagrams/integration-view.md`
 {Fault tolerance, graceful degradation, recovery patterns}
 
 ### 7.5 Observability
-{Logging, monitoring, tracing strategy}
+{Logging, monitoring, tracing strategy, **service SLO/SLI targets with alert thresholds, business KPIs (e.g., cost per grade, cache hit rate)**}
 
 ### 7.6 Constraints & Assumptions
 {Architectural constraints, technology limitations, and key assumptions}
@@ -217,14 +223,25 @@ See: `nfr-alignment.md`
 |:---|:---|:---|:---|:---|
 | {contract_id} | {producer_system} | {consumer_system} | JSON / Protobuf / Avro | {schema_path_or_url} |
 
+## 2.1 API Versioning & Deprecation
+- Versioning strategy (path/header)
+- Deprecation window and notification channel
+- Backward-compat testing approach
+
 ## 3. Error Handling & Resilience
 
 | Pattern | Scope | Configuration | Description |
 |:---|:---|:---|:---|
 | Retry | {interface} | max_retries: 3, backoff: exponential | {description} |
 | Circuit Breaker | {interface} | threshold: 5, timeout: 30s | {description} |
+| Rate Limit / Backpressure | {interface} | global/tenant limits; shed policy | {description} |
 | Fallback | {interface} | strategy: cache / default | {description} |
 | Timeout | {interface} | connect: 5s, read: 30s | {description} |
+
+## 3.1 Data Minimization (External/LLM Calls)
+- What data leaves boundary
+- Anonymization/redaction rules
+- Allowed providers per region
 
 ## 4. Integration Diagram
 

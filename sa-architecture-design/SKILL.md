@@ -94,13 +94,16 @@ Phase 5: Completion & Handoff
    - **UML Diagrams**: Class, sequence, activity, deployment diagrams
    - **Data Flow**: Data flow diagrams, integration diagrams
    - **Infrastructure**: Deployment architecture, network topology
+     - Document RPO/RTO targets per tier, backup/restore strategy (scope, frequency, retention, validation), and chaos/DR test cadence
 3. Produce **Interface/Integration View**:
    - Protocols and communication patterns (REST, gRPC, messaging, etc.)
-   - Interface contracts (API specs, message schemas, error codes)
-   - Error handling and resilience patterns (retry, circuit breaker, fallback)
+   - Interface contracts (API specs, message schemas, error codes, versioning/deprecation policy)
+   - Error handling and resilience patterns (retry, circuit breaker, timeout, rate limits/backpressure, fallback)
+   - Data minimization rules for external/LLM calls (what leaves the boundary, anonymization)
    - Save to `architecture-design/diagrams/integration-view.md`
 4. Produce **NFR Alignment Note**:
    - Map architecture decisions to NFRs (performance, availability, security, resiliency)
+   - Include observability SLO/SLI targets with alert thresholds and business KPIs (e.g., cost per grade, cache hit rate)
    - Document constraints and assumptions
    - Save to `architecture-design/nfr-alignment.md`
 5. Generate all configuration files (OUT-01 through OUT-10) — see [references/output-templates.md](references/output-templates.md)

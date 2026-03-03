@@ -32,16 +32,17 @@ Verify all items have been fully executed:
 | 11 | Conversation log | `conversation-log.md` exists, logged question by question |
 | 12 | Work log | `work-log.md` exists, logged entry by entry on timeline |
 | 13 | DoD verification | All DoD items verified with auto-remediation completed |
-| 14 | Interface/Integration view | `diagrams/integration-view.md` exists with protocols, contracts, error handling |
-| 15 | NFR alignment note | `nfr-alignment.md` exists with NFR mapping, constraints, assumptions |
-| 16 | Upstream traceability | SA-REQ-001..005 references present, decisions traceable to requirements |
+| 14 | Interface/Integration view | `diagrams/integration-view.md` exists with protocols, contracts, versioning, rate limits/backpressure, data minimization |
+| 15 | NFR alignment note | `nfr-alignment.md` exists with NFR mapping, constraints, assumptions, SLO/SLI targets & business KPIs |
+| 16 | Deployment resilience | Deployment section covers RPO/RTO, backup/restore strategy, chaos/DR test cadence |
+| 17 | Upstream traceability | SA-REQ-001..005 references present, decisions traceable to requirements |
 
 ## Inspection Process
 
 ```
 [Trigger] Architecture Design Agent completes output
      ↓
-[Inspect] Verify items 1 through 13
+[Inspect] Verify items 1 through 17
      ↓
 [Generate Report] Output inspection report (see format below)
      ↓
@@ -82,9 +83,10 @@ Generate after each inspection round:
 | Item 13: DoD Verification | PASS / FAIL | {notes} |
 | Item 14: Interface/Integration View | PASS / FAIL | {notes} |
 | Item 15: NFR Alignment Note | PASS / FAIL | {notes} |
-| Item 16: Upstream Traceability | PASS / FAIL | {notes} |
+| Item 16: Deployment Resilience | PASS / FAIL | {notes} |
+| Item 17: Upstream Traceability | PASS / FAIL | {notes} |
 
-## Overall Pass Rate: {X}% ({M}/16 items passed)
+## Overall Pass Rate: {X}% ({M}/17 items passed)
 
 ## Issues Requiring Remediation
 1. {issue_description} — Suggested fix: {suggestion}
