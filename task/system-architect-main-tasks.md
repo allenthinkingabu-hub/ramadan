@@ -29,6 +29,7 @@ An IT Architect's core responsibilities throughout the project lifecycle:
 | **IA-REQ-006 — Data Privacy & Governance** | Defining data classification, retention, residency, and access-control models across domains. |
 | **IA-REQ-007 — DR/BCP Architecture** | Designing disaster recovery and business continuity posture (RPO/RTO targets, failover topology). |
 | **IA-REQ-008 — Vendor & Third-Party Controls** | Specifying integration safeguards, SLAs, and operational models for external services and suppliers. |
+| **IA-REQ-009 — Requirements Traceability & Compliance Mapping** | Maintaining bidirectional traceability from business/NFR items to design, tests, and runbooks, including privacy and regulatory clauses. |
 
 ### 3. Sprint / Development Phase
 | Task | Description |
@@ -60,3 +61,4 @@ An IT Architect's core responsibilities throughout the project lifecycle:
 | **IA-REL-006 — Runbooks & Knowledge Transfer** | Delivering operational runbooks, onboarding material, and handover sessions for support/ops teams. |
 | **IA-REL-007 — FinOps & Cost Guardrails** | Establishing cost baselines, alerts, and optimization playbooks tied to usage trends. |
 | **IA-REL-008 — Resilience/Chaos Testing** | Designing and running chaos or game-day exercises to validate failure modes and recovery paths. |
+| **IA-REL-009 — Architecture Governance & Change Control** | Setting review cadences, change-control workflows, and ADR audits to keep the architecture baseline governed and current. |
