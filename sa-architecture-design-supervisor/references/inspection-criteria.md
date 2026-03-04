@@ -101,8 +101,9 @@
 - **Checks**:
   - File exists and is non-empty
   - Contains communication protocols section (REST, gRPC, messaging patterns)
-  - Contains interface contracts section (API specs, message schemas, error codes)
-  - Contains error handling and resilience patterns (retry, circuit breaker, fallback)
+  - Contains interface contracts section (API specs, message schemas, error codes, versioning/deprecation policy)
+  - Contains error handling and resilience patterns (retry, circuit breaker, timeout, fallback, rate limits/backpressure)
+  - Documents data minimization/anonymization rules for external/LLM calls (what data leaves the boundary)
   - Contains integration diagram (Mermaid or PlantUML)
 
 ### Item 15: NFR Alignment Note
@@ -111,10 +112,19 @@
   - File exists and is non-empty
   - Contains NFR-to-architecture mapping table
   - Covers key NFR categories: performance, availability, security, resiliency
+  - Lists observability SLO/SLI targets with alert thresholds and business KPIs (e.g., cost per grade, cache hit rate)
   - Contains constraints section with identified limitations
   - Contains assumptions section with risk-if-invalid assessments
 
-### Item 16: Upstream Traceability
+### Item 16: Deployment Resilience
+- **File**: `architecture-design/architecture-design-report.md` (Deployment section) or `diagrams/deployment.md`
+- **Checks**:
+  - Documents RPO/RTO targets per tier/environment
+  - Describes backup/restore strategy (scope, frequency, retention, validation/tested)
+  - States chaos/DR test cadence and last/next planned drill
+
+### Item 17: Upstream Traceability
+
 - **Checks**:
   - References to SA-REQ-001..005 (Wave 9 inputs) appear in conversation log or work log
   - Architecture decisions are traceable to upstream requirements and NFRs
