@@ -1,85 +1,122 @@
 ---
 name: SA-integration-design-supervisor
-description: [TODO: Complete and informative explanation of what the skill does and when to use it. Include WHEN to use this skill - specific scenarios, file types, or tasks that trigger it.]
+description: "Independent Quality Supervisor AI Agent skill for end-to-end quality monitoring and closed-loop remediation of the SA-integration-design agent output. Use when: (1) the Integration Design Agent (IA-REQ-003) completes one round of output and needs quality inspection, (2) verifying all required deliverables of the integration design task are complete and valid (including API contracts, data flows, error handling, security design, test strategy), or (3) ensuring closed-loop quality remediation before handoff to PM Agent."
 ---
 
-# Sa Integration Design Supervisor
+# SA Integration Design Supervisor Agent
 
-## Overview
+Role: Quality Supervisor | Parent Task: IA-REQ-003 Integration Design
 
-[TODO: 1-2 sentences explaining what this skill enables]
+Operates independently from the Integration Design Agent. Does not participate in the design — only reviews and provides feedback.
 
-## Structuring This Skill
+## Trigger
 
-[TODO: Choose the structure that best fits this skill's purpose. Common patterns:
+Automatically triggered after the Integration Design AI Agent completes one round of output.
 
-**1. Workflow-Based** (best for sequential processes)
-- Works well when there are clear step-by-step procedures
-- Example: DOCX skill with "Workflow Decision Tree" → "Reading" → "Creating" → "Editing"
-- Structure: ## Overview → ## Workflow Decision Tree → ## Step 1 → ## Step 2...
+## Inspection Checklist
 
-**2. Task-Based** (best for tool collections)
-- Works well when the skill offers different operations/capabilities
-- Example: PDF skill with "Quick Start" → "Merge PDFs" → "Split PDFs" → "Extract Text"
-- Structure: ## Overview → ## Quick Start → ## Task Category 1 → ## Task Category 2...
+Verify all items have been fully executed:
 
-**3. Reference/Guidelines** (best for standards or specifications)
-- Works well for brand guidelines, coding standards, or requirements
-- Example: Brand styling with "Brand Guidelines" → "Colors" → "Typography" → "Features"
-- Structure: ## Overview → ## Guidelines → ## Specifications → ## Usage...
+| # | Check Item | Verification |
+|:---|:---|:---|
+| 1 | Trigger mechanism config | `config/triggers.yaml` exists and is valid |
+| 2 | RACI matrix config | `config/raci.yaml` exists with role names + task names |
+| 3 | Skills list config | `config/skills.yaml` exists with competencies |
+| 4 | Knowledge base checklist | `config/knowledge-domains.yaml` exists |
+| 5 | Tools list | `config/tools.yaml` exists |
+| 6 | MCP tools list | `config/mcp-tools.yaml` exists |
+| 7 | Output list + templates | `config/outputs.yaml` exists AND `templates/` populated |
+| 8 | SOP process checklist | `config/sop.yaml` exists |
+| 9 | DoD checklist | `config/dod.yaml` exists |
+| 10 | DoR checklist | `config/dor.yaml` exists |
+| 11 | Conversation log | `conversation-log.md` exists, logged question by question |
+| 12 | Work log | `work-log.md` exists, logged entry by entry on timeline |
+| 13 | DoD verification | All DoD items verified with auto-remediation completed |
+| 14 | Integration Design report | `integration-design-report.md` exists with all sections complete |
+| 15 | API Contract Specifications | `api-specs/` directory contains OpenAPI/AsyncAPI/Proto specs |
+| 16 | Data Flow Diagrams | `diagrams/data-flow-*.md` files exist with Mermaid/PlantUML |
+| 17 | Third-Party Dependency Register | `third-party-register.md` exists with risk assessment |
+| 18 | Integration Security Design | `integration-security-design.md` exists with auth, encryption, threat protection |
+| 19 | Error Handling Strategy | `error-handling-strategy.md` exists with retry, circuit breaker, fallback |
+| 20 | Integration Test Strategy | `integration-test-strategy.md` exists with contract, integration, E2E testing |
+| 21 | Monitoring & Alerting Plan | `monitoring-alerting-plan.md` exists with SLO/SLI, health checks, tracing |
+| 22 | Phase question lists | `phase{N}-questions.md` files exist for all phases |
+| 23 | Research records | `research/` directory contains research artifacts |
+| 24 | Upstream traceability | IA-REQ-001, IA-REQ-002 references present, decisions traceable |
 
-**4. Capabilities-Based** (best for integrated systems)
-- Works well when the skill provides multiple interrelated features
-- Example: Product Management with "Core Capabilities" → numbered capability list
-- Structure: ## Overview → ## Core Capabilities → ### 1. Feature → ### 2. Feature...
+## Inspection Process
 
-Patterns can be mixed and matched as needed. Most skills combine patterns (e.g., start with task-based, add workflow for complex operations).
+```
+[Trigger] Integration Design Agent completes output
+     ↓
+[Inspect] Verify items 1 through 24
+     ↓
+[Generate Report] Output inspection report (see format below)
+     ↓
+[Decide] Pass rate = 100%?
+     ├── No → Return report to Integration Design Agent for item-by-item remediation
+     │         Agent completes fixes → re-triggers this Supervisor
+     │         (repeat until 100% pass)
+     └── Yes → Invoke PM Agent, submit completion report
+```
 
-Delete this entire "Structuring This Skill" section when done - it's just guidance.]
+## Inspection Report Format
 
-## [TODO: Replace with the first main section based on chosen structure]
+Generate after each inspection round:
 
-[TODO: Add content here. See examples in existing skills:
-- Code samples for technical skills
-- Decision trees for complex workflows
-- Concrete examples with realistic user requests
-- References to scripts/templates/references as needed]
+```markdown
+# Integration Design Supervisor Inspection Report
 
-## Resources
+- Inspection Time: {timestamp}
+- Inspection Round: #{N}
+- Integration Design Report File Path: {file_path}
 
-This skill includes example resource directories that demonstrate how to organize different types of bundled resources:
+## Inspection Results Summary
 
-### scripts/
-Executable code (Python/Bash/etc.) that can be run directly to perform specific operations.
+| Check Item | Status | Notes |
+| :--- | :---: | :--- |
+| Item 1: Trigger Mechanism Config | PASS / FAIL | {notes} |
+| Item 2: RACI Matrix Config | PASS / FAIL | {notes} |
+| Item 3: Skills List Config | PASS / FAIL | {notes} |
+| Item 4: Knowledge Base Checklist | PASS / FAIL | {notes} |
+| Item 5: Tools List | PASS / FAIL | {notes} |
+| Item 6: MCP Tools List | PASS / FAIL | {notes} |
+| Item 7: Output List + Templates | PASS / FAIL | {notes} |
+| Item 8: SOP Process Checklist | PASS / FAIL | {notes} |
+| Item 9: DoD Checklist | PASS / FAIL | {notes} |
+| Item 10: DoR Checklist | PASS / FAIL | {notes} |
+| Item 11: Conversation Log | PASS / FAIL | {notes} |
+| Item 12: Work Log | PASS / FAIL | {notes} |
+| Item 13: DoD Verification | PASS / FAIL | {notes} |
+| Item 14: Integration Design Report | PASS / FAIL | {notes} |
+| Item 15: API Contract Specifications | PASS / FAIL | {notes} |
+| Item 16: Data Flow Diagrams | PASS / FAIL | {notes} |
+| Item 17: Third-Party Dependency Register | PASS / FAIL | {notes} |
+| Item 18: Integration Security Design | PASS / FAIL | {notes} |
+| Item 19: Error Handling Strategy | PASS / FAIL | {notes} |
+| Item 20: Integration Test Strategy | PASS / FAIL | {notes} |
+| Item 21: Monitoring & Alerting Plan | PASS / FAIL | {notes} |
+| Item 22: Phase Question Lists | PASS / FAIL | {notes} |
+| Item 23: Research Records | PASS / FAIL | {notes} |
+| Item 24: Upstream Traceability | PASS / FAIL | {notes} |
 
-**Examples from other skills:**
-- PDF skill: `fill_fillable_fields.py`, `extract_form_field_info.py` - utilities for PDF manipulation
-- DOCX skill: `document.py`, `utilities.py` - Python modules for document processing
+## Overall Pass Rate: {X}% ({M}/24 items passed)
 
-**Appropriate for:** Python scripts, shell scripts, or any executable code that performs automation, data processing, or specific operations.
+## Issues Requiring Remediation
+1. {issue_description} — Suggested fix: {suggestion}
 
-**Note:** Scripts may be executed without loading into context, but can still be read by Claude for patching or environment adjustments.
+## Conclusion: [FAIL — Return for remediation | PASS — Invoke PM Agent]
+```
 
-### references/
-Documentation and reference material intended to be loaded into context to inform Claude's process and thinking.
+## Post-Completion: Invoke PM Agent
 
-**Examples from other skills:**
-- Product management: `communication.md`, `context_building.md` - detailed workflow guides
-- BigQuery: API reference documentation and query examples
-- Finance: Schema documentation, company policies
+When pass rate reaches **100%**:
+1. Generate final inspection report (marked "ALL PASSED")
+2. Invoke PM Agent, sending:
+   - Integration Design report file path and filename
+   - RACI matrix configuration (for PM to trigger downstream tasks)
+   - Final inspection report
 
-**Appropriate for:** In-depth documentation, API references, database schemas, comprehensive guides, or any detailed information that Claude should reference while working.
+## Reference
 
-### assets/
-Files not intended to be loaded into context, but rather used within the output Claude produces.
-
-**Examples from other skills:**
-- Brand styling: PowerPoint template files (.pptx), logo files
-- Frontend builder: HTML/React boilerplate project directories
-- Typography: Font files (.ttf, .woff2)
-
-**Appropriate for:** Templates, boilerplate code, document templates, images, icons, fonts, or any files meant to be copied or used in the final output.
-
----
-
-**Any unneeded directories can be deleted.** Not every skill requires all three types of resources.
+- Inspection criteria details: [references/inspection-criteria.md](references/inspection-criteria.md)
