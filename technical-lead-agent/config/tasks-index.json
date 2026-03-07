@@ -1,0 +1,274 @@
+{
+  "metadata": {
+    "role": "Technical Lead",
+    "agent": "Technical Lead (TL)",
+    "source": "task/delivery_playbook.md",
+    "generated_at": "2026-03-05"
+  },
+  "tasks": [
+    {
+      "task_id": "TL-INC-001",
+      "name": "Technical Vision & Direction",
+      "phase": "Inception",
+      "wave": 11,
+      "step": 1,
+      "next": ["SE-INC-001", "SE-INC-002", "SE-INC-003", "SE-INC-004", "SE-INC-005"],
+      "skill_dir": "tl-technical-vision-direction",
+      "supervisor_dir": "tl-technical-vision-direction-supervisor",
+      "description": "Defining the overall technical approach and aligning it with business objectives and architectural guidelines."
+    },
+    {
+      "task_id": "TL-INC-002",
+      "name": "Technology Stack Decision",
+      "phase": "Inception",
+      "wave": 11,
+      "step": 2,
+      "next": ["SE-INC-001", "SE-INC-002", "SE-INC-003", "SE-INC-004", "SE-INC-005"],
+      "skill_dir": "tl-technology-stack-decision",
+      "supervisor_dir": "tl-technology-stack-decision-supervisor",
+      "description": "Making final technology choices for languages, frameworks, libraries, and infrastructure in collaboration with the Architect."
+    },
+    {
+      "task_id": "TL-INC-003",
+      "name": "Team Capability Assessment",
+      "phase": "Inception",
+      "wave": 11,
+      "step": 3,
+      "next": ["SE-INC-001", "SE-INC-002", "SE-INC-003", "SE-INC-004", "SE-INC-005"],
+      "skill_dir": "tl-team-capability-assessment",
+      "supervisor_dir": "tl-team-capability-assessment-supervisor",
+      "description": "Evaluating team skills, identifying gaps, and recommending training, hiring, or knowledge transfer needs."
+    },
+    {
+      "task_id": "TL-INC-004",
+      "name": "Technical Risk Assessment",
+      "phase": "Inception",
+      "wave": 11,
+      "step": 4,
+      "next": ["SE-INC-001", "SE-INC-002", "SE-INC-003", "SE-INC-004", "SE-INC-005"],
+      "skill_dir": "tl-technical-risk-assessment",
+      "supervisor_dir": "tl-technical-risk-assessment-supervisor",
+      "description": "Identifying high-impact technical risks, dependencies on external systems, and proposing mitigation strategies."
+    },
+    {
+      "task_id": "TL-INC-005",
+      "name": "Estimation Leadership",
+      "phase": "Inception",
+      "wave": 11,
+      "step": 5,
+      "next": ["SE-INC-001", "SE-INC-002", "SE-INC-003", "SE-INC-004", "SE-INC-005"],
+      "skill_dir": "tl-estimation-leadership",
+      "supervisor_dir": "tl-estimation-leadership-supervisor",
+      "description": "Leading technical estimation efforts, validating developer estimates, and ensuring realistic delivery commitments."
+    },
+    {
+      "task_id": "TL-REQ-001",
+      "name": "Technical Design & Solution Design",
+      "phase": "Requirements",
+      "wave": 11,
+      "step": 1,
+      "next": ["SE-REQ-001", "SE-REQ-002", "SE-REQ-003", "SE-REQ-004", "SE-REQ-005"],
+      "skill_dir": "tl-technical-design-solution-design",
+      "supervisor_dir": "tl-technical-design-solution-design-supervisor",
+      "description": "Producing detailed technical designs, component diagrams, and sequence diagrams for complex features."
+    },
+    {
+      "task_id": "TL-REQ-002",
+      "name": "Coding Standards & Conventions",
+      "phase": "Requirements",
+      "wave": 11,
+      "step": 2,
+      "next": ["SE-REQ-001", "SE-REQ-002", "SE-REQ-003", "SE-REQ-004", "SE-REQ-005"],
+      "skill_dir": "tl-coding-standards-conventions",
+      "supervisor_dir": "tl-coding-standards-conventions-supervisor",
+      "description": "Establishing coding guidelines, branching strategies, commit conventions, and PR review standards for the team."
+    },
+    {
+      "task_id": "TL-REQ-003",
+      "name": "Task Decomposition & Assignment",
+      "phase": "Requirements",
+      "wave": 11,
+      "step": 3,
+      "next": ["SE-REQ-001", "SE-REQ-002", "SE-REQ-003", "SE-REQ-004", "SE-REQ-005"],
+      "skill_dir": "tl-task-decomposition-assignment",
+      "supervisor_dir": "tl-task-decomposition-assignment-supervisor",
+      "description": "Breaking down features into well-scoped technical tasks and assigning them based on team strengths and growth goals."
+    },
+    {
+      "task_id": "TL-REQ-004",
+      "name": "Build & Toolchain Setup",
+      "phase": "Requirements",
+      "wave": 11,
+      "step": 4,
+      "next": ["SE-REQ-001", "SE-REQ-002", "SE-REQ-003", "SE-REQ-004", "SE-REQ-005"],
+      "skill_dir": "tl-build-toolchain-setup",
+      "supervisor_dir": "tl-build-toolchain-setup-supervisor",
+      "description": "Setting up project scaffolding, build pipelines, linting, formatting, testing frameworks, and developer workflows."
+    },
+    {
+      "task_id": "TL-REQ-005",
+      "name": "Cross-Team Technical Alignment",
+      "phase": "Requirements",
+      "wave": 11,
+      "step": 5,
+      "next": ["SE-REQ-001", "SE-REQ-002", "SE-REQ-003", "SE-REQ-004", "SE-REQ-005"],
+      "skill_dir": "tl-cross-team-technical-alignment",
+      "supervisor_dir": "tl-cross-team-technical-alignment-supervisor",
+      "description": "Coordinating API contracts, integration protocols, and shared libraries with other development teams."
+    },
+    {
+      "task_id": "TL-DEV-001",
+      "name": "Code Review & Quality Gatekeeping",
+      "phase": "Development",
+      "wave": 11,
+      "step": 1,
+      "next": [],
+      "skill_dir": "tl-code-review-quality-gatekeeping",
+      "supervisor_dir": "tl-code-review-quality-gatekeeping-supervisor",
+      "description": "Ensuring code quality through systematic PR reviews, architectural compliance checks, and quality gates."
+    },
+    {
+      "task_id": "TL-DEV-002",
+      "name": "Hands-On Development",
+      "phase": "Development",
+      "wave": 11,
+      "step": 2,
+      "next": [],
+      "skill_dir": "tl-hands-on-development",
+      "supervisor_dir": "tl-hands-on-development-supervisor",
+      "description": "Contributing directly to codebase on critical paths, complex features, and setting implementation patterns."
+    },
+    {
+      "task_id": "TL-DEV-003",
+      "name": "Technical Decision Making",
+      "phase": "Development",
+      "wave": 11,
+      "step": 3,
+      "next": [],
+      "skill_dir": "tl-technical-decision-making",
+      "supervisor_dir": "tl-technical-decision-making-supervisor",
+      "description": "Making day-to-day technical decisions on implementation approaches, library choices, and trade-offs."
+    },
+    {
+      "task_id": "TL-DEV-004",
+      "name": "Unblocking the Team",
+      "phase": "Development",
+      "wave": 11,
+      "step": 4,
+      "next": [],
+      "skill_dir": "tl-unblocking-the-team",
+      "supervisor_dir": "tl-unblocking-the-team-supervisor",
+      "description": "Removing technical blockers, debugging complex issues, and providing guidance to unblock team members."
+    },
+    {
+      "task_id": "TL-DEV-005",
+      "name": "Technical Debt Governance",
+      "phase": "Development",
+      "wave": 11,
+      "step": 5,
+      "next": [],
+      "skill_dir": "tl-technical-debt-governance",
+      "supervisor_dir": "tl-technical-debt-governance-supervisor",
+      "description": "Managing technical debt backlog, prioritizing remediation, and balancing debt reduction with feature delivery."
+    },
+    {
+      "task_id": "TL-QA-001",
+      "name": "Critical Bug Investigation",
+      "phase": "QA",
+      "wave": 11,
+      "step": 1,
+      "next": [],
+      "skill_dir": "tl-critical-bug-investigation",
+      "supervisor_dir": "tl-critical-bug-investigation-supervisor",
+      "description": "Leading investigation of critical/blocker bugs, performing root cause analysis, and coordinating fixes."
+    },
+    {
+      "task_id": "TL-QA-002",
+      "name": "Performance & Scalability Review",
+      "phase": "QA",
+      "wave": 11,
+      "step": 2,
+      "next": [],
+      "skill_dir": "tl-performance-scalability-review",
+      "supervisor_dir": "tl-performance-scalability-review-supervisor",
+      "description": "Reviewing performance test results, identifying bottlenecks, and recommending optimizations."
+    },
+    {
+      "task_id": "TL-QA-003",
+      "name": "Release Candidate Validation",
+      "phase": "QA",
+      "wave": 11,
+      "step": 3,
+      "next": [],
+      "skill_dir": "tl-release-candidate-validation",
+      "supervisor_dir": "tl-release-candidate-validation-supervisor",
+      "description": "Validating release candidates for technical completeness, stability, and production readiness."
+    },
+    {
+      "task_id": "TL-QA-004",
+      "name": "Technical Go/No-Go Input",
+      "phase": "QA",
+      "wave": 11,
+      "step": 4,
+      "next": [],
+      "skill_dir": "tl-technical-go-no-go-input",
+      "supervisor_dir": "tl-technical-go-no-go-input-supervisor",
+      "description": "Providing technical assessment for go/no-go decisions at release gates."
+    },
+    {
+      "task_id": "TL-REL-001",
+      "name": "Production Readiness Review",
+      "phase": "Release",
+      "wave": 11,
+      "step": 1,
+      "next": [],
+      "skill_dir": "tl-production-readiness-review",
+      "supervisor_dir": "tl-production-readiness-review-supervisor",
+      "description": "Conducting production readiness reviews covering monitoring, alerting, runbooks, and rollback plans."
+    },
+    {
+      "task_id": "TL-REL-002",
+      "name": "Incident Leadership",
+      "phase": "Release",
+      "wave": 11,
+      "step": 2,
+      "next": [],
+      "skill_dir": "tl-incident-leadership",
+      "supervisor_dir": "tl-incident-leadership-supervisor",
+      "description": "Leading technical incident response, coordinating debugging efforts, and driving resolution."
+    },
+    {
+      "task_id": "TL-REL-003",
+      "name": "Technical Retrospective",
+      "phase": "Release",
+      "wave": 11,
+      "step": 3,
+      "next": [],
+      "skill_dir": "tl-technical-retrospective",
+      "supervisor_dir": "tl-technical-retrospective-supervisor",
+      "description": "Facilitating technical retrospectives to capture lessons learned and drive continuous improvement."
+    },
+    {
+      "task_id": "TL-REL-004",
+      "name": "Team Development & Mentoring",
+      "phase": "Release",
+      "wave": 11,
+      "step": 4,
+      "next": [],
+      "skill_dir": "tl-team-development-mentoring",
+      "supervisor_dir": "tl-team-development-mentoring-supervisor",
+      "description": "Mentoring team members, conducting code reviews for learning, and fostering technical growth."
+    },
+    {
+      "task_id": "TL-REL-005",
+      "name": "Innovation & Improvement",
+      "phase": "Release",
+      "wave": 11,
+      "step": 5,
+      "next": [],
+      "skill_dir": "tl-innovation-improvement",
+      "supervisor_dir": "tl-innovation-improvement-supervisor",
+      "description": "Driving technical innovation, evaluating new tools/practices, and championing engineering excellence."
+    }
+  ]
+}
