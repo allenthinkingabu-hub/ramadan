@@ -6,6 +6,7 @@
 |:---|:---|:---|:---|
 | PM Agent | Project Manager | Orchestrator | Sole orchestrator; broadcasts tasks, collects completions, re-broadcasts for supervisor QA |
 | SA Agent | IT Architect | Role Agent | Executes system architecture tasks across Inception, Requirements, Development, QA, Release phases |
+| IPM Agent | IT Product Manager | Role Agent | Manages product requirements, BRDs, PRDs, and product lifecycle across Inception, Requirements, Development, QA, Release phases |
 | TL Agent | Technical Lead | Role Agent | Executes technical leadership tasks across Inception, Requirements, Development, QA, Release phases |
 
 ## Event Protocol

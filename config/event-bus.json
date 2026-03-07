@@ -1,0 +1,62 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "generated_at": "2026-03-07"
+  },
+  "routes": [
+    {
+      "event": "TaskTriggered",
+      "from": "pm-agent",
+      "to": [
+        "ipm-agent",
+        "sa-agent",
+        "tl-agent"
+      ],
+      "description": "PM broadcasts task assignments to role agents"
+    },
+    {
+      "event": "TaskCompleted",
+      "from": [
+        "ipm-agent",
+        "sa-agent",
+        "tl-agent"
+      ],
+      "to": "pm-agent",
+      "description": "Role agents report task completion to PM"
+    },
+    {
+      "event": "SupervisorTriggered",
+      "from": [
+        "ipm-agent",
+        "sa-agent",
+        "tl-agent"
+      ],
+      "to": "supervisor",
+      "description": "Role agents invoke their supervisors"
+    },
+    {
+      "event": "SupervisorCompleted",
+      "from": "supervisor",
+      "to": [
+        "ipm-agent",
+        "sa-agent",
+        "tl-agent"
+      ],
+      "description": "Supervisors return inspection results"
+    }
+  ],
+  "rules": [
+    {
+      "name": "wave-ordering",
+      "description": "Complete all tasks in Wave N before triggering Wave N+1"
+    },
+    {
+      "name": "parallel-fanout",
+      "description": "Tasks within same wave can execute in parallel"
+    },
+    {
+      "name": "supervisor-gate",
+      "description": "TaskCompleted requires 100% supervisor pass rate"
+    }
+  ]
+}
