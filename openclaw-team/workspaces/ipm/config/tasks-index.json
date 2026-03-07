@@ -1,0 +1,348 @@
+{
+  "metadata": {
+    "role": "IT Product Manager",
+    "agent": "IPM Agent",
+    "source": "task/delivery_playbook.md",
+    "generated_at": "2026-03-07"
+  },
+  "tasks": [
+    {
+      "task_id": "IPM-INC-001",
+      "name": "Requirement Gathering",
+      "phase": "Inception",
+      "wave": 2,
+      "step": 1,
+      "next": [
+        "SM-INC-001",
+        "SM-INC-002",
+        "SM-INC-003",
+        "SM-INC-004",
+        "SM-INC-005"
+      ],
+      "skill_dir": "ipm-requirement-gathering",
+      "supervisor_dir": "ipm-requirement-gathering-supervisor",
+      "description": "In-depth interviews with stakeholders/customers to collect raw requirements."
+    },
+    {
+      "task_id": "IPM-INC-002",
+      "name": "Market Research",
+      "phase": "Inception",
+      "wave": 2,
+      "step": 2,
+      "next": [
+        "SM-INC-001",
+        "SM-INC-002",
+        "SM-INC-003",
+        "SM-INC-004",
+        "SM-INC-005"
+      ],
+      "skill_dir": "ipm-market-research",
+      "supervisor_dir": "ipm-market-research-supervisor",
+      "description": "Analyzing competitors, industry trends, and user pain points."
+    },
+    {
+      "task_id": "IPM-INC-003",
+      "name": "BRD Writing",
+      "phase": "Inception",
+      "wave": 2,
+      "step": 3,
+      "next": [
+        "SM-INC-001",
+        "SM-INC-002",
+        "SM-INC-003",
+        "SM-INC-004",
+        "SM-INC-005"
+      ],
+      "skill_dir": "ipm-brd-writing",
+      "supervisor_dir": "ipm-brd-writing-supervisor",
+      "description": "Creating the Business Requirement Document to define commercial value and goals."
+    },
+    {
+      "task_id": "IPM-INC-004",
+      "name": "Feasibility Assessment",
+      "phase": "Inception",
+      "wave": 2,
+      "step": 4,
+      "next": [
+        "SM-INC-001",
+        "SM-INC-002",
+        "SM-INC-003",
+        "SM-INC-004",
+        "SM-INC-005"
+      ],
+      "skill_dir": "ipm-feasibility-assessment",
+      "supervisor_dir": "ipm-feasibility-assessment-supervisor",
+      "description": "Collaborating with technical teams to evaluate technical viability."
+    },
+    {
+      "task_id": "IPM-INC-005",
+      "name": "Alignment",
+      "phase": "Inception",
+      "wave": 2,
+      "step": 5,
+      "next": [
+        "SM-INC-001",
+        "SM-INC-002",
+        "SM-INC-003",
+        "SM-INC-004",
+        "SM-INC-005"
+      ],
+      "skill_dir": "ipm-alignment",
+      "supervisor_dir": "ipm-alignment-supervisor",
+      "description": "Achieving consensus among business, technical, and design stakeholders."
+    },
+    {
+      "task_id": "IPM-REQ-001",
+      "name": "PRD Writing",
+      "phase": "Requirements",
+      "wave": 2,
+      "step": 1,
+      "next": [
+        "SM-REQ-001",
+        "SM-REQ-002",
+        "SM-REQ-003",
+        "SM-REQ-004",
+        "SM-REQ-005"
+      ],
+      "skill_dir": "ipm-prd-writing",
+      "supervisor_dir": "ipm-prd-writing-supervisor",
+      "description": "Creating the Product Requirement Document with detailed logic, boundaries, and interactions."
+    },
+    {
+      "task_id": "IPM-REQ-002",
+      "name": "User Story Decomposition",
+      "phase": "Requirements",
+      "wave": 2,
+      "step": 2,
+      "next": [
+        "SM-REQ-001",
+        "SM-REQ-002",
+        "SM-REQ-003",
+        "SM-REQ-004",
+        "SM-REQ-005"
+      ],
+      "skill_dir": "ipm-user-story-decomposition",
+      "supervisor_dir": "ipm-user-story-decomposition-supervisor",
+      "description": "Breaking down large requirements into deliverable User Stories (Definition of Ready - DoR)."
+    },
+    {
+      "task_id": "IPM-REQ-003",
+      "name": "Prioritization",
+      "phase": "Requirements",
+      "wave": 2,
+      "step": 3,
+      "next": [
+        "SM-REQ-001",
+        "SM-REQ-002",
+        "SM-REQ-003",
+        "SM-REQ-004",
+        "SM-REQ-005"
+      ],
+      "skill_dir": "ipm-prioritization",
+      "supervisor_dir": "ipm-prioritization-supervisor",
+      "description": "Ranking requirements using frameworks like MoSCoW or RICE."
+    },
+    {
+      "task_id": "IPM-REQ-004",
+      "name": "Prototype Review",
+      "phase": "Requirements",
+      "wave": 2,
+      "step": 4,
+      "next": [
+        "SM-REQ-001",
+        "SM-REQ-002",
+        "SM-REQ-003",
+        "SM-REQ-004",
+        "SM-REQ-005"
+      ],
+      "skill_dir": "ipm-prototype-review",
+      "supervisor_dir": "ipm-prototype-review-supervisor",
+      "description": "Collaborating with designers to finalize UI/UX solutions."
+    },
+    {
+      "task_id": "IPM-REQ-005",
+      "name": "Refinement Meetings",
+      "phase": "Requirements",
+      "wave": 2,
+      "step": 5,
+      "next": [
+        "SM-REQ-001",
+        "SM-REQ-002",
+        "SM-REQ-003",
+        "SM-REQ-004",
+        "SM-REQ-005"
+      ],
+      "skill_dir": "ipm-refinement-meetings",
+      "supervisor_dir": "ipm-refinement-meetings-supervisor",
+      "description": "Organizing requirement reviews to ensure shared understanding across teams."
+    },
+    {
+      "task_id": "IPM-DEV-001",
+      "name": "Requirement Clarification",
+      "phase": "Development",
+      "wave": 2,
+      "step": 1,
+      "next": [
+        "SM-DEV-001",
+        "SM-DEV-002",
+        "SM-DEV-003",
+        "SM-DEV-004"
+      ],
+      "skill_dir": "ipm-requirement-clarification",
+      "supervisor_dir": "ipm-requirement-clarification-supervisor",
+      "description": "Responding to developer and tester queries in real-time."
+    },
+    {
+      "task_id": "IPM-DEV-002",
+      "name": "Acceptance Criteria",
+      "phase": "Development",
+      "wave": 2,
+      "step": 2,
+      "next": [
+        "SM-DEV-001",
+        "SM-DEV-002",
+        "SM-DEV-003",
+        "SM-DEV-004"
+      ],
+      "skill_dir": "ipm-acceptance-criteria",
+      "supervisor_dir": "ipm-acceptance-criteria-supervisor",
+      "description": "Defining the specific conditions that must be met for each feature."
+    },
+    {
+      "task_id": "IPM-DEV-003",
+      "name": "PRD Change Management",
+      "phase": "Development",
+      "wave": 2,
+      "step": 3,
+      "next": [
+        "SM-DEV-001",
+        "SM-DEV-002",
+        "SM-DEV-003",
+        "SM-DEV-004"
+      ],
+      "skill_dir": "ipm-prd-change-management",
+      "supervisor_dir": "ipm-prd-change-management-supervisor",
+      "description": "Managing requirement changes and assessing their impact."
+    },
+    {
+      "task_id": "IPM-DEV-004",
+      "name": "Progress Tracking",
+      "phase": "Development",
+      "wave": 2,
+      "step": 4,
+      "next": [
+        "SM-DEV-001",
+        "SM-DEV-002",
+        "SM-DEV-003",
+        "SM-DEV-004"
+      ],
+      "skill_dir": "ipm-progress-tracking",
+      "supervisor_dir": "ipm-progress-tracking-supervisor",
+      "description": "Monitoring delivery timelines and identifying risks early."
+    },
+    {
+      "task_id": "IPM-QA-001",
+      "name": "UAT Organization",
+      "phase": "QA",
+      "wave": 2,
+      "step": 1,
+      "next": [
+        "SM-QA-001",
+        "SM-QA-002",
+        "SM-QA-003"
+      ],
+      "skill_dir": "ipm-uat-organization",
+      "supervisor_dir": "ipm-uat-organization-supervisor",
+      "description": "Coordinating User Acceptance Testing with users/business owners."
+    },
+    {
+      "task_id": "IPM-QA-002",
+      "name": "Bug Prioritization",
+      "phase": "QA",
+      "wave": 2,
+      "step": 2,
+      "next": [
+        "SM-QA-001",
+        "SM-QA-002",
+        "SM-QA-003"
+      ],
+      "skill_dir": "ipm-bug-prioritization",
+      "supervisor_dir": "ipm-bug-prioritization-supervisor",
+      "description": "Deciding which bugs are critical and whether they block release."
+    },
+    {
+      "task_id": "IPM-QA-003",
+      "name": "Launch Checklist",
+      "phase": "QA",
+      "wave": 2,
+      "step": 3,
+      "next": [
+        "SM-QA-001",
+        "SM-QA-002",
+        "SM-QA-003"
+      ],
+      "skill_dir": "ipm-launch-checklist",
+      "supervisor_dir": "ipm-launch-checklist-supervisor",
+      "description": "Confirming release standards (Definition of Done - DoD)."
+    },
+    {
+      "task_id": "IPM-REL-001",
+      "name": "Release Coordination",
+      "phase": "Release",
+      "wave": 2,
+      "step": 1,
+      "next": [
+        "SM-REL-001",
+        "SM-REL-002",
+        "SM-REL-003",
+        "SM-REL-004"
+      ],
+      "skill_dir": "ipm-release-coordination",
+      "supervisor_dir": "ipm-release-coordination-supervisor",
+      "description": "Planning release schedules, canary deployments, and rollback strategies."
+    },
+    {
+      "task_id": "IPM-REL-002",
+      "name": "Data Analysis",
+      "phase": "Release",
+      "wave": 2,
+      "step": 2,
+      "next": [
+        "SM-REL-001",
+        "SM-REL-002",
+        "SM-REL-003",
+        "SM-REL-004"
+      ],
+      "skill_dir": "ipm-data-analysis",
+      "supervisor_dir": "ipm-data-analysis-supervisor",
+      "description": "Analyzing KPIs after launch to verify if objectives were met."
+    },
+    {
+      "task_id": "IPM-REL-003",
+      "name": "User Feedback",
+      "phase": "Release",
+      "wave": 2,
+      "step": 3,
+      "next": [
+        "SM-REL-001",
+        "SM-REL-002",
+        "SM-REL-003",
+        "SM-REL-004"
+      ],
+      "skill_dir": "ipm-user-feedback",
+      "supervisor_dir": "ipm-user-feedback-supervisor",
+      "description": "Collecting continuous feedback for the next iteration cycle."
+    },
+    {
+      "task_id": "IPM-REL-004",
+      "name": "Retrospectives",
+      "phase": "Release",
+      "wave": 2,
+      "step": 4,
+      "next": [],
+      "skill_dir": "ipm-retrospectives",
+      "supervisor_dir": "ipm-retrospectives-supervisor",
+      "description": "Organizing project/sprint retrospectives to optimize collaboration."
+    }
+  ]
+}
