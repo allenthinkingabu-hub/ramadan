@@ -1,0 +1,17 @@
+{
+  "group_chat_id": "<TELEGRAM_GROUP_ID>",
+  "bots": {
+    "pm": {
+      "token": "<PM_BOT_TOKEN>",
+      "username": "openclaw_pm_bot"
+    },
+    "ipm": {
+      "token": "<IPM_BOT_TOKEN>",
+      "username": "openclaw_ipm_bot"
+    },
+    "sa": {
+      "token": "<SA_BOT_TOKEN>",
+      "username": "openclaw_sa_bot"
+    }
+  }
+}
