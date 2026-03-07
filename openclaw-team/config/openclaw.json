@@ -1,0 +1,484 @@
+{
+  "agents": {
+    "defaults": {
+      "workspace": "~/.openclaw/workspace",
+      "model": "claude-opus-4-6"
+    },
+    "list": [
+      {
+        "id": "pm-agent",
+        "workspace": "~/.openclaw/workspace-pm",
+        "model": "claude-opus-4-6",
+        "tools": {
+          "profile": "full"
+        }
+      },
+      {
+        "id": "ipm-agent",
+        "workspace": "~/.openclaw/workspace-ipm",
+        "model": "claude-opus-4-6",
+        "tools": {
+          "profile": "coding",
+          "allow": [
+            "Read",
+            "Write",
+            "Edit",
+            "Glob",
+            "Grep",
+            "Bash"
+          ]
+        }
+      },
+      {
+        "id": "sa-agent",
+        "workspace": "~/.openclaw/workspace-sa",
+        "model": "claude-opus-4-6",
+        "tools": {
+          "profile": "coding",
+          "allow": [
+            "Read",
+            "Write",
+            "Edit",
+            "Glob",
+            "Grep",
+            "Bash"
+          ]
+        }
+      },
+      {
+        "id": "tl-agent",
+        "workspace": "~/.openclaw/workspace-tl",
+        "model": "claude-opus-4-6",
+        "tools": {
+          "profile": "coding",
+          "allow": [
+            "Read",
+            "Write",
+            "Edit",
+            "Glob",
+            "Grep",
+            "Bash"
+          ]
+        }
+      }
+    ]
+  },
+  "skills": {
+    "load": {
+      "extraDirs": [
+        "~/.openclaw/workspace/skills"
+      ],
+      "watch": true
+    },
+    "entries": {
+      "pm-project-charter-development": {
+        "enabled": true
+      },
+      "pm-project-charter-development-supervisor": {
+        "enabled": true
+      },
+      "pm-stakeholder-analysis": {
+        "enabled": true
+      },
+      "pm-stakeholder-analysis-supervisor": {
+        "enabled": true
+      },
+      "pm-resource-planning": {
+        "enabled": true
+      },
+      "pm-resource-planning-supervisor": {
+        "enabled": true
+      },
+      "pm-budget-estimation": {
+        "enabled": true
+      },
+      "pm-budget-estimation-supervisor": {
+        "enabled": true
+      },
+      "pm-risk-register-initialization": {
+        "enabled": true
+      },
+      "pm-risk-register-initialization-supervisor": {
+        "enabled": true
+      },
+      "pm-project-plan-wbs": {
+        "enabled": true
+      },
+      "pm-project-plan-wbs-supervisor": {
+        "enabled": true
+      },
+      "pm-schedule-development": {
+        "enabled": true
+      },
+      "pm-schedule-development-supervisor": {
+        "enabled": true
+      },
+      "pm-raci-matrix-definition": {
+        "enabled": true
+      },
+      "pm-raci-matrix-definition-supervisor": {
+        "enabled": true
+      },
+      "pm-communication-plan": {
+        "enabled": true
+      },
+      "pm-communication-plan-supervisor": {
+        "enabled": true
+      },
+      "pm-vendor-procurement-management": {
+        "enabled": true
+      },
+      "pm-vendor-procurement-management-supervisor": {
+        "enabled": true
+      },
+      "pm-progress-tracking-reporting": {
+        "enabled": true
+      },
+      "pm-progress-tracking-reporting-supervisor": {
+        "enabled": true
+      },
+      "pm-risk-issue-management": {
+        "enabled": true
+      },
+      "pm-risk-issue-management-supervisor": {
+        "enabled": true
+      },
+      "pm-scope-management": {
+        "enabled": true
+      },
+      "pm-scope-management-supervisor": {
+        "enabled": true
+      },
+      "pm-resource-management": {
+        "enabled": true
+      },
+      "pm-resource-management-supervisor": {
+        "enabled": true
+      },
+      "pm-stakeholder-communication": {
+        "enabled": true
+      },
+      "pm-stakeholder-communication-supervisor": {
+        "enabled": true
+      },
+      "pm-uat-coordination": {
+        "enabled": true
+      },
+      "pm-uat-coordination-supervisor": {
+        "enabled": true
+      },
+      "pm-go-no-go-decision-facilitation": {
+        "enabled": true
+      },
+      "pm-go-no-go-decision-facilitation-supervisor": {
+        "enabled": true
+      },
+      "pm-release-planning": {
+        "enabled": true
+      },
+      "pm-release-planning-supervisor": {
+        "enabled": true
+      },
+      "pm-compliance-audit-readiness": {
+        "enabled": true
+      },
+      "pm-compliance-audit-readiness-supervisor": {
+        "enabled": true
+      },
+      "pm-go-live-coordination": {
+        "enabled": true
+      },
+      "pm-go-live-coordination-supervisor": {
+        "enabled": true
+      },
+      "pm-hypercare-management": {
+        "enabled": true
+      },
+      "pm-hypercare-management-supervisor": {
+        "enabled": true
+      },
+      "pm-project-closure": {
+        "enabled": true
+      },
+      "pm-project-closure-supervisor": {
+        "enabled": true
+      },
+      "pm-lessons-learned-retrospective": {
+        "enabled": true
+      },
+      "pm-lessons-learned-retrospective-supervisor": {
+        "enabled": true
+      },
+      "pm-benefits-handover": {
+        "enabled": true
+      },
+      "pm-benefits-handover-supervisor": {
+        "enabled": true
+      },
+      "ipm-requirement-gathering": {
+        "enabled": true
+      },
+      "ipm-requirement-gathering-supervisor": {
+        "enabled": true
+      },
+      "ipm-market-research": {
+        "enabled": true
+      },
+      "ipm-market-research-supervisor": {
+        "enabled": true
+      },
+      "ipm-brd-writing": {
+        "enabled": true
+      },
+      "ipm-brd-writing-supervisor": {
+        "enabled": true
+      },
+      "ipm-feasibility-assessment": {
+        "enabled": true
+      },
+      "ipm-feasibility-assessment-supervisor": {
+        "enabled": true
+      },
+      "ipm-alignment": {
+        "enabled": true
+      },
+      "ipm-alignment-supervisor": {
+        "enabled": true
+      },
+      "ipm-prd-writing": {
+        "enabled": true
+      },
+      "ipm-prd-writing-supervisor": {
+        "enabled": true
+      },
+      "ipm-user-story-decomposition": {
+        "enabled": true
+      },
+      "ipm-user-story-decomposition-supervisor": {
+        "enabled": true
+      },
+      "ipm-prioritization": {
+        "enabled": true
+      },
+      "ipm-prioritization-supervisor": {
+        "enabled": true
+      },
+      "ipm-prototype-review": {
+        "enabled": true
+      },
+      "ipm-prototype-review-supervisor": {
+        "enabled": true
+      },
+      "ipm-refinement-meetings": {
+        "enabled": true
+      },
+      "ipm-refinement-meetings-supervisor": {
+        "enabled": true
+      },
+      "ipm-requirement-clarification": {
+        "enabled": true
+      },
+      "ipm-requirement-clarification-supervisor": {
+        "enabled": true
+      },
+      "ipm-acceptance-criteria": {
+        "enabled": true
+      },
+      "ipm-acceptance-criteria-supervisor": {
+        "enabled": true
+      },
+      "ipm-prd-change-management": {
+        "enabled": true
+      },
+      "ipm-prd-change-management-supervisor": {
+        "enabled": true
+      },
+      "ipm-progress-tracking": {
+        "enabled": true
+      },
+      "ipm-progress-tracking-supervisor": {
+        "enabled": true
+      },
+      "ipm-uat-organization": {
+        "enabled": true
+      },
+      "ipm-uat-organization-supervisor": {
+        "enabled": true
+      },
+      "ipm-bug-prioritization": {
+        "enabled": true
+      },
+      "ipm-bug-prioritization-supervisor": {
+        "enabled": true
+      },
+      "ipm-launch-checklist": {
+        "enabled": true
+      },
+      "ipm-launch-checklist-supervisor": {
+        "enabled": true
+      },
+      "ipm-release-coordination": {
+        "enabled": true
+      },
+      "ipm-release-coordination-supervisor": {
+        "enabled": true
+      },
+      "ipm-data-analysis": {
+        "enabled": true
+      },
+      "ipm-data-analysis-supervisor": {
+        "enabled": true
+      },
+      "ipm-user-feedback": {
+        "enabled": true
+      },
+      "ipm-user-feedback-supervisor": {
+        "enabled": true
+      },
+      "ipm-retrospectives": {
+        "enabled": true
+      },
+      "ipm-retrospectives-supervisor": {
+        "enabled": true
+      },
+      "sa-compliance-privacy-scan": {
+        "enabled": true
+      },
+      "sa-compliance-privacy-scan-supervisor": {
+        "enabled": true
+      },
+      "sa-third-party-vendor-strategy": {
+        "enabled": true
+      },
+      "sa-third-party-vendor-strategy-supervisor": {
+        "enabled": true
+      },
+      "sa-vendor-third-party-controls": {
+        "enabled": true
+      },
+      "sa-vendor-third-party-controls-supervisor": {
+        "enabled": true
+      },
+      "sa-requirements-traceability": {
+        "enabled": true
+      },
+      "sa-requirements-traceability-supervisor": {
+        "enabled": true
+      },
+      "sa-adr": {
+        "enabled": true
+      },
+      "sa-adr-supervisor": {
+        "enabled": true
+      },
+      "sa-iac-environment-baseline": {
+        "enabled": true
+      },
+      "sa-iac-environment-baseline-supervisor": {
+        "enabled": true
+      },
+      "sa-infrastructure-validation": {
+        "enabled": true
+      },
+      "sa-infrastructure-validation-supervisor": {
+        "enabled": true
+      },
+      "sa-integration-testing-support": {
+        "enabled": true
+      },
+      "sa-integration-testing-support-supervisor": {
+        "enabled": true
+      },
+      "sa-compliance-validation": {
+        "enabled": true
+      },
+      "sa-compliance-validation-supervisor": {
+        "enabled": true
+      },
+      "sa-deployment-architecture": {
+        "enabled": true
+      },
+      "sa-deployment-architecture-supervisor": {
+        "enabled": true
+      },
+      "sa-monitoring-observability": {
+        "enabled": true
+      },
+      "sa-monitoring-observability-supervisor": {
+        "enabled": true
+      },
+      "sa-capacity-planning": {
+        "enabled": true
+      },
+      "sa-capacity-planning-supervisor": {
+        "enabled": true
+      },
+      "sa-post-mortem-analysis": {
+        "enabled": true
+      },
+      "sa-post-mortem-analysis-supervisor": {
+        "enabled": true
+      },
+      "sa-architecture-evolution": {
+        "enabled": true
+      },
+      "sa-architecture-evolution-supervisor": {
+        "enabled": true
+      },
+      "sa-runbooks-knowledge-transfer": {
+        "enabled": true
+      },
+      "sa-runbooks-knowledge-transfer-supervisor": {
+        "enabled": true
+      },
+      "sa-finops-cost-guardrails": {
+        "enabled": true
+      },
+      "sa-finops-cost-guardrails-supervisor": {
+        "enabled": true
+      },
+      "sa-resilience-chaos-testing": {
+        "enabled": true
+      },
+      "sa-resilience-chaos-testing-supervisor": {
+        "enabled": true
+      },
+      "sa-architecture-governance-change-control": {
+        "enabled": true
+      },
+      "sa-architecture-governance-change-control-supervisor": {
+        "enabled": true
+      }
+    }
+  },
+  "bindings": [
+    {
+      "agentId": "pm-agent",
+      "match": {
+        "channel": "event-bus",
+        "topic": "orchestrator"
+      }
+    },
+    {
+      "agentId": "ipm-agent",
+      "match": {
+        "channel": "event-bus",
+        "topic": "pm-ipm"
+      }
+    },
+    {
+      "agentId": "sa-agent",
+      "match": {
+        "channel": "event-bus",
+        "topic": "pm-sa"
+      }
+    },
+    {
+      "agentId": "tl-agent",
+      "match": {
+        "channel": "event-bus",
+        "topic": "pm-tl"
+      }
+    }
+  ]
+}

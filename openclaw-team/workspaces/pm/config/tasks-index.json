@@ -1,0 +1,385 @@
+{
+  "metadata": {
+    "role": "IT Project Manager",
+    "agent": "PM Agent",
+    "source": "task/delivery_playbook.md",
+    "generated_at": "2026-03-07"
+  },
+  "tasks": [
+    {
+      "task_id": "PM-INC-001",
+      "name": "Project Charter Development",
+      "phase": "Inception",
+      "wave": 1,
+      "step": 1,
+      "next": [
+        "IPM-INC-001",
+        "IPM-INC-002",
+        "IPM-INC-003",
+        "IPM-INC-004",
+        "IPM-INC-005"
+      ],
+      "skill_dir": "pm-project-charter-development",
+      "supervisor_dir": "pm-project-charter-development-supervisor",
+      "description": "Drafting the project charter defining objectives, scope, stakeholders, constraints, and success criteria."
+    },
+    {
+      "task_id": "PM-INC-002",
+      "name": "Stakeholder Analysis",
+      "phase": "Inception",
+      "wave": 1,
+      "step": 2,
+      "next": [
+        "IPM-INC-001",
+        "IPM-INC-002",
+        "IPM-INC-003",
+        "IPM-INC-004",
+        "IPM-INC-005"
+      ],
+      "skill_dir": "pm-stakeholder-analysis",
+      "supervisor_dir": "pm-stakeholder-analysis-supervisor",
+      "description": "Identifying stakeholders, assessing their influence and interest, and developing a stakeholder engagement plan."
+    },
+    {
+      "task_id": "PM-INC-003",
+      "name": "Resource Planning",
+      "phase": "Inception",
+      "wave": 1,
+      "step": 3,
+      "next": [
+        "IPM-INC-001",
+        "IPM-INC-002",
+        "IPM-INC-003",
+        "IPM-INC-004",
+        "IPM-INC-005"
+      ],
+      "skill_dir": "pm-resource-planning",
+      "supervisor_dir": "pm-resource-planning-supervisor",
+      "description": "Estimating team composition, skillsets, and resource availability needed for project execution."
+    },
+    {
+      "task_id": "PM-INC-004",
+      "name": "Budget Estimation",
+      "phase": "Inception",
+      "wave": 1,
+      "step": 4,
+      "next": [
+        "IPM-INC-001",
+        "IPM-INC-002",
+        "IPM-INC-003",
+        "IPM-INC-004",
+        "IPM-INC-005"
+      ],
+      "skill_dir": "pm-budget-estimation",
+      "supervisor_dir": "pm-budget-estimation-supervisor",
+      "description": "Developing initial cost estimates covering personnel, infrastructure, licensing, and contingency reserves."
+    },
+    {
+      "task_id": "PM-INC-005",
+      "name": "Risk Register Initialization",
+      "phase": "Inception",
+      "wave": 1,
+      "step": 5,
+      "next": [
+        "IPM-INC-001",
+        "IPM-INC-002",
+        "IPM-INC-003",
+        "IPM-INC-004",
+        "IPM-INC-005"
+      ],
+      "skill_dir": "pm-risk-register-initialization",
+      "supervisor_dir": "pm-risk-register-initialization-supervisor",
+      "description": "Identifying early project risks, assessing probability and impact, and defining initial mitigation strategies."
+    },
+    {
+      "task_id": "PM-REQ-001",
+      "name": "Project Plan & WBS",
+      "phase": "Requirements",
+      "wave": 1,
+      "step": 1,
+      "next": [
+        "IPM-REQ-001",
+        "IPM-REQ-002",
+        "IPM-REQ-003",
+        "IPM-REQ-004",
+        "IPM-REQ-005"
+      ],
+      "skill_dir": "pm-project-plan-wbs",
+      "supervisor_dir": "pm-project-plan-wbs-supervisor",
+      "description": "Creating the detailed project plan with Work Breakdown Structure, milestones, and critical path analysis."
+    },
+    {
+      "task_id": "PM-REQ-002",
+      "name": "Schedule Development",
+      "phase": "Requirements",
+      "wave": 1,
+      "step": 2,
+      "next": [
+        "IPM-REQ-001",
+        "IPM-REQ-002",
+        "IPM-REQ-003",
+        "IPM-REQ-004",
+        "IPM-REQ-005"
+      ],
+      "skill_dir": "pm-schedule-development",
+      "supervisor_dir": "pm-schedule-development-supervisor",
+      "description": "Building project timelines using Gantt charts, defining dependencies, and setting baseline schedules."
+    },
+    {
+      "task_id": "PM-REQ-003",
+      "name": "RACI Matrix Definition",
+      "phase": "Requirements",
+      "wave": 1,
+      "step": 3,
+      "next": [
+        "IPM-REQ-001",
+        "IPM-REQ-002",
+        "IPM-REQ-003",
+        "IPM-REQ-004",
+        "IPM-REQ-005"
+      ],
+      "skill_dir": "pm-raci-matrix-definition",
+      "supervisor_dir": "pm-raci-matrix-definition-supervisor",
+      "description": "Establishing clear roles and responsibilities across all workstreams using RACI (Responsible, Accountable, Consulted, Informed)."
+    },
+    {
+      "task_id": "PM-REQ-004",
+      "name": "Communication Plan",
+      "phase": "Requirements",
+      "wave": 1,
+      "step": 4,
+      "next": [
+        "IPM-REQ-001",
+        "IPM-REQ-002",
+        "IPM-REQ-003",
+        "IPM-REQ-004",
+        "IPM-REQ-005"
+      ],
+      "skill_dir": "pm-communication-plan",
+      "supervisor_dir": "pm-communication-plan-supervisor",
+      "description": "Defining reporting cadence, meeting schedules, escalation paths, and communication channels for all stakeholders."
+    },
+    {
+      "task_id": "PM-REQ-005",
+      "name": "Vendor & Procurement Management",
+      "phase": "Requirements",
+      "wave": 1,
+      "step": 5,
+      "next": [
+        "IPM-REQ-001",
+        "IPM-REQ-002",
+        "IPM-REQ-003",
+        "IPM-REQ-004",
+        "IPM-REQ-005"
+      ],
+      "skill_dir": "pm-vendor-procurement-management",
+      "supervisor_dir": "pm-vendor-procurement-management-supervisor",
+      "description": "Coordinating vendor selection, contract negotiation, SOWs, and third-party onboarding when applicable."
+    },
+    {
+      "task_id": "PM-DEV-001",
+      "name": "Progress Tracking & Reporting",
+      "phase": "Development",
+      "wave": 1,
+      "step": 1,
+      "next": [
+        "IPM-DEV-001",
+        "IPM-DEV-002",
+        "IPM-DEV-003",
+        "IPM-DEV-004"
+      ],
+      "skill_dir": "pm-progress-tracking-reporting",
+      "supervisor_dir": "pm-progress-tracking-reporting-supervisor",
+      "description": "Monitoring project health through status reports, dashboards, earned value metrics, and milestone tracking."
+    },
+    {
+      "task_id": "PM-DEV-002",
+      "name": "Risk & Issue Management",
+      "phase": "Development",
+      "wave": 1,
+      "step": 2,
+      "next": [
+        "IPM-DEV-001",
+        "IPM-DEV-002",
+        "IPM-DEV-003",
+        "IPM-DEV-004"
+      ],
+      "skill_dir": "pm-risk-issue-management",
+      "supervisor_dir": "pm-risk-issue-management-supervisor",
+      "description": "Continuously updating the risk register, managing issue logs, and driving resolution of escalated blockers."
+    },
+    {
+      "task_id": "PM-DEV-003",
+      "name": "Scope Management",
+      "phase": "Development",
+      "wave": 1,
+      "step": 3,
+      "next": [
+        "IPM-DEV-001",
+        "IPM-DEV-002",
+        "IPM-DEV-003",
+        "IPM-DEV-004"
+      ],
+      "skill_dir": "pm-scope-management",
+      "supervisor_dir": "pm-scope-management-supervisor",
+      "description": "Controlling scope through formal change request processes, impact assessments, and change control board decisions."
+    },
+    {
+      "task_id": "PM-DEV-004",
+      "name": "Resource Management",
+      "phase": "Development",
+      "wave": 1,
+      "step": 4,
+      "next": [
+        "IPM-DEV-001",
+        "IPM-DEV-002",
+        "IPM-DEV-003",
+        "IPM-DEV-004"
+      ],
+      "skill_dir": "pm-resource-management",
+      "supervisor_dir": "pm-resource-management-supervisor",
+      "description": "Balancing team workloads, resolving resource conflicts, and adjusting allocations based on project needs."
+    },
+    {
+      "task_id": "PM-DEV-005",
+      "name": "Stakeholder Communication",
+      "phase": "Development",
+      "wave": 1,
+      "step": 5,
+      "next": [
+        "IPM-DEV-001",
+        "IPM-DEV-002",
+        "IPM-DEV-003",
+        "IPM-DEV-004"
+      ],
+      "skill_dir": "pm-stakeholder-communication",
+      "supervisor_dir": "pm-stakeholder-communication-supervisor",
+      "description": "Conducting regular status meetings, steering committee updates, and executive briefings to maintain alignment."
+    },
+    {
+      "task_id": "PM-QA-001",
+      "name": "UAT Coordination",
+      "phase": "QA",
+      "wave": 1,
+      "step": 1,
+      "next": [
+        "IPM-QA-001",
+        "IPM-QA-002",
+        "IPM-QA-003"
+      ],
+      "skill_dir": "pm-uat-coordination",
+      "supervisor_dir": "pm-uat-coordination-supervisor",
+      "description": "Planning UAT timelines, coordinating business user participation, and ensuring environment readiness."
+    },
+    {
+      "task_id": "PM-QA-002",
+      "name": "Go/No-Go Decision Facilitation",
+      "phase": "QA",
+      "wave": 1,
+      "step": 2,
+      "next": [
+        "IPM-QA-001",
+        "IPM-QA-002",
+        "IPM-QA-003"
+      ],
+      "skill_dir": "pm-go-no-go-decision-facilitation",
+      "supervisor_dir": "pm-go-no-go-decision-facilitation-supervisor",
+      "description": "Organizing go/no-go review meetings with key stakeholders based on quality metrics and risk assessment."
+    },
+    {
+      "task_id": "PM-QA-003",
+      "name": "Release Planning",
+      "phase": "QA",
+      "wave": 1,
+      "step": 3,
+      "next": [
+        "IPM-QA-001",
+        "IPM-QA-002",
+        "IPM-QA-003"
+      ],
+      "skill_dir": "pm-release-planning",
+      "supervisor_dir": "pm-release-planning-supervisor",
+      "description": "Coordinating release schedules, deployment windows, and rollback contingencies with all involved teams."
+    },
+    {
+      "task_id": "PM-QA-004",
+      "name": "Compliance & Audit Readiness",
+      "phase": "QA",
+      "wave": 1,
+      "step": 4,
+      "next": [
+        "IPM-QA-001",
+        "IPM-QA-002",
+        "IPM-QA-003"
+      ],
+      "skill_dir": "pm-compliance-audit-readiness",
+      "supervisor_dir": "pm-compliance-audit-readiness-supervisor",
+      "description": "Ensuring all project documentation, approvals, and sign-offs are complete for governance and audit requirements."
+    },
+    {
+      "task_id": "PM-REL-001",
+      "name": "Go-Live Coordination",
+      "phase": "Release",
+      "wave": 1,
+      "step": 1,
+      "next": [
+        "IPM-REL-001",
+        "IPM-REL-002",
+        "IPM-REL-003",
+        "IPM-REL-004"
+      ],
+      "skill_dir": "pm-go-live-coordination",
+      "supervisor_dir": "pm-go-live-coordination-supervisor",
+      "description": "Orchestrating the production launch across development, operations, support, and business teams."
+    },
+    {
+      "task_id": "PM-REL-002",
+      "name": "Hypercare Management",
+      "phase": "Release",
+      "wave": 1,
+      "step": 2,
+      "next": [
+        "IPM-REL-001",
+        "IPM-REL-002",
+        "IPM-REL-003",
+        "IPM-REL-004"
+      ],
+      "skill_dir": "pm-hypercare-management",
+      "supervisor_dir": "pm-hypercare-management-supervisor",
+      "description": "Managing the post-launch support period with dedicated resources, escalation procedures, and rapid response."
+    },
+    {
+      "task_id": "PM-REL-003",
+      "name": "Project Closure",
+      "phase": "Release",
+      "wave": 1,
+      "step": 3,
+      "next": [],
+      "skill_dir": "pm-project-closure",
+      "supervisor_dir": "pm-project-closure-supervisor",
+      "description": "Conducting formal project closure including final sign-offs, budget reconciliation, and contract closeouts."
+    },
+    {
+      "task_id": "PM-REL-004",
+      "name": "Lessons Learned & Retrospective",
+      "phase": "Release",
+      "wave": 1,
+      "step": 4,
+      "next": [],
+      "skill_dir": "pm-lessons-learned-retrospective",
+      "supervisor_dir": "pm-lessons-learned-retrospective-supervisor",
+      "description": "Facilitating post-project retrospectives to capture successes, challenges, and improvement recommendations."
+    },
+    {
+      "task_id": "PM-REL-005",
+      "name": "Benefits Handover",
+      "phase": "Release",
+      "wave": 1,
+      "step": 5,
+      "next": [],
+      "skill_dir": "pm-benefits-handover",
+      "supervisor_dir": "pm-benefits-handover-supervisor",
+      "description": "Transitioning project deliverables to operations and business owners with documented support and maintenance plans."
+    }
+  ]
+}
