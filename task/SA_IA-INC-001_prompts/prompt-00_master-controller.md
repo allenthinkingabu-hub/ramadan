@@ -34,7 +34,7 @@ prompt-01 → Validate → prompt-02 → Validate → prompt-03 → Validate →
   - [ ] `config/skills-and-knowledge.md`
   - [ ] `config/tools.md`
   - [ ] `config/mcp-tools.md`
-- **Validation**: Verify all 5 config files exist and contain substantive content (not empty placeholders). Verify SKILL.md has valid YAML frontmatter with `name` and `description`.
+- **Validation**: Verify all 5 config files exist and contain substantive content (not empty placeholders). Verify SKILL.md has valid YAML frontmatter with `name` and `description`. Verify `config/triggers.md` contains a **Project Intake Checklist** with 7 items (local path, git URL, branch, project name, scan scope, exclusions, purpose).
 - **On Fail**: Re-execute prompt-01 for missing items only.
 - **On Pass**: Proceed to Step 2.
 

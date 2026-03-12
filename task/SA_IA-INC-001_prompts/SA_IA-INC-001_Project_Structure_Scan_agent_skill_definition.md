@@ -502,6 +502,16 @@ project-structure-scan/
 
 This AI Agent must be highly interactive. When the AI Agent receives a target codebase to scan, referred to as the **Target Project**:
 
+- **Step 0 (Project Intake)**: Before any analysis begins, the AI Agent MUST collect the target project information from the user. The agent asks the following questions interactively (skipping any already provided via trigger parameters):
+  1. **Project local path** (REQUIRED): "What is the local file path of the project you want me to scan?" — validate path exists with `ls {path}`
+  2. **Git repository URL** (OPTIONAL): "Is this project in a Git repository? If so, what is the remote URL?" — validate with `git -C {path} status`
+  3. **Git branch** (OPTIONAL): "Which branch should I scan? (default: current branch)" — validate branch exists
+  4. **Project name** (REQUIRED): "What is the project name? (I can infer from the directory name if you prefer)"
+  5. **Scan scope** (REQUIRED): "Should I scan the entire project, or focus on specific modules/directories?" — options: full / partial / exclude-list
+  6. **Directories to exclude** (CONDITIONAL): Only if scope is partial/exclude — "Which directories should I exclude?"
+  7. **Scan purpose** (REQUIRED): "Why do you need this project structure scan?"
+  After collecting and validating all items, the agent presents a **Project Intake Summary** to the user for confirmation. User confirms → proceed to Step 1. User rejects → re-ask corrected items. The confirmed intake is stored in SQLite (`scan_history` and `knowledge_base`) for future re-invocations.
+
 - **Step 1 (Understand Task Purpose)**: The AI Agent first tries to understand the purpose of performing a Project Structure Scan on this specific project. It presents its understanding to the user (e.g., "We need to scan this project because a new feature is being planned, and we need to understand the existing structure before designing the extension"). The user confirms → proceed to Step 2. The user rejects → the AI Agent refines its understanding and repeats Step 1 until the user fully agrees.
 
 - **Step 2 (Understand the Target Project)**: The AI Agent tries to understand the target codebase — what domain it belongs to, what technology stack it uses, what scale it is (monolith vs. microservices, number of modules, approximate LOC). It presents its understanding to the user. The user confirms → proceed to Step 3. The user rejects → the AI Agent refines and repeats Step 2 until agreed.

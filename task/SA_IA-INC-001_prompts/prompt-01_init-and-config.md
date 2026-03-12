@@ -43,7 +43,7 @@ Role: IT Architect (SA) | Task ID: SA-DISC-001 | Phase: Code Archaeology — Ste
 ## Upstream Inputs
 ## Downstream Triggers
 ## Workflow Overview
-## Phase 0: Initialization
+## Phase 0: Initialization & Project Intake
 ## Phase 1: Understand Task Purpose
 ## Phase 2: Understand the Target Project
 ## Phase 3: Research & Question Generation
@@ -62,8 +62,49 @@ Research and produce a comprehensive trigger mechanisms file. Content must inclu
 - **Trigger format**: How the trigger is communicated (e.g., RACI matrix task assignment, direct user command, upstream task completion)
 - **Pre-conditions**: What must be true before the trigger fires (link to DoR)
 - **Trigger parameters**: What information is passed with the trigger (e.g., project path, scan scope, purpose description)
+- **Project Intake Questions**: If trigger parameters are incomplete, the agent MUST interactively ask the user before proceeding. See Section 2.1 below.
 
 Use a structured table format. Make it configurable — each trigger should be an editable entry.
+
+### 2.1 Project Intake — Required Information Collection
+
+**CRITICAL**: Before any scanning begins, the agent MUST collect the following project information from the user. If any item is not provided via trigger parameters, the agent MUST ask the user interactively.
+
+Include this section in `config/triggers.md` as a **Project Intake Checklist**:
+
+| # | Information | Required | How to Ask | Validation |
+|---|-------------|:--------:|------------|------------|
+| 1 | **Project local path** | ✅ Yes | "What is the local file path of the project you want me to scan? (e.g., `/Users/you/projects/my-app`)" | Path exists, is a directory, contains files |
+| 2 | **Git repository URL** | ⬜ Optional | "Is this project in a Git repository? If so, what is the remote URL? (e.g., `https://github.com/org/repo`)" | Valid URL format or "N/A" |
+| 3 | **Git branch** | ⬜ Optional | "Which branch should I scan? (default: current branch)" | Branch exists in the repo |
+| 4 | **Project name** | ✅ Yes | "What is the project name? (I can infer from the directory name if you prefer)" | Non-empty string |
+| 5 | **Scan scope** | ✅ Yes | "Should I scan the entire project, or focus on specific modules/directories?" Options: (a) Full project scan (b) Specific directories only (c) Exclude certain directories | One of: full / partial / exclude-list |
+| 6 | **Directories to exclude** | ⬜ Conditional | Only if scan scope = partial or exclude-list: "Which directories should I exclude? (e.g., `node_modules`, `vendor`, `.git`, `build`)" | Valid directory names |
+| 7 | **Scan purpose** | ✅ Yes | "Why do you need this project structure scan? (e.g., planning a new feature, onboarding to an existing project, preparing for architecture review)" | Non-empty string |
+
+**Agent Behavior**:
+1. On startup, check which items are already provided via trigger parameters.
+2. For each missing REQUIRED item, ask the user using the "How to Ask" prompt.
+3. For each missing OPTIONAL item, ask only if contextually relevant (e.g., don't ask Git URL if user says it's not a Git project).
+4. After collecting all items, validate each one:
+   - **Project local path**: Run `ls {path}` to verify it exists and is accessible.
+   - **Git info**: If provided, run `git -C {path} status` to verify it's a valid repo.
+   - **Scan scope**: If "partial", confirm the specified directories exist under the project path.
+5. Present a **Project Intake Summary** for user confirmation:
+   ```
+   📋 Project Intake Summary:
+   - Project Name: {name}
+   - Local Path: {path}
+   - Git Remote: {url} (branch: {branch})
+   - Scan Scope: {scope}
+   - Exclusions: {exclusion_list}
+   - Purpose: {purpose}
+
+   Is this correct? (yes / no — I'll ask again for any corrections)
+   ```
+6. Store confirmed intake in SQLite `scan_history` table (via `memory_ops.start_scan()`).
+7. Store project info in `knowledge_base` table for future re-invocations.
+8. Only proceed to Phase 1 after user confirms the intake summary.
 
 ### 4. Create config/raci.md
 

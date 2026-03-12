@@ -407,8 +407,8 @@ Research and produce the SOP process for the Project Structure Scan task:
 
 ## Process Flow
 
-Phase 0: Initialization
-  → Verify DoR → create output directory → init memory DB → load history
+Phase 0: Initialization & Project Intake
+  → Verify DoR → **collect project info from user (local path, git URL, branch, project name, scan scope, exclusions, purpose)** → user confirms intake summary → create output directory → init memory DB → load history
 
 Phase 1: Understand Task Purpose (Interactive)
   → Present purpose understanding → user confirms → log to memory
@@ -456,11 +456,15 @@ Include at minimum:
 Research and produce DoR prerequisites:
 
 Include at minimum:
+- **Project Intake completed**: User has confirmed the Project Intake Summary (local path, project name, scan scope, purpose)
+- **Project local path is valid**: Path exists, is a directory, and contains files (`ls {path}` succeeds)
+- **Git repository verified** (if applicable): `git -C {path} status` succeeds, correct branch checked out
 - Target codebase is accessible (local clone or remote access configured)
-- Project root path is specified
+- Project root path is specified and validated
 - At least one build/manifest file exists (pom.xml, package.json, build.gradle, requirements.txt, go.mod, Cargo.toml, etc.)
 - Read permissions are available for all project files
 - Scan scope is defined (full project or specific modules)
+- Directories to exclude are specified (if scan scope is partial/exclude)
 - Purpose of scan is communicated (why this scan is needed)
 - Memory database directory is writable
 - Output directory is writable
