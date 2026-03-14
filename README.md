@@ -1,8 +1,16 @@
-# OpenClaw AI Agent Team
+<p align="center">
+  <strong>English</strong> |
+  <a href="README.zh-CN.md">中文</a> |
+  <a href="README.ar.md">العربية</a> |
+  <a href="README.ja.md">日本語</a> |
+  <a href="README.de.md">Deutsch</a>
+</p>
+
+# Ramadan AI AI Agent Team
 
 **Automated end-to-end IT project delivery through specialized, orchestrated AI agents.**
 
-OpenClaw transforms the software delivery lifecycle into a system of composable AI Agent Skills. Each task in the project lifecycle — from project chartering to post-release retrospectives — is codified as a structured skill with its own SOP, Definition of Ready (DoR), Definition of Done (DoD), RACI matrix, and tooling references. A multi-agent team executes these skills under orchestration, producing auditable, quality-gated deliverables at every stage.
+Ramadan AI transforms the software delivery lifecycle into a system of composable AI Agent Skills. Each task in the project lifecycle — from project chartering to post-release retrospectives — is codified as a structured skill with its own SOP, Definition of Ready (DoR), Definition of Done (DoD), RACI matrix, and tooling references. A multi-agent team executes these skills under orchestration, producing auditable, quality-gated deliverables at every stage.
 
 ---
 
@@ -24,7 +32,7 @@ OpenClaw transforms the software delivery lifecycle into a system of composable 
 
 ## Motivation
 
-Enterprise IT projects follow well-established lifecycle phases — Inception, Requirements, Development, QA, and Release — yet the operational knowledge for each task typically lives in scattered wikis, tribal knowledge, or ad-hoc checklists. OpenClaw addresses this by:
+Enterprise IT projects follow well-established lifecycle phases — Inception, Requirements, Development, QA, and Release — yet the operational knowledge for each task typically lives in scattered wikis, tribal knowledge, or ad-hoc checklists. Ramadan AI addresses this by:
 
 1. **Decomposing the delivery lifecycle** into discrete, well-defined tasks across all phases.
 2. **Encoding each task as an AI Agent Skill** with formal quality dimensions (SOP, DoR, DoD, RACI, Tools).
@@ -68,7 +76,7 @@ PM broadcasts TaskTriggered → Role Agent executes skill → Self-check DoD
 
 ## Agent Team
 
-OpenClaw operates as a four-agent team, each with a distinct role and skill portfolio:
+Ramadan AI operates as a four-agent team, each with a distinct role and skill portfolio:
 
 | Agent | Role | Type | Skills | Coverage |
 |:---|:---|:---|:---:|:---|
@@ -263,7 +271,7 @@ This creates the full directory structure with template files for SOP, DoR, DoD,
 
 ## Deep Dive: Project Structure Scan & Agent Memory
 
-The **Project Structure Scan** skill (`project-structure-scan`) is the most architecturally advanced skill in OpenClaw. It serves as the reference implementation for a key capability that most AI agent skills lack: **persistent, structured memory that survives across sessions and transfers knowledge across projects**.
+The **Project Structure Scan** skill (`project-structure-scan`) is the most architecturally advanced skill in Ramadan AI. It serves as the reference implementation for a key capability that most AI agent skills lack: **persistent, structured memory that survives across sessions and transfers knowledge across projects**.
 
 ### The Problem: Stateless AI Agents
 
