@@ -162,3 +162,107 @@
   选项 B — 自动串联：我把大文件拆成 5 个 prompt 文件，然后编写一个总控 prompt，让 skill-creator 按顺序执行每个 prompt，每完成一个自动校验后再进入下一个
 
   你倾向哪个方案？确认后我开始拆分。
+
+
+
+
+  # Memory
+  ## Share Memory
+  当前设计的局限
+                                                                                                                                                                                        
+  现在的 memory 是 skill 内部封闭 的：                                                                                                                                                
+                                                                                                                                                                                        
+  project-structure-scan/memory/agent_memory.db  ← 只有这个 skill 能访问                                                                                                                
+
+  这意味着：
+  - Supervisor 要读 scan agent 的 memory，必须硬编码路径
+  - 下游 skill（如 Technology Stack Inventory）无法继承已有的 knowledge_base
+  - PM Agent 看不到任何 agent 的执行状态
+
+  需要解决的 3 个场景
+
+  ┌──────────────────────┬─────────────────────────────────────────────────────────────────────────────────┐
+  │         场景         │                                      例子                                       │
+  ├──────────────────────┼─────────────────────────────────────────────────────────────────────────────────┤
+  │ 同 Agent, 跨 Skill   │ IT Architect 先跑 structure scan，再跑 tech stack inventory，后者需要前者的发现 │
+  ├──────────────────────┼─────────────────────────────────────────────────────────────────────────────────┤
+  │ 跨 Agent, 同 Project │ Supervisor 读取 scan agent 的 dod_checks；PM 读取 scan_history                  │
+  ├──────────────────────┼─────────────────────────────────────────────────────────────────────────────────┤
+  │ 跨 Agent, 跨 Project │ 新项目扫描时，复用其他项目的 pattern knowledge                                  │
+  └──────────────────────┴─────────────────────────────────────────────────────────────────────────────────┘
+
+  几个可行方案
+
+  方案 A：共享 Memory DB（workspace 级别）
+
+  workspace/
+  ├── .agent-memory/
+  │   └── shared_memory.db        ← 所有 agent/skill 共用
+  ├── project-structure-scan/
+  ├── tech-stack-inventory/
+  └── ...
+
+  - 把 agent_memory.db 提升到 workspace 级别
+  - 所有 skill 通过统一的 memory_ops.py 访问同一个 DB
+  - 用 task_id 和 skill_name 字段区分来源
+  - 优点：简单直接，改动最小
+  - 缺点：schema 耦合，所有 skill 必须适配同一张表结构
+
+  方案 B：分层 Memory 架构
+
+  三层记忆模型:
+
+  ┌─────────────────────────────────┐
+  │  Team Memory (跨 Agent 共享)     │  ← workspace/.team-memory/
+  │  scan_history, knowledge_base   │
+  ├─────────────────────────────────┤
+  │  Agent Memory (同 Agent 跨 Skill)│  ← workspace/.agent-memory/{agent_id}/
+  │  lessons, decisions, context    │
+  ├─────────────────────────────────┤
+  │  Skill Memory (Skill 内部私有)   │  ← skill/memory/
+  │  task_memory, dod_checks        │
+  └─────────────────────────────────┘
+
+  - Team Memory：跨 agent 共享的知识（项目技术栈、架构模式、风险列表）
+  - Agent Memory：同一 agent 执行不同 skill 时的上下文延续
+  - Skill Memory：skill 内部的执行细节（DoD 检查记录等）
+  - 优点：职责清晰，隔离性好
+  - 缺点：复杂度高，需要定义清楚哪些数据属于哪一层
+
+  方案 C：Memory MCP Server
+
+  所有 Agent/Skill
+      ↓ (MCP 协议)
+  ┌──────────────────┐
+  │ Memory MCP Server │  ← 统一的记忆服务
+  │  - read_memory()  │
+  │  - write_memory() │
+  │  - query()        │
+  │  - subscribe()    │
+  └──────────────────┘
+      ↓
+    SQLite / PostgreSQL
+
+  - 用一个 MCP Server 封装所有 memory 操作
+  - Agent/Skill 通过 MCP tool 调用读写 memory
+  - Server 管理权限、命名空间、版本
+  - 优点：最解耦，扩展性最好，可以加权限控制
+  - 缺点：需要额外开发 MCP Server，运行时依赖
+
+  方案 D：Memory Export/Handoff 协议
+
+  Skill A 完成 → export_memory() → handoff.json → Skill B 启动 → import_memory()
+
+  - 每个 skill 完成时导出标准化的 memory 摘要
+  - 下游 skill 启动时导入上游的 handoff
+  - PM Agent 负责编排 handoff 传递
+  - 优点：松耦合，不需要共享 DB
+  - 缺点：信息可能丢失，需要定义 handoff schema
+
+  我的建议
+
+  短期（改动最小）：方案 A — 把 DB 提到 workspace 级别，加 skill_name 字段区分来源
+
+  中期（架构清晰）：方案 B — 三层 memory，明确数据归属
+
+  长期（最佳扩展）：方案 C — Memory MCP Server，统一 API
