@@ -50,6 +50,38 @@
       "base_url": "https://dashscope.aliyuncs.com/compatible-mode/v1",
       "max_tokens": 8192,
       "temperature": 0.3
+    },
+    "minimax-m2.5": {
+      "provider": "openai_compatible",
+      "model_id": "MiniMax-M2.5",
+      "api_key_env": "MINIMAX_API_KEY",
+      "base_url": "https://api.minimax.io/v1",
+      "max_tokens": 16384,
+      "temperature": 0.3
+    },
+    "minimax-m2.5-highspeed": {
+      "provider": "openai_compatible",
+      "model_id": "MiniMax-M2.5-highspeed",
+      "api_key_env": "MINIMAX_API_KEY",
+      "base_url": "https://api.minimax.io/v1",
+      "max_tokens": 16384,
+      "temperature": 0.3
+    },
+    "kimi-k2.5": {
+      "provider": "openai_compatible",
+      "model_id": "kimi-k2.5",
+      "api_key_env": "MOONSHOT_API_KEY",
+      "base_url": "https://api.moonshot.ai/v1",
+      "max_tokens": 16384,
+      "temperature": 0.6
+    },
+    "kimi-k2": {
+      "provider": "openai_compatible",
+      "model_id": "kimi-k2-0711-preview",
+      "api_key_env": "MOONSHOT_API_KEY",
+      "base_url": "https://api.moonshot.ai/v1",
+      "max_tokens": 16384,
+      "temperature": 0.6
     }
   },
   "default_model": "claude-opus"
