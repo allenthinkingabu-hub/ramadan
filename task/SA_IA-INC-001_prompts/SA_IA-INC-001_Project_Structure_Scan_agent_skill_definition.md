@@ -22,6 +22,7 @@
   - **OUT-04**: Package Dependency Map — third-party and internal dependency inventory with version info
   - **OUT-05**: Module Responsibility Summary — concise description of what each top-level module/package does
   - **OUT-06**: Project Structure Scan Report — comprehensive final report consolidating all findings
+  - **OUT-07**: Transformation Target Current State Report — focused deep-dive report on the specific area to be transformed, documenting current implementation, dependencies, interfaces, test coverage, constraints, and risk areas (only produced when scan purpose involves transformation/refactoring)
 
 - **Requirement 8**: Collect the SOP process a qualified Project Structure Scan AI Agent should follow. Create a configurable SOP file that the AI Agent loads on startup. Support future modifications.
 
@@ -519,3 +520,24 @@ This AI Agent must be highly interactive. When the AI Agent receives a target co
 - **Step 3 (Research & Question Generation)**: The AI Agent researches industry best practices for project structure analysis using the internet and authoritative knowledge bases. It tells the user how similar projects are typically analyzed in the industry, generates a comprehensive question list, and engages in iterative dialogue with the user based on the question list. The goal is to produce a **validated scan requirements list** — what exactly to scan, what to focus on, what to ignore, what output formats are expected.
 
 - **Step 4 (Execute & Produce Deliverables)**: Based on the validated scan requirements list and the output templates, the AI Agent executes the actual scan of the codebase using tools (Glob, Grep, Read, Bash). It produces all deliverables (OUT-01 through OUT-06), runs DoD self-verification using `scripts/verify_dod.py`, records all memory entries in SQLite, and saves all outputs to the `project-structure-scan/` directory under the parent directory of the target project.
+
+- **Step 5 (Transformation Target Deep-Dive Investigation)**: After the overall project structure is understood and deliverables OUT-01~06 are produced, the AI Agent conducts a focused investigation on the **specific transformation target** identified in the scan purpose. This step is triggered when the scan purpose involves any form of change, refactoring, feature addition, or system evolution. The agent:
+  1. **Identify the transformation target**: Ask the user to confirm or specify the exact module(s), component(s), file(s), or functional area(s) that will be transformed. If already stated in Step 0 or Step 1, confirm and refine.
+  2. **Investigate current state**: Using tools (Glob, Grep, Read, Bash), deeply investigate the transformation target's current implementation:
+     - Current code structure and file layout within the target scope
+     - Current responsibilities and behaviors (what it does today)
+     - Current dependencies: what the target depends on (inbound) and what depends on the target (outbound)
+     - Current data flows and interfaces (APIs, events, shared state)
+     - Current test coverage (unit/integration tests present or absent)
+     - Known technical debt, code smells, or anti-patterns within the target
+     - Configuration and environment dependencies
+  3. **Identify transformation constraints**: Based on the current state investigation, identify:
+     - Hard constraints (things that cannot change — public APIs, database schemas, SLAs)
+     - Soft constraints (things that should be preserved if possible)
+     - Risk areas (high-coupling zones, untested code, shared state)
+  4. **Present Current State Summary**: The agent presents a structured **Transformation Target Current State Report** to the user, covering all findings above. The user confirms → proceed to Step 6. The user rejects or requests deeper investigation → the agent refines and repeats until agreed.
+  5. **Save to memory**: Record all findings in SQLite (`task_memory` with `memory_type = 'finding'` and `phase = 'phase5'`) and save the Current State Report as `OUT-07` in the output directory.
+
+  > **OUT-07: Transformation Target Current State Report** — A focused report on the specific area to be transformed, documenting its current implementation, dependencies, interfaces, test coverage, constraints, and risk areas. This report serves as the baseline for transformation design.
+
+- **Step 6 (Completion & Handoff)**: The AI Agent runs final DoD verification across all outputs (OUT-01 through OUT-07), triggers the Supervisor Agent for quality inspection, and upon 100% pass, notifies the Project Manager AI Agent with all deliverable paths and the RACI matrix for downstream task triggering.

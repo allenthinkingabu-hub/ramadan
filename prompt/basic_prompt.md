@@ -19,4 +19,9 @@
 
 
 ##
-这个 Ai Agent 拥有了 长期记忆的功能，那怎么保证 Ai Agent 运行这个 ai agent skill 后，充分利用这些长期记忆呢， @task/SA_IA-INC-001_Project_Structure_Scan_agent_skill_definition.md   
+这个 Ai Agent 拥有了 长期记忆的功能，那怎么保证 Ai Agent 运行这个 ai agent skill 后，充分利用这些长期记忆呢， @task/SA_IA-INC-001_Project_Structure_Scan_agent_skill_definition.md、、、
+
+
+
+@SA_IA-INC-001_prompts/SA_IA-INC-001_Project_Structure_Scan_agent_skill_definition.md 中 "”Functional Requirements: Interactive AI Agent Workflow"                                              
+我任务少了，在扫描整个项目后，生成整个项目的理解后，还要调查，正对要改造的内容，要让AI Agent 调查这个改造点的现状是什么样的，   

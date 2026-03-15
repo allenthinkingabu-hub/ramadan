@@ -12,14 +12,14 @@ This prompt covers:
 - Requirement 13: DoD self-verification and remediation loop
 - Requirement 16: Phase question list recording
 - Requirement 17: Research process and results recording
-- Complete interactive workflow (Phase 0–5) written into SKILL.md
+- Complete interactive workflow (Phase 0–6) written into SKILL.md
 
 ## Pre-requisites
 
 Verify these exist before proceeding:
 - `project-structure-scan/SKILL.md` (with skeleton + memory protocol from prompts 01 & 03)
 - `project-structure-scan/config/` (5 files)
-- `project-structure-scan/templates/` (6 files)
+- `project-structure-scan/templates/` (7 files — OUT-01 through OUT-07)
 - `project-structure-scan/references/` (sop.md, dod.md, dor.md, output-templates.md)
 - `project-structure-scan/scripts/init_memory.py`
 - `project-structure-scan/scripts/memory_ops.py`
@@ -73,6 +73,14 @@ If any are missing, STOP and report the issue.
 
 ---
 
+## Phase 5: Transformation Target Deep-Dive Investigation
+
+> *(Section only populated when scan purpose involves transformation/refactoring)*
+
+### Q1: ...
+
+---
+
 ## Session Summary
 
 - **Total Questions Asked**: {count}
@@ -100,6 +108,11 @@ If any are missing, STOP and report the issue.
 | 4 | {ts} | Phase 1 | Present task purpose understanding | "{understanding}" | Awaiting user confirmation | — |
 | 5 | {ts} | Phase 1 | User confirmed task purpose | — | Done | record_decision() |
 | ... | ... | ... | ... | ... | ... | ... |
+| N | {ts} | Phase 5 | Confirm transformation target scope with user | Target: {module/component} | Awaiting user confirmation | — |
+| N+1 | {ts} | Phase 5 | Deep-dive investigation: code structure | Scanned {path}, found {N} files | Done | record_finding() |
+| N+2 | {ts} | Phase 5 | Deep-dive investigation: dependencies | Inbound: {N}, Outbound: {N} | Done | record_finding() |
+| N+3 | {ts} | Phase 5 | Identified transformation constraints | Hard: {N}, Soft: {N}, Risks: {N} | Done | record_finding() |
+| N+4 | {ts} | Phase 5 | Produced OUT-07 (Transformation Target Current State Report) | File: {path} | Done | record_decision() |
 
 ---
 
@@ -134,12 +147,17 @@ Create a Python script that performs DoD self-verification. Requirements:
 | OUT-04 exists and non-empty | Check file exists, size > 100 bytes |
 | OUT-05 exists and non-empty | Check file exists, size > 100 bytes |
 | OUT-06 (final report) exists and non-empty | Check file exists, size > 500 bytes |
+| OUT-07 exists and non-empty (conditional) | If scan purpose is transformation: check file exists, size > 200 bytes, contains "Core Logic Description", "Key Data Structures", "Sequence Diagrams"; otherwise skip |
+| draw.io module relationship diagram valid | Check `diagrams/module-relationship.drawio` exists, parse XML, verify root element is `<mxfile>`, contains at least one `<mxCell>` with vertex="1" |
+| draw.io dependency map diagram valid | Check `diagrams/dependency-map.drawio` exists, parse XML, verify root element is `<mxfile>`, contains at least one `<mxCell>` with vertex="1" |
+| draw.io sequence diagram(s) exist (conditional) | If OUT-07 produced: check at least one `diagrams/seq-*.drawio` file exists, is valid `<mxfile>` XML; otherwise skip |
+| All .drawio files are openable | For each .drawio file in diagrams/: attempt xml.etree.ElementTree.parse(), assert no ParseError |
 | No remaining placeholder fields | Grep for `{project_name}`, `{date}`, `{session_id}` etc. in output files |
-| Mermaid diagrams have valid syntax | Check for ` ```mermaid ` blocks, basic syntax validation |
 | At least one architecture pattern identified | Grep OUT-03 for "✅ Match" or "Identified Primary Pattern" |
 | All modules have responsibility descriptions | Check OUT-05 for "### Module:" sections |
 | Both internal and third-party dependencies covered | Check OUT-04 for "Third-Party" and "Internal" sections |
 | Circular dependencies flagged (if any) | Check OUT-02 for "Circular Dependencies" section |
+| Transformation target scope user-confirmed (conditional) | If OUT-07 exists: check conversation-log.md Phase 5 section has user confirmation entry |
 | Conversation log has Phase 1-3 dialogue | Check `logs/conversation-log.md` for Phase 1, 2, 3 headers with content |
 | Work log has timestamped entries | Check `logs/work-log.md` for table entries |
 | Findings recorded in SQLite | Query `task_memory` table, count > 0 |
@@ -196,7 +214,10 @@ Phase 3: Research & Question Generation (Interactive + Memory-Informed)
 Phase 4: Execute & Produce Deliverables (Memory-Optimized)
   → Determine scan strategy (full/incremental) → scan codebase → produce OUT-01~06 → record findings → DoD self-verify
 
-Phase 5: Completion & Handoff
+Phase 5: Transformation Target Deep-Dive Investigation (Conditional)
+  → Triggered when scan purpose involves transformation/refactoring → confirm target scope with user → deep-dive investigate current state (structure, deps, interfaces, tests, debt, config, constraints, risks) → produce OUT-07 → save to memory (phase5) → user confirms Current State Report
+
+Phase 6: Completion & Handoff
   → Trigger supervisor → remediate if needed → record lessons → notify PM → trigger downstream
 ```
 
@@ -227,9 +248,11 @@ This phase has two parts:
 
 **## Phase 3: Research & Question Generation** (detailed with memory-informed behavior)
 
-**## Phase 4: Execute & Produce Deliverables** (detailed with memory-optimized behavior, tool usage instructions, output production steps)
+**## Phase 4: Execute & Produce Deliverables** (detailed with memory-optimized behavior, tool usage instructions, output production steps — produces OUT-01~06)
 
-**## Phase 5: Completion & Handoff** (supervisor trigger, PM notification, downstream triggers)
+**## Phase 5: Transformation Target Deep-Dive Investigation** (conditional phase — only when scan purpose involves transformation/refactoring; detailed with sub-steps: confirm target scope, investigate current state using tools, identify constraints/risks, produce OUT-07, confirm with user; memory writes: `phase = 'phase5'`, `memory_type = 'finding'`)
+
+**## Phase 6: Completion & Handoff** (supervisor trigger, PM notification, downstream triggers)
 
 **## Logging Requirements**
 - Conversation log: every user interaction in `logs/conversation-log.md`
@@ -250,11 +273,12 @@ Each phase must specify:
 ## Validation Checklist
 
 After completing all files, verify:
-- [ ] `logs/conversation-log.md` exists with complete template structure
-- [ ] `logs/work-log.md` exists with complete template structure (table format)
+- [ ] `logs/conversation-log.md` exists with complete template structure (including Phase 5 section)
+- [ ] `logs/work-log.md` exists with complete template structure (table format, including Phase 5 sample rows)
 - [ ] `scripts/verify_dod.py` exists and runs without import errors
-- [ ] `scripts/verify_dod.py` checks at least 15 DoD items
-- [ ] `SKILL.md` now contains fully populated Phase 0-5 workflow (not just section headers)
+- [ ] `scripts/verify_dod.py` checks at least 21 DoD items (including draw.io XML validation, conditional OUT-07 checks, and `xml.etree.ElementTree` parse checks for all .drawio files)
+- [ ] `SKILL.md` now contains fully populated Phase 0-6 workflow (not just section headers)
+- [ ] Phase 5 in SKILL.md specifies: trigger condition, target scope confirmation, deep-dive investigation steps, OUT-07 production, user confirmation, memory writes with `phase='phase5'`
 - [ ] Each phase in SKILL.md specifies memory read/write operations
 - [ ] Each phase in SKILL.md specifies user interaction patterns
 - [ ] SKILL.md contains `## Logging Requirements` section

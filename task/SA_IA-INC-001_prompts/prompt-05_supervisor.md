@@ -15,7 +15,7 @@ This prompt covers:
 Verify the main skill is complete before proceeding:
 - `project-structure-scan/SKILL.md` (fully populated)
 - `project-structure-scan/config/` (5 files)
-- `project-structure-scan/templates/` (6 files)
+- `project-structure-scan/templates/` (7 files — OUT-01 through OUT-07)
 - `project-structure-scan/references/` (4 files)
 - `project-structure-scan/scripts/` (init_memory.py, memory_ops.py, verify_dod.py)
 - `project-structure-scan/memory/index.md`
@@ -70,19 +70,20 @@ The supervisor inspects execution of Requirements 1 through 13 item by item:
 | CHK-04 | Knowledge Base | `config/skills-and-knowledge.md` exists, knowledge section has 7+ items |
 | CHK-05 | Tools List | `config/tools.md` exists, at least 5 tools defined |
 | CHK-06 | MCP Tools List | `config/mcp-tools.md` exists, at least 3 MCP tools defined |
-| CHK-07 | Output Templates | All 6 template files exist in `templates/`, each > 100 bytes |
-| CHK-08 | SOP Process | `references/sop.md` exists, defines 5 phases with sub-steps |
+| CHK-07 | Output Templates | All 7 template files exist in `templates/`, each > 100 bytes |
+| CHK-08 | SOP Process | `references/sop.md` exists, defines 6 phases with sub-steps |
 | CHK-09 | DoD Quality Gates | `references/dod.md` exists, at least 12 checkable items |
 | CHK-10 | DoR Prerequisites | `references/dor.md` exists, at least 8 prerequisites |
 | CHK-11 | Conversation Log | `logs/conversation-log.md` exists, contains Phase 1-3 dialogue entries |
 | CHK-12 | Work Log | `logs/work-log.md` exists, contains timestamped action entries |
 | CHK-13 | DoD Self-Verification | `scripts/verify_dod.py` has been run, all checks pass (query `dod_checks` table) |
 | CHK-14 | OUT-01 Structure Tree | Output file exists, non-empty, no remaining placeholders |
-| CHK-15 | OUT-02 Module Diagram | Output file exists, valid Mermaid diagram present |
+| CHK-15 | OUT-02 Module Diagram | `diagrams/module-relationship.drawio` exists, is valid XML (`<mxfile>` root), contains at least 3 `<mxCell>` vertex elements representing modules |
 | CHK-16 | OUT-03 Layering Analysis | Output file exists, at least one pattern identified |
-| CHK-17 | OUT-04 Dependency Map | Output file exists, covers internal + third-party |
+| CHK-17 | OUT-04 Dependency Map | Output file exists, covers internal + third-party; `diagrams/dependency-map.drawio` exists, is valid XML (`<mxfile>` root), contains internal and external group swimlanes |
 | CHK-18 | OUT-05 Module Summary | Output file exists, all modules have descriptions |
 | CHK-19 | OUT-06 Final Report | Output file exists, > 500 bytes, executive summary present |
+| CHK-23 | OUT-07 Transformation Target Report (conditional) | If scan purpose is transformation: output file exists, non-empty, contains sections for core logic description, key data structures (with domain models), and sequence diagrams; at least one `diagrams/seq-*.drawio` file exists, is valid XML (`<mxfile>` root); otherwise mark N/A |
 | CHK-20 | Memory Database | `memory/agent_memory.db` exists, has entries in task_memory and scan_history |
 | CHK-21 | Research Artifacts | `research/` directory has at least 1 file |
 | CHK-22 | Phase Questions | At least `phase1-questions.md` and `phase3-questions.md` exist |
@@ -117,7 +118,7 @@ When pass rate = 100%:
 1. Generate final inspection report (marked "ALL PASSED")
 2. Call Project Manager AI Agent with:
    - **Deliverables path**: path to `project-structure-scan/` directory
-   - **Deliverable file list**: OUT-01 through OUT-06 file names and paths
+   - **Deliverable file list**: OUT-01 through OUT-06 file names and paths; OUT-07 if produced
    - **RACI matrix**: path to `config/raci.md` (PM uses this to trigger downstream tasks)
    - **Final inspection report**: path to the generated report
    - **Scan summary**: project name, scan scope, total modules found, primary pattern identified
@@ -142,13 +143,15 @@ Create the inspection script. Requirements:
 - `--round`: Inspection round number (default: 1)
 
 **Behavior**:
-1. Load the inspection checklist (CHK-01 through CHK-22)
+1. Load the inspection checklist (CHK-01 through CHK-22 + CHK-23)
 2. For each check item, perform an automated verification:
    - File existence checks: `os.path.exists()` + `os.path.getsize()`
    - Content checks: Read file, search for required patterns (section headers, table rows, Mermaid blocks)
    - Placeholder checks: Search for `{project_name}`, `{date}`, `{session_id}`, `{timestamp}` etc.
    - SQLite checks: Query `memory/agent_memory.db` for expected records
    - Count checks: Count items in tables, list entries, section headers
+   - Conditional checks: For CHK-23, first determine scan purpose from `scan_history` or `validated-requirements.md`; if transformation scan → check file exists + grep for "Core Logic Description", "Key Data Structures", "Sequence Diagrams" sections + verify at least one `diagrams/seq-*.drawio` file is valid `<mxfile>` XML; otherwise → mark N/A
+  - draw.io validity checks: For CHK-15, CHK-17, CHK-23: use `xml.etree.ElementTree.parse()` on each `.drawio` file; verify root tag is `mxfile`; count `mxCell` elements with `vertex="1"` attribute
 3. Generate a structured report using the template
 4. Print summary to stdout
 5. Write full report to `{report-dir}/inspection-report-round-{N}.md`
@@ -200,18 +203,19 @@ Include all 22 check items with specific, machine-checkable pass criteria.
 | CHK-12 | Logs | Work log | ✅ / ❌ | {notes} |
 | CHK-13 | Verification | DoD self-check passed | ✅ / ❌ | {notes} |
 | CHK-14 | Deliverables | OUT-01 Structure Tree | ✅ / ❌ | {notes} |
-| CHK-15 | Deliverables | OUT-02 Module Diagram | ✅ / ❌ | {notes} |
+| CHK-15 | Deliverables | OUT-02 Module Diagram + module-relationship.drawio | ✅ / ❌ | {notes: include .drawio file size and mxCell count} |
 | CHK-16 | Deliverables | OUT-03 Layering Analysis | ✅ / ❌ | {notes} |
-| CHK-17 | Deliverables | OUT-04 Dependency Map | ✅ / ❌ | {notes} |
+| CHK-17 | Deliverables | OUT-04 Dependency Map + dependency-map.drawio | ✅ / ❌ | {notes: include .drawio file size and mxCell count} |
 | CHK-18 | Deliverables | OUT-05 Module Summary | ✅ / ❌ | {notes} |
 | CHK-19 | Deliverables | OUT-06 Final Report | ✅ / ❌ | {notes} |
+| CHK-23 | Deliverables | OUT-07 Transformation Target Report (conditional) | ✅ / ❌ / N/A | {notes: include whether core logic, data structures, and seq-*.drawio diagram files are present and valid} |
 | CHK-20 | Memory | SQLite database | ✅ / ❌ | {notes} |
 | CHK-21 | Research | Research artifacts | ✅ / ❌ | {notes} |
 | CHK-22 | Questions | Phase question files | ✅ / ❌ | {notes} |
 
 ## Summary
 
-- **Total Checks**: 22
+- **Total Checks**: 23 (22 standard + 1 conditional)
 - **Passed**: {passed_count}
 - **Failed**: {failed_count}
 - **Pass Rate**: {pass_rate}%
@@ -236,12 +240,12 @@ Include all 22 check items with specific, machine-checkable pass criteria.
 After completing all files, verify:
 - [ ] `project-structure-scan-supervisor/` exists as a separate directory (sibling, not child)
 - [ ] `project-structure-scan-supervisor/SKILL.md` has valid frontmatter (name + description)
-- [ ] `project-structure-scan-supervisor/SKILL.md` body contains: Role Definition, Inspection Scope (22 items), Inspection Process, PM Notification, Logging
+- [ ] `project-structure-scan-supervisor/SKILL.md` body contains: Role Definition, Inspection Scope (23 items including CHK-23 conditional), Inspection Process, PM Notification, Logging
 - [ ] `project-structure-scan-supervisor/scripts/inspect.py` exists and runs without import errors
 - [ ] `inspect.py` accepts `--output-dir`, `--report-dir`, `--round` arguments
-- [ ] `inspect.py` performs 22 automated checks
-- [ ] `project-structure-scan-supervisor/references/inspection-checklist.md` exists with 22 rows
-- [ ] `project-structure-scan-supervisor/templates/inspection-report-template.md` exists with 22 check rows
+- [ ] `inspect.py` performs 23 automated checks (CHK-23 is conditional based on scan purpose)
+- [ ] `project-structure-scan-supervisor/references/inspection-checklist.md` exists with 23 rows
+- [ ] `project-structure-scan-supervisor/templates/inspection-report-template.md` exists with 23 check rows (CHK-23 shows ✅ / ❌ / N/A)
 - [ ] PM notification section specifies exactly what data to send and which downstream tasks to trigger
 
 If any item fails, fix it before reporting completion.

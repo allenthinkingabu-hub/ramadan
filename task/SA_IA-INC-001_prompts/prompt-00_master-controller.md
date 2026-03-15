@@ -47,11 +47,12 @@ prompt-01 → Validate → prompt-02 → Validate → prompt-03 → Validate →
   - [ ] `templates/dependency-map-template.md` (OUT-04)
   - [ ] `templates/module-summary-template.md` (OUT-05)
   - [ ] `templates/scan-report-template.md` (OUT-06)
+  - [ ] `templates/transformation-target-template.md` (OUT-07)
   - [ ] `references/sop.md`
   - [ ] `references/dod.md`
   - [ ] `references/dor.md`
   - [ ] `references/output-templates.md`
-- **Validation**: Verify all 10 files exist. Each template must contain a complete structure with placeholder fields (not just a title). SOP must define a step-by-step process. DoD must contain checkable items. DoR must list prerequisites.
+- **Validation**: Verify all 11 files exist. Each template must contain a complete structure with placeholder fields (not just a title). OUT-07 template must include sections for: current code structure, inbound/outbound dependencies, data flows, test coverage, technical debt, configuration, hard/soft constraints, risk areas, and transformation readiness. SOP must define a 6-phase step-by-step process (including Phase 5 Transformation Target Deep-Dive). DoD must contain at least 13 checkable items (including conditional OUT-07 items). DoR must list prerequisites.
 - **On Fail**: Re-execute prompt-02 for missing/incomplete items only.
 - **On Pass**: Proceed to Step 3.
 
@@ -69,13 +70,14 @@ prompt-01 → Validate → prompt-02 → Validate → prompt-03 → Validate →
 ### Step 4: Execute prompt-04_workflow-and-logging.md
 - **Scope**: Interactive workflow + logging + DoD verification (Requirements 11–13, 16–17)
 - **Expected Deliverables**:
-  - [ ] `logs/conversation-log.md` (template)
-  - [ ] `logs/work-log.md` (template)
-  - [ ] `scripts/verify_dod.py` (DoD verification script)
-  - [ ] Interactive workflow (Phase 1–4) written into `SKILL.md`
+  - [ ] `logs/conversation-log.md` (template, including Phase 5 section)
+  - [ ] `logs/work-log.md` (template, including Phase 5 sample rows)
+  - [ ] `scripts/verify_dod.py` (DoD verification script with 17+ checks including 2 conditional OUT-07 checks)
+  - [ ] Interactive workflow (Phase 0–6) written into `SKILL.md`
   - [ ] `research/` directory created
   - [ ] `diagrams/` directory created
-- **Validation**: Verify `scripts/verify_dod.py` runs without errors and checks against `references/dod.md`. Verify SKILL.md contains complete Phase 1–4 workflow with memory utilization integration. Verify log templates contain proper structure.
+- **Pre-requisites**: Verify `project-structure-scan/templates/` contains 7 files (OUT-01 through OUT-07) before proceeding.
+- **Validation**: Verify `scripts/verify_dod.py` runs without errors and checks against `references/dod.md`. Verify SKILL.md contains complete Phase 0–6 workflow with Phase 5 (Transformation Target Deep-Dive) and memory utilization integration. Verify log templates contain proper structure including Phase 5 section.
 - **On Fail**: Fix script errors or missing workflow sections, re-validate.
 - **On Pass**: Proceed to Step 5.
 
@@ -86,7 +88,8 @@ prompt-01 → Validate → prompt-02 → Validate → prompt-03 → Validate →
   - [ ] `project-structure-scan-supervisor/scripts/inspect.py` (inspection script)
   - [ ] `project-structure-scan-supervisor/references/inspection-checklist.md`
   - [ ] `project-structure-scan-supervisor/templates/inspection-report-template.md`
-- **Validation**: Verify supervisor SKILL.md contains valid frontmatter. Verify `inspect.py` checks all 13 requirements. Verify inspection report template matches the format defined in Requirement 14.4. Verify PM notification logic is included (Requirement 14.5 and 15).
+- **Pre-requisites**: Verify `project-structure-scan/templates/` contains 7 files before proceeding.
+- **Validation**: Verify supervisor SKILL.md contains valid frontmatter. Verify `inspect.py` checks all 13 requirements (23 check items, including CHK-23 conditional OUT-07 check). Verify inspection report template matches the format defined in Requirement 14.4 and includes CHK-23 row. Verify PM notification logic is included (Requirement 14.5 and 15).
 - **On Fail**: Fix missing items, re-validate.
 - **On Pass**: Proceed to Final Cross-Check.
 
@@ -95,10 +98,10 @@ prompt-01 → Validate → prompt-02 → Validate → prompt-03 → Validate →
 After all 5 steps pass, perform a complete cross-check:
 
 1. **File Completeness**: Verify the full directory tree matches the expected structure (see below).
-2. **SKILL.md Completeness**: Verify SKILL.md contains all sections: frontmatter, workflow (Phase 0–4), memory utilization protocol, logging requirements, reference file links.
+2. **SKILL.md Completeness**: Verify SKILL.md contains all sections: frontmatter, workflow (Phase 0–6 including Phase 5 Transformation Target Deep-Dive), memory utilization protocol, logging requirements, reference file links.
 3. **Cross-Reference Integrity**: Verify all file paths referenced in SKILL.md actually exist.
 4. **Script Execution**: Run `scripts/init_memory.py` and `scripts/verify_dod.py` to confirm they execute without errors.
-5. **Supervisor Coverage**: Verify supervisor's inspection checklist covers all 13 requirements.
+5. **Supervisor Coverage**: Verify supervisor's inspection checklist covers all 13 requirements (23 check items including CHK-23 conditional).
 
 ### Expected Final Directory Tree
 
@@ -117,7 +120,8 @@ project-structure-scan/
 │   ├── layering-analysis-template.md
 │   ├── dependency-map-template.md
 │   ├── module-summary-template.md
-│   └── scan-report-template.md
+│   ├── scan-report-template.md
+│   └── transformation-target-template.md
 ├── references/
 │   ├── sop.md
 │   ├── dod.md
