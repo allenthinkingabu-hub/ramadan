@@ -15,17 +15,20 @@
 | DoD-04 | OUT-04 (Package Dependency Map) produced and non-empty | File existence check + byte size check | File exists at expected path and size > 0 bytes |
 | DoD-05 | OUT-05 (Module Responsibility Summary) produced and non-empty | File existence check + byte size check | File exists at expected path and size > 0 bytes |
 | DoD-06 | OUT-06 (Project Structure Scan Report) produced and non-empty | File existence check + byte size check | File exists at expected path and size > 500 bytes |
-| DoD-07 | All templates fully populated | Regex scan for `{placeholder}` patterns | Zero matches for pattern `\{[a-zA-Z_]+\}` across all 6 output files |
-| DoD-08 | Module relationship diagram renders valid Mermaid syntax | Mermaid syntax validation (parse without error) | Mermaid code block parses successfully with no syntax errors |
-| DoD-09 | At least one architecture pattern identified with evidence | Content inspection of OUT-03 | OUT-03 contains at least one pattern name and a non-empty evidence section |
-| DoD-10 | All identified modules have responsibility descriptions | Cross-reference OUT-01 modules against OUT-05 entries | Every module listed in OUT-01 has a corresponding entry in OUT-05 with a non-empty description |
-| DoD-11 | Dependency map covers both internal and third-party dependencies | Content inspection of OUT-04 | OUT-04 contains at least one internal dependency entry AND at least one third-party dependency entry |
-| DoD-12 | Circular dependencies flagged if any exist | Dependency graph cycle detection on OUT-04 data | If cycles exist in the dependency graph, they are explicitly listed in OUT-04; if none exist, an explicit "no circular dependencies detected" statement is present |
-| DoD-13 | Conversation log contains Phase 1-3 dialogue entries | File content inspection of `logs/conversation-log.md` | Log file contains section headers or entries for Phase 1, Phase 2, and Phase 3 |
-| DoD-14 | Work log contains timestamped entries for all phases | File content inspection of `logs/work-log.md` | Log file contains timestamped entries referencing Phase 0 through Phase 5 |
-| DoD-15 | All findings recorded in SQLite memory database | SQL query: `SELECT COUNT(*) FROM task_memory` | `task_memory` row count > 0 |
-| DoD-16 | Scan history recorded in SQLite | SQL query: `SELECT COUNT(*) FROM scan_history WHERE scan_id = ?` | Exactly one `scan_history` row exists for the current scan ID with status `completed` |
-| DoD-17 | RACI matrix ready for PM Agent handoff | File existence and content check | RACI matrix document exists, contains at least one row with R/A/C/I assignments |
+| DoD-07 | All templates fully populated | Regex scan for `{placeholder}` patterns | Zero matches for pattern `\{[a-zA-Z_]+\}` across all output files |
+| DoD-08 | Module relationship diagram draw.io file valid | XML parse + element check | `diagrams/module-relationship.drawio` exists; `xml.etree.ElementTree.parse()` succeeds; root tag is `mxfile`; contains >= 3 `<mxCell vertex="1">` elements |
+| DoD-09 | Dependency map draw.io file valid | XML parse + element check | `diagrams/dependency-map.drawio` exists; `xml.etree.ElementTree.parse()` succeeds; root tag is `mxfile`; contains swimlane elements for internal and external groups |
+| DoD-10 | At least one architecture pattern identified with evidence | Content inspection of OUT-03 | OUT-03 contains at least one pattern name and a non-empty evidence section |
+| DoD-11 | All identified modules have responsibility descriptions | Cross-reference OUT-01 modules against OUT-05 entries | Every module listed in OUT-01 has a corresponding entry in OUT-05 with a non-empty description |
+| DoD-12 | Dependency map covers both internal and third-party dependencies | Content inspection of OUT-04 | OUT-04 contains at least one internal dependency entry AND at least one third-party dependency entry |
+| DoD-13 | Circular dependencies flagged if any exist | Dependency graph cycle detection on OUT-04 data | If cycles exist in the dependency graph, they are explicitly listed in OUT-04; if none exist, an explicit "no circular dependencies detected" statement is present |
+| DoD-14 | Conversation log contains Phase 1-3 dialogue entries | File content inspection of `logs/conversation-log.md` | Log file contains section headers or entries for Phase 1, Phase 2, and Phase 3 |
+| DoD-15 | Work log contains timestamped entries for all phases | File content inspection of `logs/work-log.md` | Log file contains timestamped entries referencing Phase 0 through at least Phase 4 |
+| DoD-16 | All findings recorded in SQLite memory database | SQL query: `SELECT COUNT(*) FROM task_memory` | `task_memory` row count > 0 |
+| DoD-17 | Scan history recorded in SQLite | SQL query: `SELECT COUNT(*) FROM scan_history WHERE scan_id = ?` | Exactly one `scan_history` row exists for the current scan ID with status `completed` |
+| DoD-18 | RACI matrix ready for PM Agent handoff | File existence and content check | RACI matrix document exists, contains at least one row with R/A/C/I assignments |
+| DoD-19 | OUT-07 produced when scan purpose is transformation (**conditional**) | File existence + content check | **If** scan purpose involves transformation/refactoring: `OUT-07_transformation-target-current-state.md` exists and is non-empty; contains sections "Core Logic Description", "Key Data Structures", "Sequence Diagrams". **Otherwise**: this check is marked N/A and automatically passes. |
+| DoD-20 | draw.io sequence diagrams exist for transformation target (**conditional**) | File existence + XML parse | **If** OUT-07 was produced: at least one `diagrams/seq-*.drawio` file exists, parses as valid `<mxfile>` XML. **Otherwise**: N/A. |
 
 ---
 

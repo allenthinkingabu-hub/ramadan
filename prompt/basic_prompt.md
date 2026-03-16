@@ -25,3 +25,19 @@
 
 @SA_IA-INC-001_prompts/SA_IA-INC-001_Project_Structure_Scan_agent_skill_definition.md 中 "”Functional Requirements: Interactive AI Agent Workflow"                                              
 我任务少了，在扫描整个项目后，生成整个项目的理解后，还要调查，正对要改造的内容，要让AI Agent 调查这个改造点的现状是什么样的，   
+
+
+
+以 @brd_writer_agent_skill_definition.md  为模版，给这个任务这个任务编写这个任务对应的文档 。这个文档是用来 skill-creator 生成skill 的 .不要阅读其他文件。文件格式 Role_任务编号_任务名称_agent_skil_definition.md, 写成英文的 。 请先我要你做的任务理解任务，然后理解 ，然后在理解任务含义，经过我确认了你在写 #任务:“我指定一个项目下某个方法进行改造,但是改造前你要帮我分析这个方法的设计,并编写一个现有设计文档,这个文档必须是企业级的,必须包  2. **Investigate current state**: Using tools (Glob, Grep, Read, Bash), deeply investigate the transformation target's current implementation:
+     - Current code structure and file layout within the target scope
+     - Current responsibilities and behaviors (what it does today)
+     - Current dependencies: what the target depends on (inbound) and what depends on the target (outbound)
+     - Current data flows and interfaces (APIs, events, shared state)
+     - Current test coverage (unit/integration tests present or absent)
+     - Known technical debt, code smells, or anti-patterns within the target
+     - Configuration and environment dependencies
+  3. **Identify transformation constraints**: Based on the current state investigation, identify:
+     - Hard constraints (things that cannot change — public APIs, database schemas, SLAs)
+     - Soft constraints (things that should be preserved if possible)
+     - Risk areas (high-coupling zones, untested code, shared state)
+  4. **Present Current State Summary**: The agent presents a structured **Transformation Target Current State Report** to the user, covering all findings above. The user confirms → proceed to Step 6. The user rejects or requests deeper investigation → the agent refines and repeats until agreed.”

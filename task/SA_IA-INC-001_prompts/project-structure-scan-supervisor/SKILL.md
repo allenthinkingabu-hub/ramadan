@@ -30,7 +30,7 @@ This skill defines the **Quality Supervisor** role for the Project Structure Sca
 
 ## Inspection Scope
 
-The supervisor verifies **22 check items** (CHK-01 through CHK-22) covering every requirement and deliverable of the Project Structure Scan.
+The supervisor verifies **23 check items** (CHK-01 through CHK-22, plus CHK-23 conditional) covering every requirement and deliverable of the Project Structure Scan.
 
 | Check ID | Category | Check Item | Pass Criteria |
 |----------|----------|------------|---------------|
@@ -40,22 +40,23 @@ The supervisor verifies **22 check items** (CHK-01 through CHK-22) covering ever
 | CHK-04 | Knowledge | Knowledge base items | >= 7 knowledge base items documented |
 | CHK-05 | Tools | Tools list | >= 5 tools listed |
 | CHK-06 | Tools | MCP tools | >= 3 MCP tools listed |
-| CHK-07 | Templates | All 6 template files exist and are non-trivial | All 6 files exist, each > 100 bytes |
-| CHK-08 | SOP | SOP defines phased workflow | 5 phases present, each with sub-steps |
-| CHK-09 | Quality | Definition of Done (DoD) | >= 12 checkable items in DoD |
+| CHK-07 | Templates | All 7 template files exist and are non-trivial | All 7 files exist in `templates/`, each > 100 bytes (includes OUT-07 transformation-target-template.md) |
+| CHK-08 | SOP | SOP defines phased workflow | 6 phases present (Phase 0–5 + new Phase 5 Transformation Target Deep-Dive), each with sub-steps |
+| CHK-09 | Quality | Definition of Done (DoD) | >= 13 checkable items in DoD |
 | CHK-10 | Quality | Definition of Ready (DoR) | >= 8 prerequisites in DoR |
 | CHK-11 | Logging | Conversation log coverage | Phase 1-3 dialogue entries present |
 | CHK-12 | Logging | Work log entries | Timestamped entries exist |
 | CHK-13 | Quality | DoD self-verification | Query dod_checks — all items marked passed |
 | CHK-14 | Output | OUT-01 exists, non-empty, no placeholders | File exists, size > 0, no `{project_name}`, `{date}`, `{session_id}` |
-| CHK-15 | Output | OUT-02 exists, valid Mermaid | File exists, contains ```mermaid block |
+| CHK-15 | Output | OUT-02 exists + draw.io diagram valid | File exists; `diagrams/module-relationship.drawio` exists, parses as valid XML with `<mxfile>` root, contains >= 3 `<mxCell vertex="1">` elements |
 | CHK-16 | Output | OUT-03 pattern identification | File exists, >= 1 pattern identified |
-| CHK-17 | Output | OUT-04 dependency coverage | File exists, covers internal + third-party deps |
+| CHK-17 | Output | OUT-04 dependency coverage + draw.io diagram valid | File exists, covers internal + third-party deps; `diagrams/dependency-map.drawio` exists, parses as valid XML with `<mxfile>` root |
 | CHK-18 | Output | OUT-05 module descriptions | File exists, all modules have descriptions |
 | CHK-19 | Output | OUT-06 executive summary report | File exists, > 500 bytes, contains executive summary |
 | CHK-20 | Memory | SQLite database | agent_memory.db exists and has entries |
 | CHK-21 | Research | Research artifacts | research/ directory has >= 1 file |
 | CHK-22 | Dialogue | Phase question files | phase1-questions.md and phase3-questions.md exist |
+| CHK-23 | Output | OUT-07 Transformation Target Report (conditional) | **If** scan purpose is transformation: `OUT-07_transformation-target-current-state.md` exists, non-empty, contains sections "Core Logic Description", "Key Data Structures", "Sequence Diagrams"; at least one `diagrams/seq-*.drawio` file exists and is valid `<mxfile>` XML. **Otherwise** mark N/A. |
 
 ---
 
@@ -69,7 +70,7 @@ Trigger: Scan Agent signals completion
          v
 +---------------------+
 | Load Checklist      |
-| (22 check items)    |
+| (23 check items)    |
 +---------------------+
          |
          v
@@ -131,12 +132,12 @@ Trigger: Scan Agent signals completion
 
 ## PM Agent Notification (Requirement 15)
 
-When all 22 checks pass (100% pass rate), the supervisor generates a final report and notifies the PM Agent to trigger downstream workflow steps.
+When all 23 checks pass (100% pass rate — N/A counts as pass for CHK-23 on non-transformation scans), the supervisor generates a final report and notifies the PM Agent to trigger downstream workflow steps.
 
 **Notification payload includes:**
 
 1. **Deliverables path** -- Absolute path to the project-structure-scan output directory.
-2. **File list** -- Complete inventory of all generated files.
+2. **File list** -- Complete inventory of all generated files (OUT-01 through OUT-06; OUT-07 and `diagrams/seq-*.drawio` if transformation scan).
 3. **RACI matrix** -- Role assignments for downstream consumption.
 4. **Inspection report** -- The final round inspection report showing 100% pass.
 5. **Scan summary** -- Executive summary from OUT-06.

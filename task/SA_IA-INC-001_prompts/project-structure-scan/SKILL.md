@@ -9,7 +9,7 @@ Role: IT Architect (SA) | Task ID: SA-DISC-001 | Phase: Code Archaeology — Ste
 
 ## Objective
 
-Produce a comprehensive project structure analysis for an existing codebase, covering directory hierarchy, module decomposition, architectural patterns, dependency mapping, and module responsibilities. Deliver 6 structured output deliverables (OUT-01 through OUT-06) through an interactive, memory-enhanced workflow.
+Produce a comprehensive project structure analysis for an existing codebase, covering directory hierarchy, module decomposition, architectural patterns, dependency mapping, and module responsibilities. Deliver 6 standard output deliverables (OUT-01 through OUT-06) and, when the scan purpose involves transformation/refactoring, a 7th conditional deliverable (OUT-07: Transformation Target Current State Report). All diagrams are produced in draw.io format (`.drawio` files).
 
 ## Upstream Inputs
 
@@ -49,9 +49,14 @@ Phase 3: Research & Question Generation (Interactive + Memory-Informed)
 
 Phase 4: Execute & Produce Deliverables (Memory-Optimized)
   → Determine scan strategy (full/incremental) → scan codebase
-  → produce OUT-01~06 → record findings → DoD self-verify
+  → produce OUT-01~06 + draw.io diagrams → record findings → DoD self-verify
 
-Phase 5: Completion & Handoff
+Phase 5: Transformation Target Deep-Dive Investigation (Conditional)
+  → Triggered when scan purpose involves transformation/refactoring
+  → confirm target scope with user → deep-dive investigate current state
+  → produce OUT-07 (core logic + data structures + draw.io sequence diagrams) → user confirms
+
+Phase 6: Completion & Handoff
   → Trigger supervisor → remediate if needed → record lessons → notify PM → trigger downstream
 ```
 
@@ -269,7 +274,7 @@ Before any scanning begins, collect target project information from the user. Se
 **Step 4.2 — Produce OUT-02: Module Relationship Diagram**
 - **Tools**: `Grep: import/require/include statements`, `Read: build files for module dependencies`
 - **Template**: `templates/module-relationship-template.md`
-- **Action**: Construct module dependency graph, generate Mermaid diagram, build dependency matrix
+- **Action**: Construct module dependency graph, generate draw.io XML diagram saved as `diagrams/module-relationship.drawio`, build dependency matrix
 - **Memory**: `record_finding()` for circular dependencies, `record_risk()` for tight coupling
 
 **Step 4.3 — Produce OUT-03: Layering Pattern Analysis**
@@ -281,7 +286,7 @@ Before any scanning begins, collect target project information from the user. Se
 **Step 4.4 — Produce OUT-04: Package Dependency Map**
 - **Tools**: `Read: pom.xml/package.json/build.gradle/requirements.txt`, `Bash: mvn dependency:tree / npm ls / pip list`
 - **Template**: `templates/dependency-map-template.md`
-- **Action**: Inventory all third-party and internal dependencies, generate Mermaid diagram, assess risks
+- **Action**: Inventory all third-party and internal dependencies, generate draw.io XML diagram saved as `diagrams/dependency-map.drawio`, assess risks
 - **Smart dependency diff** (incremental): Compare current manifest with previous OUT-04, report only changes
 - **Memory**: `record_knowledge(category='dependency')`
 
@@ -308,11 +313,83 @@ Before any scanning begins, collect target project information from the user. Se
 - `record_dod_check()` for DoD results
 - Log all actions to `logs/work-log.md`
 
-**Success criteria**: All 6 deliverables produced, DoD self-check passes 100%.
+**Success criteria**: All 6 deliverables produced, all draw.io diagrams generated in `diagrams/`, DoD self-check passes 100%.
 
 ---
 
-## Phase 5: Completion & Handoff
+## Phase 5: Transformation Target Deep-Dive Investigation
+
+**Trigger condition**: This phase is ONLY executed when the scan purpose (from Phase 0 intake or Phase 1 confirmation) involves any form of change, refactoring, feature addition, or system evolution.
+
+**Goal**: Produce a focused **Transformation Target Current State Report** (OUT-07) that serves as the baseline for transformation design.
+
+**Memory queries** (at start):
+- Query `task_memory` for previous Phase 5 findings on this project
+- If prior OUT-07 exists, present delta and ask if scope has changed
+
+**Step 5.1 — Confirm Transformation Target Scope**
+1. If target was specified in intake/Phase 1, confirm:
+   ```
+   "The transformation target appears to be: {target_scope}.
+    Is this correct, or should we focus on a different module/component/area?"
+   ```
+2. If not yet specified, ask:
+   ```
+   "Which specific module(s), component(s), file(s), or functional area(s) will be transformed?
+    Please be as specific as possible."
+   ```
+3. Iterate until user confirms exact target scope. Save confirmed scope to `validated-requirements.md`.
+
+**Step 5.2 — Investigate Current State**
+
+Using tools (Glob, Grep, Read, Bash), deep-dive the transformation target:
+
+| Investigation Area | Tools | What to Capture |
+|-------------------|-------|----------------|
+| Code structure & file layout | Glob, Bash: tree | Directory structure within target scope, key files with LOC |
+| Core logic | Read: key files | Main processing flow, decision branches, error handling |
+| Key data structures | Read: model/entity files | Domain models, DTOs, enums, persistence schema |
+| Inbound dependencies | Grep: import/usage of target's classes | Who depends on this target |
+| Outbound dependencies | Read: imports inside target | What this target depends on |
+| Public interfaces/APIs | Grep: public/exported declarations | Exposed contracts and entry points |
+| Shared state & data stores | Grep: DB/cache/queue access | Tables, collections, queues accessed |
+| Test coverage | Glob: test files, Read: test classes | Unit/integration/E2E tests, coverage level |
+| Technical debt | Read: code, Grep: TODO/FIXME/HACK | Code smells, anti-patterns, hardcoded values |
+| Configuration dependencies | Grep: env vars, config keys | External config dependencies |
+
+**Step 5.3 — Produce draw.io Sequence Diagrams**
+- For each significant flow of the transformation target, produce a draw.io sequence diagram:
+  - **Main success flow**: `diagrams/seq-{use-case-name}-main.drawio`
+  - **Error/alternative flow**: `diagrams/seq-{use-case-name}-error.drawio`
+- Use `templates/transformation-target-template.md` Section 5 as the template
+- Each `.drawio` file must be valid XML with `<mxfile>` root element
+
+**Step 5.4 — Identify Transformation Constraints**
+- **Hard constraints**: Public APIs, DB schemas, SLAs, external contracts — things that CANNOT change
+- **Soft constraints**: Internal conventions, behaviors to preserve if possible
+- **Risk areas**: High-coupling zones, untested code, shared state, blast radius
+
+**Step 5.5 — Produce OUT-07**
+- Use `templates/transformation-target-template.md`
+- Must include all sections: Overview, Code Structure, Core Logic Description, Key Data Structures, Sequence Diagrams (draw.io file references), Responsibilities, Dependency Analysis, Data Flows, Test Coverage, Technical Debt, Configuration, Constraints, Readiness Assessment
+- Save to output directory as `OUT-07_transformation-target-current-state.md`
+
+**Step 5.6 — Present & Confirm**
+1. Present the Transformation Target Current State Report summary to user
+2. User confirms → proceed to Phase 6
+3. User requests deeper investigation → repeat relevant sub-steps → re-present until confirmed
+
+**Memory writes**:
+- `record_finding(phase='phase5')` for each investigation finding
+- `record_finding(phase='phase5', memory_type='risk')` for each identified risk
+- `record_decision(phase='phase5')` for confirmed target scope and constraints
+- Log all actions to `logs/work-log.md`, all Q&A to `logs/conversation-log.md` Phase 5 section
+
+**Success criteria**: User confirms the Transformation Target Current State Report (OUT-07).
+
+---
+
+## Phase 6: Completion & Handoff
 
 **Steps**:
 1. **Record lessons learned**: Extract key insights from the session, call `memory_ops.record_lesson()`.
@@ -365,6 +442,11 @@ Before any scanning begins, collect target project information from the user. Se
 - Quality improvement: query previous failed DoD items, prioritize fixing them
 - **Time saved**: ~40-70% faster execution on re-scans
 
+### Phase 5 (Transformation Target Deep-Dive): Memory-Enhanced Investigation
+- Query previous Phase 5 findings for same project: if OUT-07 exists, offer delta update vs. full re-investigation
+- Pre-load known risks and constraints from previous sessions
+- Skip already-investigated areas, focus on what has changed since last scan
+
 ### Cross-Project Knowledge Transfer
 - Query all high-confidence knowledge entries across projects
 - Build pattern library, use for hypothesis-driven analysis on new projects
@@ -413,6 +495,7 @@ Before any scanning begins, collect target project information from the user. Se
 | **Templates** | `templates/dependency-map-template.md` | OUT-04 template |
 | **Templates** | `templates/module-summary-template.md` | OUT-05 template |
 | **Templates** | `templates/scan-report-template.md` | OUT-06 template |
+| **Templates** | `templates/transformation-target-template.md` | OUT-07 template (conditional — transformation scans only) |
 | **References** | `references/sop.md` | Standard Operating Procedure |
 | **References** | `references/dod.md` | Definition of Done quality gates |
 | **References** | `references/dor.md` | Definition of Ready prerequisites |

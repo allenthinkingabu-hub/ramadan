@@ -15,6 +15,7 @@
 | OUT-04 | Package Dependency Map | `templates/dependency-map-template.md` | Comprehensive map of third-party and internal package dependencies, including version information and circular dependency detection. |
 | OUT-05 | Module Responsibility Summary | `templates/module-summary-template.md` | Per-module descriptions covering purpose, responsibilities, key interfaces, and relationships for every identified module. |
 | OUT-06 | Project Structure Scan Report | `templates/scan-report-template.md` | Comprehensive final report consolidating all findings, including executive summary, detailed analysis, recommendations, and references to all other outputs. |
+| OUT-07 | Transformation Target Current State Report | `templates/transformation-target-template.md` | **Conditional — transformation scans only.** Deep-dive investigation of the transformation target: core logic description, key data structures, draw.io sequence diagrams, dependency analysis, test coverage, constraints, and readiness assessment. |
 
 ---
 
@@ -34,12 +35,12 @@
    - OUT-01 through OUT-05: Must be non-empty (> 0 bytes).
    - OUT-06 (Final Report): Must exceed 500 bytes to ensure substantive content.
 
-5. **Mermaid diagram validation.** OUT-02 must contain valid Mermaid syntax that renders without errors. The agent should validate the syntax before finalizing.
+5. **draw.io diagram validation.** OUT-02 (`diagrams/module-relationship.drawio`) and OUT-04 (`diagrams/dependency-map.drawio`) must be valid XML with `<mxfile>` as the root element. OUT-07, when produced, must be accompanied by at least one `diagrams/seq-*.drawio` sequence diagram file. All `.drawio` files must pass `xml.etree.ElementTree.parse()` validation (DoD-08, DoD-09, DoD-20).
 
 ---
 
 ## Cross-References
 
-- **SOP production steps:** See `references/sop.md`, Phase 4, Steps 4-6 through 4-11.
-- **Quality gates:** See `references/dod.md`, Checks DoD-01 through DoD-12.
+- **SOP production steps:** See `references/sop.md`, Phase 4 (Steps 4-6 through 4-11) and Phase 5 (Steps 5-14 for OUT-07).
+- **Quality gates:** See `references/dod.md`, Checks DoD-01 through DoD-20.
 - **Template files:** Located in the `templates/` directory of this skill package.

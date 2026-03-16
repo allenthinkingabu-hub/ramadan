@@ -70,69 +70,120 @@
 
 ## 4. Dependency Graph
 
-```mermaid
-graph LR
-    subgraph CORE["Core Application"]
-        {core_mod_01}["{core_mod_01_name}"]
-        {core_mod_02}["{core_mod_02_name}"]
-        {core_mod_03}["{core_mod_03_name}"]
-    end
+> The agent saves this diagram as **`diagrams/dependency-map.drawio`** in the output directory.
+> The file must be valid XML with `<mxfile>` as the root element and must open correctly in draw.io.
+> The diagram must contain distinct swimlane groups for internal modules and external (third-party) dependencies.
 
-    subgraph FRAMEWORKS["Frameworks & Runtime"]
-        {fw_01}("{fw_01_name}")
-        {fw_02}("{fw_02_name}")
-        {fw_03}("{fw_03_name}")
-    end
-
-    subgraph LIBS["Third-Party Libraries"]
-        {lib_01}("{lib_01_name}")
-        {lib_02}("{lib_02_name}")
-        {lib_03}("{lib_03_name}")
-        {lib_04}("{lib_04_name}")
-        {lib_05}("{lib_05_name}")
-    end
-
-    subgraph DEVTOOLS["Dev Dependencies"]
-        {dev_01}("{dev_01_name}")
-        {dev_02}("{dev_02_name}")
-        {dev_03}("{dev_03_name}")
-    end
-
-    subgraph INTERNAL["Internal Modules"]
-        {int_mod_01}["{int_mod_01_name}"]
-        {int_mod_02}["{int_mod_02_name}"]
-        {int_mod_03}["{int_mod_03_name}"]
-    end
-
-    %% Core to framework dependencies
-    {core_mod_01} --> {fw_01}
-    {core_mod_02} --> {fw_02}
-
-    %% Core to library dependencies
-    {core_mod_01} --> {lib_01}
-    {core_mod_02} --> {lib_02}
-    {core_mod_03} --> {lib_03}
-
-    %% Internal module dependencies
-    {int_mod_01} --> {core_mod_01}
-    {int_mod_02} --> {core_mod_02}
-    {int_mod_03} --> {lib_04}
-
-    %% Dev tool dependencies
-    {dev_01} -.-> {core_mod_01}
-    {dev_02} -.-> {core_mod_02}
-
-    classDef core fill:#4FC3F7,stroke:#0288D1,color:#000
-    classDef framework fill:#FFD54F,stroke:#F9A825,color:#000
-    classDef library fill:#81C784,stroke:#388E3C,color:#000
-    classDef devtool fill:#B0BEC5,stroke:#546E7A,color:#000
-    classDef internal fill:#CE93D8,stroke:#7B1FA2,color:#000
-
-    class {core_mod_01},{core_mod_02},{core_mod_03} core
-    class {fw_01},{fw_02},{fw_03} framework
-    class {lib_01},{lib_02},{lib_03},{lib_04},{lib_05} library
-    class {dev_01},{dev_02},{dev_03} devtool
-    class {int_mod_01},{int_mod_02},{int_mod_03} internal
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net" modified="{scan_date}" agent="Project Structure Scan AI Agent" version="21.0.0">
+  <diagram name="Package Dependency Map" id="dependency-map">
+    <mxGraphModel dx="1422" dy="762" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <!-- ===== Internal Modules (left, blue) ===== -->
+        <mxCell id="swim_internal" value="Internal Modules" style="swimlane;startSize=30;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="30" y="30" width="320" height="500" as="geometry" />
+        </mxCell>
+        <mxCell id="int_01" value="{core_mod_01_name}" style="rounded=1;whiteSpace=wrap;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="swim_internal">
+          <mxGeometry x="40" y="50" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="int_02" value="{core_mod_02_name}" style="rounded=1;whiteSpace=wrap;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="swim_internal">
+          <mxGeometry x="180" y="50" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="int_03" value="{int_mod_01_name}" style="rounded=1;whiteSpace=wrap;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="swim_internal">
+          <mxGeometry x="40" y="150" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="int_04" value="{int_mod_02_name}" style="rounded=1;whiteSpace=wrap;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="swim_internal">
+          <mxGeometry x="180" y="150" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="int_05" value="{int_mod_03_name}" style="rounded=1;whiteSpace=wrap;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="swim_internal">
+          <mxGeometry x="100" y="250" width="120" height="40" as="geometry" />
+        </mxCell>
+        <!-- Internal dependency edges (within swim_internal) -->
+        <mxCell id="ie01" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;" edge="1" source="int_03" target="int_01" parent="swim_internal">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ie02" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;" edge="1" source="int_04" target="int_02" parent="swim_internal">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <!-- ===== Third-Party Dependencies (right, orange outer group) ===== -->
+        <mxCell id="swim_thirdparty" value="Third-Party Dependencies" style="swimlane;startSize=30;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="420" y="30" width="700" height="500" as="geometry" />
+        </mxCell>
+        <!-- Frameworks & Runtime subgroup -->
+        <mxCell id="swim_fw" value="Frameworks &amp; Runtime" style="swimlane;startSize=25;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=12;" vertex="1" parent="swim_thirdparty">
+          <mxGeometry x="20" y="50" width="300" height="190" as="geometry" />
+        </mxCell>
+        <mxCell id="fw_01" value="{fw_01_name}" style="rounded=1;whiteSpace=wrap;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="swim_fw">
+          <mxGeometry x="20" y="40" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="fw_02" value="{fw_02_name}" style="rounded=1;whiteSpace=wrap;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="swim_fw">
+          <mxGeometry x="120" y="40" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="fw_03" value="{fw_03_name}" style="rounded=1;whiteSpace=wrap;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="swim_fw">
+          <mxGeometry x="210" y="40" width="80" height="40" as="geometry" />
+        </mxCell>
+        <!-- Third-Party Libraries subgroup -->
+        <mxCell id="swim_libs" value="Third-Party Libraries" style="swimlane;startSize=25;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;" vertex="1" parent="swim_thirdparty">
+          <mxGeometry x="20" y="260" width="300" height="210" as="geometry" />
+        </mxCell>
+        <mxCell id="lib_01" value="{lib_01_name}" style="rounded=1;whiteSpace=wrap;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="swim_libs">
+          <mxGeometry x="10" y="40" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="lib_02" value="{lib_02_name}" style="rounded=1;whiteSpace=wrap;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="swim_libs">
+          <mxGeometry x="110" y="40" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="lib_03" value="{lib_03_name}" style="rounded=1;whiteSpace=wrap;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="swim_libs">
+          <mxGeometry x="210" y="40" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="lib_04" value="{lib_04_name}" style="rounded=1;whiteSpace=wrap;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="swim_libs">
+          <mxGeometry x="10" y="130" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="lib_05" value="{lib_05_name}" style="rounded=1;whiteSpace=wrap;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="swim_libs">
+          <mxGeometry x="110" y="130" width="80" height="40" as="geometry" />
+        </mxCell>
+        <!-- Dev Dependencies subgroup -->
+        <mxCell id="swim_dev" value="Dev Dependencies" style="swimlane;startSize=25;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;fontSize=12;" vertex="1" parent="swim_thirdparty">
+          <mxGeometry x="340" y="50" width="340" height="420" as="geometry" />
+        </mxCell>
+        <mxCell id="dev_01" value="{dev_01_name}" style="rounded=1;whiteSpace=wrap;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="swim_dev">
+          <mxGeometry x="20" y="40" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="dev_02" value="{dev_02_name}" style="rounded=1;whiteSpace=wrap;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="swim_dev">
+          <mxGeometry x="140" y="40" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="dev_03" value="{dev_03_name}" style="rounded=1;whiteSpace=wrap;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="swim_dev">
+          <mxGeometry x="80" y="130" width="100" height="40" as="geometry" />
+        </mxCell>
+        <!-- ===== Cross-boundary edges: Internal → Third-Party (solid) ===== -->
+        <mxCell id="ce01" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;" edge="1" source="int_01" target="fw_01" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ce02" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;" edge="1" source="int_02" target="fw_02" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ce03" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;" edge="1" source="int_01" target="lib_01" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ce04" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;" edge="1" source="int_02" target="lib_02" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ce05" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;" edge="1" source="int_03" target="lib_03" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <!-- Dev tool edges (dashed) -->
+        <mxCell id="ce06" value="" style="edgeStyle=orthogonalEdgeStyle;dashed=1;rounded=0;" edge="1" source="dev_01" target="int_01" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ce07" value="" style="edgeStyle=orthogonalEdgeStyle;dashed=1;rounded=0;" edge="1" source="dev_02" target="int_02" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
 ```
 
 > **Legend:** Solid arrows = runtime dependency | Dashed arrows = development-only dependency

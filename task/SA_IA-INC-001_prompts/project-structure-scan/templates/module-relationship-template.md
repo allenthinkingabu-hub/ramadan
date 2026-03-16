@@ -13,63 +13,112 @@
 
 ## 1. Module Relationship Diagram
 
-```mermaid
-graph TD
-    subgraph PRESENTATION["Presentation Layer"]
-        {mod_pres_01}["{mod_pres_01_name}"]
-        {mod_pres_02}["{mod_pres_02_name}"]
-        {mod_pres_03}["{mod_pres_03_name}"]
-    end
+> The agent saves this diagram as **`diagrams/module-relationship.drawio`** in the output directory.
+> The file must be valid XML with `<mxfile>` as the root element and must open correctly in draw.io.
 
-    subgraph APPLICATION["Application / Business Logic Layer"]
-        {mod_app_01}["{mod_app_01_name}"]
-        {mod_app_02}["{mod_app_02_name}"]
-        {mod_app_03}["{mod_app_03_name}"]
-    end
-
-    subgraph DOMAIN["Domain Layer"]
-        {mod_dom_01}["{mod_dom_01_name}"]
-        {mod_dom_02}["{mod_dom_02_name}"]
-    end
-
-    subgraph INFRASTRUCTURE["Infrastructure Layer"]
-        {mod_infra_01}["{mod_infra_01_name}"]
-        {mod_infra_02}["{mod_infra_02_name}"]
-        {mod_infra_03}["{mod_infra_03_name}"]
-    end
-
-    subgraph SHARED["Shared / Cross-Cutting"]
-        {mod_shared_01}["{mod_shared_01_name}"]
-        {mod_shared_02}["{mod_shared_02_name}"]
-    end
-
-    %% Dependencies
-    {mod_pres_01} -->|{rel_type_01}| {mod_app_01}
-    {mod_pres_02} -->|{rel_type_02}| {mod_app_02}
-    {mod_app_01} -->|{rel_type_03}| {mod_dom_01}
-    {mod_app_02} -->|{rel_type_04}| {mod_dom_02}
-    {mod_app_01} -->|{rel_type_05}| {mod_infra_01}
-    {mod_dom_01} -->|{rel_type_06}| {mod_shared_01}
-    {mod_infra_01} -->|{rel_type_07}| {mod_infra_02}
-    {mod_infra_02} -->|{rel_type_08}| {mod_shared_02}
-
-    %% Circular / violation (if any)
-    {mod_infra_01} -.->|"VIOLATION: {violation_desc_01}"| {mod_pres_01}
-
-    classDef presentation fill:#4FC3F7,stroke:#0288D1,color:#000
-    classDef application fill:#81C784,stroke:#388E3C,color:#000
-    classDef domain fill:#FFD54F,stroke:#F9A825,color:#000
-    classDef infrastructure fill:#FF8A65,stroke:#D84315,color:#000
-    classDef shared fill:#CE93D8,stroke:#7B1FA2,color:#000
-
-    class {mod_pres_01},{mod_pres_02},{mod_pres_03} presentation
-    class {mod_app_01},{mod_app_02},{mod_app_03} application
-    class {mod_dom_01},{mod_dom_02} domain
-    class {mod_infra_01},{mod_infra_02},{mod_infra_03} infrastructure
-    class {mod_shared_01},{mod_shared_02} shared
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net" modified="{scan_date}" agent="Project Structure Scan AI Agent" version="21.0.0">
+  <diagram name="Module Relationship" id="module-relationship">
+    <mxGraphModel dx="1422" dy="762" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <!-- ===== Presentation Layer ===== -->
+        <mxCell id="swim_pres" value="Presentation Layer" style="swimlane;startSize=30;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="30" y="30" width="380" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="pres_01" value="{mod_pres_01_name}" style="rounded=1;whiteSpace=wrap;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="swim_pres">
+          <mxGeometry x="20" y="50" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="pres_02" value="{mod_pres_02_name}" style="rounded=1;whiteSpace=wrap;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="swim_pres">
+          <mxGeometry x="140" y="50" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="pres_03" value="{mod_pres_03_name}" style="rounded=1;whiteSpace=wrap;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="swim_pres">
+          <mxGeometry x="260" y="50" width="100" height="40" as="geometry" />
+        </mxCell>
+        <!-- ===== Application / Business Logic Layer ===== -->
+        <mxCell id="swim_app" value="Application / Business Logic Layer" style="swimlane;startSize=30;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="30" y="220" width="380" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="app_01" value="{mod_app_01_name}" style="rounded=1;whiteSpace=wrap;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="swim_app">
+          <mxGeometry x="20" y="50" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="app_02" value="{mod_app_02_name}" style="rounded=1;whiteSpace=wrap;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="swim_app">
+          <mxGeometry x="140" y="50" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="app_03" value="{mod_app_03_name}" style="rounded=1;whiteSpace=wrap;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="swim_app">
+          <mxGeometry x="260" y="50" width="100" height="40" as="geometry" />
+        </mxCell>
+        <!-- ===== Domain Layer ===== -->
+        <mxCell id="swim_dom" value="Domain Layer" style="swimlane;startSize=30;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="30" y="410" width="380" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="dom_01" value="{mod_dom_01_name}" style="rounded=1;whiteSpace=wrap;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="swim_dom">
+          <mxGeometry x="60" y="50" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="dom_02" value="{mod_dom_02_name}" style="rounded=1;whiteSpace=wrap;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="swim_dom">
+          <mxGeometry x="220" y="50" width="100" height="40" as="geometry" />
+        </mxCell>
+        <!-- ===== Infrastructure Layer ===== -->
+        <mxCell id="swim_infra" value="Infrastructure Layer" style="swimlane;startSize=30;fillColor=#f8cecc;strokeColor=#b85450;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="30" y="580" width="380" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="infra_01" value="{mod_infra_01_name}" style="rounded=1;whiteSpace=wrap;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="swim_infra">
+          <mxGeometry x="20" y="50" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="infra_02" value="{mod_infra_02_name}" style="rounded=1;whiteSpace=wrap;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="swim_infra">
+          <mxGeometry x="140" y="50" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="infra_03" value="{mod_infra_03_name}" style="rounded=1;whiteSpace=wrap;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="swim_infra">
+          <mxGeometry x="260" y="50" width="100" height="40" as="geometry" />
+        </mxCell>
+        <!-- ===== Shared / Cross-Cutting ===== -->
+        <mxCell id="swim_shared" value="Shared / Cross-Cutting" style="swimlane;startSize=30;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="460" y="220" width="260" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="shared_01" value="{mod_shared_01_name}" style="rounded=1;whiteSpace=wrap;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="swim_shared">
+          <mxGeometry x="20" y="50" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="shared_02" value="{mod_shared_02_name}" style="rounded=1;whiteSpace=wrap;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="swim_shared">
+          <mxGeometry x="140" y="50" width="100" height="40" as="geometry" />
+        </mxCell>
+        <!-- ===== Dependency Edges (solid = direct dependency) ===== -->
+        <mxCell id="e01" value="{rel_type_01}" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;" edge="1" source="pres_01" target="app_01" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e02" value="{rel_type_02}" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;" edge="1" source="pres_02" target="app_02" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e03" value="{rel_type_03}" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;" edge="1" source="app_01" target="dom_01" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e04" value="{rel_type_04}" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;" edge="1" source="app_02" target="dom_02" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e05" value="{rel_type_05}" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;" edge="1" source="app_01" target="infra_01" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e06" value="{rel_type_06}" style="edgeStyle=orthogonalEdgeStyle;rounded=0;" edge="1" source="dom_01" target="shared_01" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e07" value="{rel_type_07}" style="edgeStyle=orthogonalEdgeStyle;rounded=0;" edge="1" source="infra_01" target="infra_02" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e08" value="{rel_type_08}" style="edgeStyle=orthogonalEdgeStyle;rounded=0;" edge="1" source="infra_02" target="shared_02" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <!-- ===== Violation / Circular Dependency (dashed red) ===== -->
+        <mxCell id="e_viol" value="VIOLATION: {violation_desc_01}" style="edgeStyle=orthogonalEdgeStyle;dashed=1;strokeColor=#FF0000;fontColor=#FF0000;fontStyle=1;" edge="1" source="infra_01" target="pres_01" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
 ```
 
-> **Legend:** Solid arrows (`-->`) = direct dependency | Dashed arrows (`-.->`) = violation or circular dependency
+> **Legend:** Solid arrows = direct dependency | Dashed red arrows = violation or circular dependency
 
 ---
 

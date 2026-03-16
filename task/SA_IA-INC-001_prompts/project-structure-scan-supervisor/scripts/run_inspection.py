@@ -2,22 +2,24 @@
 """
 Project Structure Scan — Automated Inspection Script
 
-Performs 22 automated checks against the output of the Project Structure Scan Agent
+Performs 23 automated checks against the output of the Project Structure Scan Agent
 (SA-DISC-001). Generates a structured inspection report.
 
 Usage:
     python inspect.py --output-dir /path/to/project-structure-scan --report-dir /path/to/reports --round 1
 
 Exit codes:
-    0 - All 22 checks passed
+    0 - All 23 checks passed (N/A counts as pass for CHK-23 on non-transformation scans)
     1 - One or more checks failed
 """
 
 import argparse
+import glob as glob_module
 import os
 import re
 import sqlite3
 import sys
+import xml.etree.ElementTree as ET
 from datetime import datetime
 from pathlib import Path
 
@@ -417,17 +419,30 @@ def chk_14(output_dir: str) -> CheckResult:
 
 
 def chk_15(output_dir: str) -> CheckResult:
-    r = CheckResult("CHK-15", "Output", "OUT-02 exists, valid Mermaid")
+    r = CheckResult("CHK-15", "Output", "OUT-02 exists + diagrams/module-relationship.drawio valid")
     candidates = _find_output_file(output_dir, "OUT-02", "diagram")
-    for path in candidates:
-        if file_exists(path):
-            text = read_file(path)
-            if re.search(r"```mermaid", text):
-                r.passed(f"{os.path.basename(path)} contains Mermaid diagram block")
-            else:
-                r.failed(f"{os.path.basename(path)} exists but no ```mermaid block found")
+    out02_found = any(file_exists(p) for p in candidates)
+    if not out02_found:
+        r.failed("OUT-02 file not found")
+        return r
+    drawio_path = os.path.join(output_dir, "diagrams", "module-relationship.drawio")
+    if not file_exists(drawio_path):
+        r.failed(f"OUT-02 found but diagrams/module-relationship.drawio does not exist")
+        return r
+    try:
+        tree = ET.parse(drawio_path)
+        root = tree.getroot()
+        if root.tag != "mxfile":
+            r.failed(f"module-relationship.drawio root tag is '{root.tag}', expected 'mxfile'")
             return r
-    r.failed("OUT-02 file not found")
+        vertex_cells = root.findall(".//{http://}mxCell[@vertex]") or root.findall(".//mxCell[@vertex]")
+        vertex_count = sum(1 for c in vertex_cells if c.get("vertex") == "1")
+        if vertex_count < 3:
+            r.failed(f"module-relationship.drawio has only {vertex_count} vertex cells (need >= 3)")
+            return r
+        r.passed(f"module-relationship.drawio valid mxfile XML with {vertex_count} vertex cells")
+    except ET.ParseError as e:
+        r.failed(f"module-relationship.drawio XML parse error: {e}")
     return r
 
 
@@ -447,21 +462,46 @@ def chk_16(output_dir: str) -> CheckResult:
 
 
 def chk_17(output_dir: str) -> CheckResult:
-    r = CheckResult("CHK-17", "Output", "OUT-04 covers internal + third-party deps")
+    r = CheckResult("CHK-17", "Output", "OUT-04 covers internal + third-party + diagrams/dependency-map.drawio valid")
     candidates = _find_output_file(output_dir, "OUT-04", "dependenc")
+    out04_found = False
     for path in candidates:
         if file_exists(path):
+            out04_found = True
             text = read_file(path)
             has_internal = bool(re.search(r"(?i)internal", text))
             has_third = bool(re.search(r"(?i)third.party|external|npm|pip|maven|gradle", text))
-            if has_internal and has_third:
-                r.passed(f"{os.path.basename(path)} covers both internal and third-party deps")
-            elif not has_internal:
-                r.failed(f"{os.path.basename(path)} missing internal dependency coverage")
-            else:
-                r.failed(f"{os.path.basename(path)} missing third-party dependency coverage")
+            if not has_internal or not has_third:
+                missing = []
+                if not has_internal:
+                    missing.append("internal dependency coverage")
+                if not has_third:
+                    missing.append("third-party dependency coverage")
+                r.failed(f"{os.path.basename(path)} missing: {', '.join(missing)}")
+                return r
+            break
+    if not out04_found:
+        r.failed("OUT-04 file not found")
+        return r
+    drawio_path = os.path.join(output_dir, "diagrams", "dependency-map.drawio")
+    if not file_exists(drawio_path):
+        r.failed("OUT-04 content OK but diagrams/dependency-map.drawio does not exist")
+        return r
+    try:
+        tree = ET.parse(drawio_path)
+        root = tree.getroot()
+        if root.tag != "mxfile":
+            r.failed(f"dependency-map.drawio root tag is '{root.tag}', expected 'mxfile'")
             return r
-    r.failed("OUT-04 file not found")
+        xml_text = ET.tostring(root, encoding="unicode")
+        has_internal_swim = bool(re.search(r"(?i)internal", xml_text))
+        has_external_swim = bool(re.search(r"(?i)third.party|external|framework|library", xml_text))
+        if not has_internal_swim or not has_external_swim:
+            r.failed("dependency-map.drawio valid XML but missing internal or external swimlane groups")
+            return r
+        r.passed("OUT-04 covers internal + third-party; dependency-map.drawio is valid mxfile XML with internal and external swimlanes")
+    except ET.ParseError as e:
+        r.failed(f"dependency-map.drawio XML parse error: {e}")
     return r
 
 
@@ -569,6 +609,91 @@ def chk_22(output_dir: str) -> CheckResult:
     return r
 
 
+def _is_transformation_scan(output_dir: str) -> bool:
+    """Determine if this is a transformation scan by querying scan_history or validated-requirements."""
+    db_path = os.path.join(output_dir, "agent_memory.db")
+    if file_exists(db_path):
+        try:
+            conn = sqlite3.connect(db_path)
+            cursor = conn.cursor()
+            cursor.execute(
+                "SELECT purpose FROM scan_history ORDER BY start_time DESC LIMIT 1"
+            )
+            row = cursor.fetchone()
+            conn.close()
+            if row:
+                purpose = (row[0] or "").lower()
+                return bool(re.search(
+                    r"transform|refactor|migrat|rewrite|evolv|feature add|moderniz", purpose
+                ))
+        except sqlite3.Error:
+            pass
+    req_path = os.path.join(output_dir, "validated-requirements.md")
+    if file_exists(req_path):
+        text = read_file(req_path).lower()
+        return bool(re.search(
+            r"transform|refactor|migrat|rewrite|evolv|feature add|moderniz", text
+        ))
+    return False
+
+
+def _validate_drawio_xml(path: str) -> tuple:
+    """Parse a .drawio file and return (is_valid, message)."""
+    try:
+        tree = ET.parse(path)
+        root = tree.getroot()
+        if root.tag != "mxfile":
+            return False, f"root tag is '{root.tag}', expected 'mxfile'"
+        return True, f"valid mxfile XML ({os.path.getsize(path)} bytes)"
+    except ET.ParseError as e:
+        return False, f"XML parse error: {e}"
+    except Exception as e:
+        return False, f"error reading file: {e}"
+
+
+def chk_23(output_dir: str) -> CheckResult:
+    r = CheckResult("CHK-23", "Output", "OUT-07 Transformation Target Report (conditional)")
+    if not _is_transformation_scan(output_dir):
+        r.passed("N/A — scan purpose is not a transformation scan")
+        return r
+    # Check OUT-07 file exists
+    candidates = _find_output_file(output_dir, "OUT-07", "transformation")
+    out07_path = None
+    for path in candidates:
+        if file_exists(path):
+            out07_path = path
+            break
+    if not out07_path:
+        r.failed("Transformation scan detected but OUT-07_transformation-target-current-state.md not found")
+        return r
+    text = read_file(out07_path)
+    missing_sections = []
+    for section in ["Core Logic Description", "Key Data Structures", "Sequence Diagrams"]:
+        if not re.search(re.escape(section), text, re.IGNORECASE):
+            missing_sections.append(section)
+    if missing_sections:
+        r.failed(f"OUT-07 missing required sections: {', '.join(missing_sections)}")
+        return r
+    # Check for seq-*.drawio files
+    diagrams_dir = os.path.join(output_dir, "diagrams")
+    seq_files = glob_module.glob(os.path.join(diagrams_dir, "seq-*.drawio"))
+    if not seq_files:
+        r.failed("OUT-07 present but no diagrams/seq-*.drawio sequence diagram files found")
+        return r
+    invalid_files = []
+    for seq_path in seq_files:
+        valid, msg = _validate_drawio_xml(seq_path)
+        if not valid:
+            invalid_files.append(f"{os.path.basename(seq_path)}: {msg}")
+    if invalid_files:
+        r.failed(f"Invalid seq diagram files: {'; '.join(invalid_files)}")
+        return r
+    r.passed(
+        f"OUT-07 present with required sections; {len(seq_files)} valid seq-*.drawio file(s)"
+    )
+    return r
+
+
 # ---------------------------------------------------------------------------
 # Utility helpers
 # ---------------------------------------------------------------------------
@@ -663,7 +788,7 @@ def generate_report(results: list, output_dir: str, report_dir: str, round_num: 
     lines.append(f"## Conclusion\n")
     lines.append(f"**Verdict: {verdict}**\n")
     if verdict == "ALL PASSED":
-        lines.append("All 22 checks passed. Output is ready for PM Agent handoff.")
+        lines.append("All 23 checks passed (N/A counts as pass for CHK-23 on non-transformation scans). Output is ready for PM Agent handoff.")
     elif verdict == "ESCALATED":
         lines.append("Maximum remediation rounds (3) reached with remaining failures. Escalating to human operator / PM Agent for manual review.")
     else:
@@ -683,7 +808,7 @@ def generate_report(results: list, output_dir: str, report_dir: str, round_num: 
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Project Structure Scan — Automated Inspection (22 checks)"
+        description="Project Structure Scan — Automated Inspection (23 checks)"
     )
     parser.add_argument(
         "--output-dir",
@@ -710,12 +835,12 @@ def main():
         print(f"ERROR: Output directory does not exist: {output_dir}", file=sys.stderr)
         sys.exit(1)
 
-    # Run all 22 checks
+    # Run all 23 checks (CHK-23 is conditional: N/A counts as pass on non-transformation scans)
     checks = [
         chk_01, chk_02, chk_03, chk_04, chk_05, chk_06,
         chk_07, chk_08, chk_09, chk_10, chk_11, chk_12,
         chk_13, chk_14, chk_15, chk_16, chk_17, chk_18,
-        chk_19, chk_20, chk_21, chk_22,
+        chk_19, chk_20, chk_21, chk_22, chk_23,
     ]
 
     results = []

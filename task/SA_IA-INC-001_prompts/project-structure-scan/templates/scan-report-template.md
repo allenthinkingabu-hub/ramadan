@@ -106,10 +106,8 @@
 
 ### 3.1 Relationship Diagram
 
-```mermaid
-graph TD
-    {relationship_diagram_content}
-```
+> **Diagram file**: `diagrams/module-relationship.drawio` (draw.io format — open in draw.io or compatible viewer)
+> See [OUT-02](./module-relationship-template.md) for the full annotated draw.io XML and dependency matrix.
 
 ### 3.2 Key Relationships
 
@@ -173,10 +171,8 @@ graph TD
 
 ### 5.2 Dependency Graph
 
-```mermaid
-graph LR
-    {dependency_graph_content}
-```
+> **Diagram file**: `diagrams/dependency-map.drawio` (draw.io format — open in draw.io or compatible viewer)
+> See [OUT-04](./dependency-map-template.md) for the full annotated draw.io XML with internal and third-party swimlanes.
 
 ### 5.3 Dependency Risks
 
